@@ -8,6 +8,7 @@
     <dimen name="text_large_size">54pt</dimen><!--大字-->
     <dimen name="text_middle_size">48pt</dimen><!--中等字-->
     <dimen name="text_mini_size">36pt</dimen><!--小字-->
+    <dimen name="text_small_size">24pt</dimen><!--小字-->
 
     <dimen name="icon_large_size">135pt</dimen><!--大图标-->
     <dimen name="icon_middle_size">105pt</dimen><!--中等图标-->

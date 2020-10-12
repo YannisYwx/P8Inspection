@@ -29,7 +29,6 @@ public class CommonItemView extends ConstraintLayout {
 
     private TextView tvLabel;
     private ImageView ivIcon, ivArrow;
-    private View vLine;
 
     private String label;
     private Drawable icon, arrow;
@@ -37,7 +36,8 @@ public class CommonItemView extends ConstraintLayout {
 
     private int paddingLeft = 0;
     private int paddingRight = 0;
-    private int dividerColor = Color.parseColor("#E3E3E3");
+    private int dividerColor;
+    private int labelColor;
     private float dividerHeight = getResources().getDimension(R.dimen.dividerHeight);
     private Paint mPaint;
 
@@ -63,6 +63,7 @@ public class CommonItemView extends ConstraintLayout {
         hasBottomLine = typedArray.getBoolean(R.styleable.CommonItemView_hasBottomLine, true);
         dividerColor = typedArray.getColor(R.styleable.CommonItemView_dividerColor, Color.parseColor("#E3E3E3"));
         dividerHeight = typedArray.getDimension(R.styleable.CommonItemView_dividerHeight, getResources().getDimension(R.dimen.dividerHeight));
+        labelColor =  typedArray.getColor(R.styleable.CommonItemView_labelColor, Color.parseColor("#ffffff"));
         icon = typedArray.getDrawable(R.styleable.CommonItemView_icon);
         arrow = typedArray.getDrawable(R.styleable.CommonItemView_arrow);
         paddingLeft = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingLeft, 0);
@@ -76,13 +77,16 @@ public class CommonItemView extends ConstraintLayout {
 
     @Override
     protected void onFinishInflate() {
+        tvLabel = findViewById(R.id.tv_label);
+        ivIcon = findViewById(R.id.iv_icon);
+        ivArrow = findViewById(R.id.iv_arrow);
         setDataToUI();
         super.onFinishInflate();
     }
 
     private void setDataToUI() {
         tvLabel.setText(TextUtils.isEmpty(label) ? "" : label);
-
+        tvLabel.setTextColor(labelColor);
         if (icon != null) {
             ivIcon.setImageDrawable(icon);
             ivIcon.setVisibility(View.VISIBLE);

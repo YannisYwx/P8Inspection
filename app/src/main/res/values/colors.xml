@@ -46,7 +46,7 @@
     <color name="dividerColor">#E3E3E3</color>
     <color name="gapBg">#f3f3f3</color>
 
-    <color name="text_Gray">#938EA2</color>
+    <color name="text_gray">#C5D0DE</color>
     <color name="text_Blue">#0F74F6</color>
     <color name="text_black">#333333</color>
     <color name="btn_orange">#FC8113</color>

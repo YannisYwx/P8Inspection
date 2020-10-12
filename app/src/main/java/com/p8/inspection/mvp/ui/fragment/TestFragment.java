@@ -70,6 +70,7 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
         $(R.id.btn_province).setOnClickListener(this);
         $(R.id.btn_download).setOnClickListener(this);
         $(R.id.btn_pdf).setOnClickListener(this);
+        $(R.id.btn_me).setOnClickListener(this);
     }
 
     @Override
@@ -120,6 +121,10 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
 
         if (v.getId() == R.id.btn_pdf) {
             start(PdfPreviewFragment.getInstance("J1-2.pdf"));
+        }
+
+        if (v.getId() == R.id.btn_me) {
+            start(MeFragment.newInstance());
         }
 
         PermissionUtils.permission().request();

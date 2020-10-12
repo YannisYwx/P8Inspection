@@ -14,8 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
+import com.blankj.utilcode.util.AdaptScreenUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.orhanobut.logger.Logger;
 import com.p8.common.R;
+import com.p8.common.utils.ScreenUtil;
 import com.p8.common.utils.StatusBarUtils;
 import com.p8.common.widget.StatusPager;
 import com.p8.common.widget.TitleBar;
@@ -69,13 +72,18 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
 
     private void addContentView(View contentView) {
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+                ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.topToBottom = R.id.titleBar;
         layoutParams.leftToLeft = R.id.layout_toolbar;
         layoutParams.rightToRight = R.id.layout_toolbar;
         layoutParams.bottomToBottom = R.id.layout_toolbar;
+        layoutParams.height = getContentViewHeight();
         contentView.setLayoutParams(layoutParams);
         mRootView.addView(contentView);
+    }
+
+    private int getContentViewHeight(){
+        return ScreenUtils.getScreenHeight() - StatusBarUtils.getStatusBarHeight(this.mContext) - (hasTitleBar() ? 0 : 1) * AdaptScreenUtils.pt2Px(144);
     }
 
     @Override

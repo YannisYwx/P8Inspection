@@ -40,4 +40,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_download" />
+
+    <Button
+        android:id="@+id/btn_me"
+        style="@style/NormalButton"
+        android:layout_marginTop="45pt"
+        android:text="个人中心"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_pdf" />
 </androidx.constraintlayout.widget.ConstraintLayout>
