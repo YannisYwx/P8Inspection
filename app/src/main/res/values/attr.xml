@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 定义了一个新的属性,用来指定hint-->
+    <attr name="hint" format="reference|string" />
+    <!--显示密码的图标是否可见-->
+    <attr name="isPswIcon" format="boolean" />
+    <!--删除图标是否可见-->
+    <attr name="isDeletable" format="boolean" />
+    <!--输入类型-->
+    <attr name="inputType" format="enum">
+        <enum name="number" value="1" />
+        <enum name="password" value="2" />
+        <enum name="visible_psw" value="3" />
+    </attr>
+    <attr name="mode">
+        <enum name="normal" value="0" />
+        <enum name="v_code" value="1" />
+    </attr>
+
+    <!--编辑框的属性-->
+    <declare-styleable name="GroupEditText">
+        <!-- 定义了一个新的属性,用来指定文本 -->
+        <attr name="text" format="reference|string" />
+        <attr name="hint" />
+        <attr name="isPswIcon" />
+        <attr name="isDeletable" />
+        <attr name="inputType" />
+        <attr name="mode" />
+    </declare-styleable>
+
+    <!--编辑框的属性-->
+    <declare-styleable name="MultiFunEditText">
+        <!-- 定义了一个新的属性,用来指定文本 -->
+        <attr name="hint" />
+        <attr name="isPswIcon" />
+        <attr name="inputType" />
+        <attr name="mode" />
+        <attr name="isShowBottomLine" format="boolean" />
+        <attr name="icon" format="reference" />
+    </declare-styleable>
+
+
+    <!--标题栏-->
+    <declare-styleable name="TitleBar">
+        <attr name="leftDrawable" format="reference" />
+        <attr name="rightDrawable" format="reference" />
+        <attr name="rtRightDrawable" format="reference" />
+        <attr name="centerTitle" format="string" />
+        <attr name="leftBtnText" format="string" />
+        <attr name="rightBtnText" format="string" />
+        <attr name="lfText" format="string" />
+        <attr name="rtText" format="string" />
+        <attr name="titleColor" format="color|reference" />
+        <attr name="leftTextColor" format="color|reference" />
+        <attr name="rightTextColor" format="color|reference" />
+        <attr name="centerMode">
+            <enum name="title" value="0" />
+            <enum name="button" value="1" />
+        </attr>
+        <attr name="rightIconVisibility">
+            <enum name="visible" value="0" />
+            <enum name="gone" value="1" />
+        </attr>
+        <attr name="rtRightIconVisibility">
+            <enum name="visible" value="0" />
+            <enum name="gone" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SelectCityView">
+        <attr name="selectType" format="enum">
+            <enum name="noStreet" value="0" />
+            <enum name="haveStreet" value="1" />
+            <enum name="parkingType" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

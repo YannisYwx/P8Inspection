@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation rootProject.ext.dependencies['androidx_appcompat']
+    api rootProject.ext.dependencies['gif']
+
+    api rootProject.ext.dependencies['logger']
+
+    api rootProject.ext.dependencies['fragmentationx']
+
+    implementation rootProject.ext.dependencies['constraintlayout']
+
+    //rxjava库，暂时先用rxjava2因为retrofit2还没适配rxjava3，https://github.com/ReactiveX/RxJava
+    api rootProject.ext.dependencies['rxjava']
+    //rxandroid库，https://github.com/ReactiveX/RxAndroid
+    api rootProject.ext.dependencies['rxandroid']
+    /*retrofit2相关依赖*/
+    api rootProject.ext.dependencies['retrofit2']
+    api rootProject.ext.dependencies['retrofit2-adapter-rxjava2']
+    api rootProject.ext.dependencies['retrofit2-converter-gson']
+    /*okhttp logger拦截器*/
+    api rootProject.ext.dependencies['okhttp3-logging-interceptor']
+    /*android工具库*/
+    api rootProject.ext.dependencies['utilcodex']
+    /*google lifecycle组件*/
+    api rootProject.ext.dependencies['lifecycle_java8']
+    // autodispose，配合lifecycle组件使用,用于解决MVP模式内存泄漏的问题,https://github.com/uber/AutoDispose
+    api rootProject.ext.dependencies['autodispose']
+    api rootProject.ext.dependencies['autodispose-android-archcomponents']
+
+    api rootProject.ext.dependencies['glide']
+    api rootProject.ext.dependencies['glide-transformations']
+//    api rootProject.ext.dependencies['stetho']
+//    api rootProject.ext.dependencies['stetho-okhttp3']
+
+    api rootProject.ext.dependencies['recyclerview']
+}

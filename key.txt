@@ -1,0 +1,19 @@
+巡检app：
+keystory(全都没有空格)
+--------文件
+---------------------文件名字：		p8_inspection.jks
+keystory Password(文件密码):		p8_service
+
+key(钥匙)
+-------------------------Alias:		p8_inspection
+--------------------Password:		key_p8_service
+---------------Validity(years):		88
+--------First and Last Name:		巫哲豪
+---------Organizational Unit:		P8车辆服务有限公司技术部门
+----------------Organization:		P8车辆服务有限公司
+--------------City or Locality:		深圳
+-----------State or Province:		广东
+----------Country Code(XX):		CN
+友盟+: 5da586503fc195af81000885
+AppID：wxce15640ec18fdac0
+AppSecret：c9ed0da507cffddfae38b274f4f52243

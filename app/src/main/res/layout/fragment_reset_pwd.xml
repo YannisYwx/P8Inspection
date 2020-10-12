@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_reset"
+        style="@style/NormalButton"
+        android:layout_marginTop="42dp"
+        android:text="@string/finish"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mfe_password_confirm" />
+
+
+    <TextView
+        android:id="@+id/tv_p8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_horizontal"
+        android:text="忘记密码"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_large_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.p8.common.widget.MultiFunEditText
+        android:id="@+id/mfe_phone"
+        style="@style/GroupEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:icon="@mipmap/icon_phone"
+        app:inputType="number"
+        app:isDeletable="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_p8"
+        app:text="@string/account" />
+
+    <com.p8.common.widget.MultiFunEditText
+        android:id="@+id/mfe_v_code"
+        style="@style/GroupEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:icon="@mipmap/icon_verification"
+        app:isDeletable="true"
+        app:isPswIcon="false"
+        app:mode="v_code"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mfe_phone" />
+
+    <com.p8.common.widget.MultiFunEditText
+        android:id="@+id/mfe_password"
+        style="@style/GroupEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:isDeletable="true"
+        app:isPswIcon="true"
+        app:icon="@mipmap/icon_password"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mfe_v_code"
+        app:text="@string/password" />
+
+    <com.p8.common.widget.MultiFunEditText
+        android:id="@+id/mfe_password_confirm"
+        style="@style/GroupEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:isDeletable="true"
+        app:isPswIcon="true"
+        app:icon="@mipmap/icon_password"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mfe_password"
+        app:text="@string/password" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

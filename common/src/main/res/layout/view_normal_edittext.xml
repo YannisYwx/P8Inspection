@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/edittext_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:text="账号 :"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_middle_size" />
+
+    <ImageView
+        android:id="@+id/iv_psw_icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:padding="10dp"
+        android:visibility="visible"
+        android:src="@drawable/selector_eye" />
+
+    <TextView
+        android:id="@+id/tv_v_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:text="获取验证码"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_mini_size" />
+
+    <com.p8.common.widget.DeletableEditText
+        android:id="@+id/det"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/tv_v_code"
+        android:layout_toEndOf="@id/tv_label"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:inputType="textPassword"
+        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:padding="3dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="@dimen/text_middle_size" />
+</RelativeLayout>

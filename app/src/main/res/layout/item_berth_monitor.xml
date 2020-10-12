@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--android:layout_width="395pt"-->
+    <!--android:layout_height="526pt-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/shape_white_no_8r"
+        android:paddingLeft="39pt"
+        android:paddingRight="39pt"
+        android:paddingTop="15pt"
+        android:paddingBottom="15pt"
+        android:layout_width="473pt"
+        android:layout_height="555pt">
+
+        <ImageView
+            android:id="@+id/adapter_monitor_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--android:src="@drawable/page_logo_fault_default"-->
+        <ImageView
+            android:id="@+id/adapter_monitor_title_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="58pt"
+            android:layout_marginStart="46pt"
+            android:layout_width="50pt"
+            android:layout_height="50pt" />
+
+        <TextView
+            android:id="@+id/adapter_monitor_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10pt"
+            android:layout_marginTop="55pt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/adapter_monitor_title_iv"
+            android:textColor="#FF0000"
+            android:textSize="40pt"
+            android:text="设备故障:029"/>
+
+        <TextView
+            android:id="@+id/adapter_monitor_number_tv"
+            app:layout_constraintTop_toBottomOf="@+id/adapter_monitor_title_iv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="40pt"
+            android:textColor="#222222"
+            android:textSize="50pt"
+            android:text="0755 114 259"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/adapter_monitor_error_start_time_tv"
+            android:padding="7pt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/shape_monitor_start_time"
+            android:layout_marginTop="296pt"
+            android:text="开始2019.05.15 13:38"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="34pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/adapter_monitor_error_end_time_tv"
+            app:layout_constraintTop_toBottomOf="@+id/adapter_monitor_error_start_time_tv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="gone"
+            android:layout_marginTop="40pt"
+            android:background="@drawable/shape_monitor_end_time"
+            android:text="通告2019.05.15 13:38"
+            android:textColor="@color/white"
+            android:textSize="34pt"
+            android:padding="7pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--android:src="@drawable/page_logo_timing_default"-->
+        <ImageView
+            android:id="@+id/adapter_monitor_time_iv"
+            android:layout_width="40pt"
+            android:layout_height="45pt"
+            android:visibility="gone"
+            android:layout_marginStart="46pt"
+            android:layout_marginTop="300pt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/adapter_monitor_start_time_tv"
+            android:text="开始计时"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/adapter_monitor_time_iv"
+            android:layout_marginStart="20pt"
+            android:visibility="gone"
+            android:textSize="40pt"
+            android:textColor="@color/main_second_level_text_color"
+            android:layout_marginTop="295pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/adapter_monitor_start_time_number_tv"
+            app:layout_constraintTop_toBottomOf="@+id/adapter_monitor_time_iv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="gone"
+            android:text="2019.09.15 16:30"
+            android:textSize="40pt"
+            android:textColor="@color/main_second_level_text_color"
+            android:layout_marginTop="50pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/adapter_monitor_empty_bg"
+            android:background="@drawable/shape_circle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:gravity="center"
+            android:text="空位"
+            android:textSize="45pt"
+            android:textColor="@color/main_content_text_color"
+            android:layout_marginTop="298pt"
+            android:layout_width="187pt"
+            android:layout_height="187pt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

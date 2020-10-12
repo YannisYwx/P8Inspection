@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">P8巡检</string>
+    <string name="company">P8车服</string>
+
+    <!--登录 注册 忘记密码-->
+    <string name="account">账 号：</string>
+    <string name="password">密 码：</string>
+    <string name="immediatelyLogin">立即登录</string>
+    <string name="finish">完成</string>
+    <string name="fastRegister">快速注册</string>
+    <string name="forgetPwd">忘记密码?</string>
+    <string name="phoneNum">手机号：</string>
+    <string name="affirmPwd">确认密码：</string>
+    <string name="verificationCode">验证码：</string>
+    <string name="getVerificationCode">获取验证码</string>
+    <string name="invitationCode">邀请码：</string>
+    <string name="tipRegister">没有此项可以不填</string>
+    <string name="resetPwd">重置密码</string>
+    <string name="press_again_exit">再次点击退出应用</string>
+
+
+    <item name="type_header" type="integer"/>
+    <item name="type_footer" type="integer"/>
+    <item name="type_child" type="integer"/>
+    <item name="type_empty" type="integer"/>
+
+</resources>
