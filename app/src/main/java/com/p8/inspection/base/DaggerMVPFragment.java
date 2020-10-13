@@ -92,5 +92,10 @@ public abstract class DaggerMVPFragment<P extends BasePresenter<V>, V extends Ba
             mTitleBar.getTitleView().setTextColor(Color.WHITE);
         }
     }
+
+    @Override
+    public void onComplete() {
+
+    }
 }
 

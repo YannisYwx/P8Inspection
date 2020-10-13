@@ -188,11 +188,6 @@ public class MonitorFragment extends DaggerMVPFragment<MonitorPresenter, Monitor
     }
 
     @Override
-    public void onComplete() {
-
-    }
-
-    @Override
     public void onItemSelect(int code, String id) {
         if (code == SelectCityView.PROVINCE) {
             presenter.getCities(id);

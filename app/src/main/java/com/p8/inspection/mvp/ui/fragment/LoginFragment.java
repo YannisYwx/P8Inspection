@@ -92,11 +92,6 @@ public class LoginFragment extends DaggerMVPFragment<LoginPresenter, LoginContra
     }
 
     @Override
-    public void onComplete() {
-
-    }
-
-    @Override
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.btn_login) {

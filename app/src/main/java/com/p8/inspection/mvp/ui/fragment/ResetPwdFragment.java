@@ -101,10 +101,6 @@ public class ResetPwdFragment extends DaggerMVPFragment<ResetPwdPresenter, Reset
         showMsg(msg);
     }
 
-    @Override
-    public void onComplete() {
-
-    }
 
     @Override
     public void onClick(View v) {
