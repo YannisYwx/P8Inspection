@@ -21,7 +21,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.p8.common.R;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/10/12 11:10
  * description :
  */
@@ -32,11 +32,11 @@ public class CommonItemView extends ConstraintLayout {
 
     private String label;
     private Drawable icon, arrow;
-    private boolean hasBottomLine;
+    private boolean hasBottomLine = true;
 
     private int paddingLeft = 0;
     private int paddingRight = 0;
-    private int dividerColor;
+    private int dividerColor = Color.parseColor("#F303E3");
     private int labelColor;
     private float dividerHeight = getResources().getDimension(R.dimen.dividerHeight);
     private Paint mPaint;
@@ -56,19 +56,22 @@ public class CommonItemView extends ConstraintLayout {
 
     private void init(@NonNull Context context, @Nullable AttributeSet attrs) {
         View.inflate(context, R.layout.view_common_item, this);
+        if(attrs != null) {
 
-        //读取属性
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonItemView);
-        label = typedArray.getString(R.styleable.CommonItemView_label);
-        hasBottomLine = typedArray.getBoolean(R.styleable.CommonItemView_hasBottomLine, true);
-        dividerColor = typedArray.getColor(R.styleable.CommonItemView_dividerColor, Color.parseColor("#E3E3E3"));
-        dividerHeight = typedArray.getDimension(R.styleable.CommonItemView_dividerHeight, getResources().getDimension(R.dimen.dividerHeight));
-        labelColor =  typedArray.getColor(R.styleable.CommonItemView_labelColor, Color.parseColor("#ffffff"));
-        icon = typedArray.getDrawable(R.styleable.CommonItemView_icon);
-        arrow = typedArray.getDrawable(R.styleable.CommonItemView_arrow);
-        paddingLeft = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingLeft, 0);
-        paddingRight = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingRight, 0);
-        typedArray.recycle();
+            //读取属性
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonItemView);
+            label = typedArray.getString(R.styleable.CommonItemView_label);
+            hasBottomLine = typedArray.getBoolean(R.styleable.CommonItemView_hasBottomLine, true);
+            dividerColor = typedArray.getColor(R.styleable.CommonItemView_dividerColor, Color.parseColor("#E3E3E3"));
+            dividerHeight = typedArray.getDimension(R.styleable.CommonItemView_dividerHeight, getResources().getDimension(R.dimen.dividerHeight));
+            labelColor =  typedArray.getColor(R.styleable.CommonItemView_labelColor, Color.parseColor("#ffffff"));
+            icon = typedArray.getDrawable(R.styleable.CommonItemView_icon);
+            arrow = typedArray.getDrawable(R.styleable.CommonItemView_arrow);
+            paddingLeft = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingLeft, 0);
+            paddingRight = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingRight, 0);
+            typedArray.recycle();
+        }
+
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(dividerColor);
@@ -108,13 +111,16 @@ public class CommonItemView extends ConstraintLayout {
     }
 
     public void setData(int iconRes, int arrowRes, String label, boolean hasShowBottomLine) {
-        if (iconRes > 0)
+        if (iconRes > 0) {
             this.icon = ResourcesCompat.getDrawable(getResources(), iconRes, null);
-        if (arrowRes > 0)
+        }
+        if (arrowRes > 0) {
             this.arrow = ResourcesCompat.getDrawable(getResources(), arrowRes, null);
+        }
         this.hasBottomLine = hasShowBottomLine;
-        if (label != null)
+        if (label != null) {
             this.label = label;
+        }
         setDataToUI();
         invalidate();
     }

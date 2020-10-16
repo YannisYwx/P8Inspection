@@ -18,10 +18,9 @@ import com.p8.inspection.base.DaggerMVPFragment;
 import com.p8.inspection.di.component.FragmentComponent;
 import com.p8.inspection.mvp.contract.LoginContract;
 import com.p8.inspection.mvp.presenter.LoginPresenter;
-import com.p8.inspection.widget.DialogUtils;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 17:06
  * description :
  */

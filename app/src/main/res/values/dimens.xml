@@ -14,7 +14,7 @@
     <dimen name="icon_middle_size">105pt</dimen><!--中等图标-->
     <dimen name="icon_mini_size">75pt</dimen><!--小图标-->
 
-    <dimen name="dividerHeight">0.68dp</dimen><!--分割线高度-->
+    <dimen name="dividerHeight">2pt</dimen><!--分割线高度-->
     <dimen name="dividerHeightThick">1.00dp</dimen><!--分割线高度-->
     <dimen name="item_height">47dp</dimen><!--item高度-->
     <dimen name="view_dividerHeight">8dp</dimen>

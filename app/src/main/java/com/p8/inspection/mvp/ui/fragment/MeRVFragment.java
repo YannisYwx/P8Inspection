@@ -3,9 +3,11 @@ package com.p8.inspection.mvp.ui.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.databinding.adapters.ViewGroupBindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +22,6 @@ import com.p8.inspection.core.AliOssManager;
 import com.p8.inspection.di.component.FragmentComponent;
 import com.p8.inspection.mvp.contract.MeContract;
 import com.p8.inspection.mvp.presenter.MePresenter;
-import com.p8.inspection.mvp.ui.adapter.ItemAdapter;
 import com.p8.inspection.mvp.ui.adapter.MeAdapter;
 import com.p8.inspection.utils.GlideEngine;
 import com.p8.inspection.utils.GlideUtils;
@@ -35,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * date : 2020/10/12 15:37
  * description :
  */
-public class MeFragment extends DaggerMVPFragment<MePresenter, MeContract.View> implements MeContract.View, DialogUtils.OnTakePhotoDialogChoiceListener {
+public class MeRVFragment extends DaggerMVPFragment<MePresenter, MeContract.View> implements MeContract.View, DialogUtils.OnTakePhotoDialogChoiceListener {
     CircleImageView civUserHeader;
 
     PictureParameterStyle mPictureParameterStyle;
@@ -44,9 +45,9 @@ public class MeFragment extends DaggerMVPFragment<MePresenter, MeContract.View> 
 
     public String url = "http://p8bucket.oss-cn-shenzhen.aliyuncs.com/img_2dd1b6dfcef347c193ab9b53efd692ca_1602668196167.jpg";
 
-    public static MeFragment newInstance() {
+    public static MeRVFragment newInstance() {
         Bundle args = new Bundle();
-        MeFragment fragment = new MeFragment();
+        MeRVFragment fragment = new MeRVFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,7 +59,7 @@ public class MeFragment extends DaggerMVPFragment<MePresenter, MeContract.View> 
 
     @Override
     public void initView(View view) {
-        civUserHeader = $(R.id.civ_user_header);
+//        civUserHeader = $(R.id.civ_user_header);
     }
 
     @Override
@@ -68,24 +69,26 @@ public class MeFragment extends DaggerMVPFragment<MePresenter, MeContract.View> 
 
     @Override
     public void setListener() {
-        $(R.id.civ_berth_monitor).setOnClickListener(this);
-        $(R.id.civ_device_update).setOnClickListener(this);
-        $(R.id.civ_order).setOnClickListener(this);
-        $(R.id.civ_sign).setOnClickListener(this);
-        civUserHeader.setOnClickListener(this);
-        $(R.id.civ_user_center).setOnClickListener(this);
-        GlideUtils.setImageViewForUrl(this.mContext, civUserHeader, url);
+        mRecyclerView = $(R.id.rv_item);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+
     }
 
     @Override
-    public void onEnterAnimationEnd(Bundle savedInstanceState) {
-        super.onEnterAnimationEnd(savedInstanceState);
-
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        LinearLayoutManager manager = new LinearLayoutManager(mContext);
+        manager.setOrientation(RecyclerView.VERTICAL);
+        MeAdapter adapter1 = new MeAdapter(MeAdapter.initData());
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(adapter1);
+        adapter1.notifyDataSetChanged();
     }
 
     @Override
@@ -107,7 +110,7 @@ public class MeFragment extends DaggerMVPFragment<MePresenter, MeContract.View> 
 
     @Override
     public int setLayoutId() {
-        return R.layout.fragment_me;
+        return R.layout.fragment_me_rv;
     }
 
     @Override
@@ -153,7 +156,7 @@ public class MeFragment extends DaggerMVPFragment<MePresenter, MeContract.View> 
     @Override
     public void onSelectGallery() {
         //选择相册
-        PictureSelector.create(MeFragment.this)
+        PictureSelector.create(MeRVFragment.this)
                 .openGallery(PictureMimeType.ofImage())
                 .imageEngine(GlideEngine.createGlideEngine())
                 .compressQuality(80)// 图片压缩后输出质量 0~ 100

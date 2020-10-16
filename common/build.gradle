@@ -34,7 +34,7 @@ dependencies {
     api rootProject.ext.dependencies['logger']
 
     api rootProject.ext.dependencies['fragmentationx']
-
+//    api 'com.github.weikaiyun:EasyFragmentation:1.4.8'
     implementation rootProject.ext.dependencies['constraintlayout']
 
     //rxjava库，暂时先用rxjava2因为retrofit2还没适配rxjava3，https://github.com/ReactiveX/RxJava
@@ -57,8 +57,6 @@ dependencies {
 
     api rootProject.ext.dependencies['glide']
     api rootProject.ext.dependencies['glide-transformations']
-//    api rootProject.ext.dependencies['stetho']
-//    api rootProject.ext.dependencies['stetho-okhttp3']
 
     api rootProject.ext.dependencies['recyclerview']
 }

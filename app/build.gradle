@@ -31,6 +31,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        debug {
+            minifyEnabled true   //是否代码混淆
+            multiDexEnabled true //防止方法数量超过65536导致错误
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
     }
 
     compileOptions {
@@ -63,13 +71,13 @@ dependencies {
     implementation files('libs/zxing_core_3.3.2.jar')
     implementation 'com.clj.fastble:FastBleLib:2.3.4'
 
-    implementation rootProject.ext.dependencies['rxpermissions']
-
     implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
-    implementation  'com.scwang.smart:refresh-header-falsify:2.0.1'
     implementation  'com.scwang.smart:refresh-header-classics:2.0.1'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.9'
+    /*阿里云存储*/
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.4'
+
 
 }

@@ -146,7 +146,7 @@ public class HttpModule {
 
         LoggerInterceptor logInterceptor = new LoggerInterceptor(Logger::d);
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        String token = (String) SPUtils.getInstance().getData(AppPreferencesHelper.KEY_TOKEN,"");;
+        String token = AppPreferencesHelper.getSPUtils().getString(AppPreferencesHelper.KEY_TOKEN);
         //提交数据
         Interceptor authInterceptor = chain -> {
             Request request = chain.request()

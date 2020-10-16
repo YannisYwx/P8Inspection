@@ -6,7 +6,7 @@ import java.util.List;
 import io.reactivex.observers.DisposableObserver;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/24 17:53
  * description :
  */
@@ -51,7 +51,7 @@ public final class DownloadObserver extends DisposableObserver<DownloadInfo> {
     public void onError(Throwable e) {
         if (listeners != null) {
             for (DownloadListener listener : listeners) {
-                listener.onFail(tag, e.getMessage());
+                listener.onFail("333", e.getMessage());
             }
         }
     }

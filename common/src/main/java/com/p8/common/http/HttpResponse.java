@@ -1,7 +1,7 @@
 package com.p8.common.http;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/9 10:40
  * description : Http请求结果包装类
  */

@@ -14,7 +14,7 @@ import com.p8.inspection.mvp.contract.ResetPwdContract;
 import com.p8.inspection.mvp.presenter.ResetPwdPresenter;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 18:00
  * description :
  */

@@ -6,10 +6,10 @@ import android.graphics.Color;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.p8.common.base.BaseStatusPagerFragment;
 import com.p8.common.base.mvp.BaseContract;
 import com.p8.common.base.mvp.BasePresenter;
-import com.p8.common.utils.ToastUtils;
 import com.p8.inspection.R;
 import com.p8.inspection.di.component.AppComponent;
 import com.p8.inspection.di.component.FragmentComponent;
@@ -18,7 +18,7 @@ import com.p8.inspection.di.module.FragmentModule;
 import javax.inject.Inject;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 16:44
  * description :
  */
@@ -43,7 +43,9 @@ public abstract class DaggerMVPFragment<P extends BasePresenter<V>, V extends Ba
     @Override
     public void onDetach() {
         super.onDetach();
-        presenter.onDetachView();
+        if (presenter != null) {
+            presenter.onDetachView();
+        }
     }
 
     /**

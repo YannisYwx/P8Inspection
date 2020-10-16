@@ -40,7 +40,7 @@ import static com.p8.inspection.widget.SelectCityView.CAR_TYPE_VIEW;
 import static com.p8.inspection.widget.SelectCityView.LOCATION_VIEW;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/27 16:39
  * description :
  */
@@ -83,6 +83,16 @@ public class MonitorFragment extends DaggerMVPFragment<MonitorPresenter, Monitor
         rvBerth = $(R.id.rv_berth);
         setStatusBarLightMode(false);
     }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        if (mSelectCityView.getVisibility() == View.GONE) {
+            mSelectCityView.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 
     @Override
     public void initData() {
@@ -129,6 +139,8 @@ public class MonitorFragment extends DaggerMVPFragment<MonitorPresenter, Monitor
             case R.id.tv_car_type:
             case R.id.iv_arrow_car:
                 mSelectCityView.openOrClose(CAR_TYPE_VIEW);
+                break;
+            default:
                 break;
         }
     }
@@ -182,7 +194,7 @@ public class MonitorFragment extends DaggerMVPFragment<MonitorPresenter, Monitor
             mAdapter.notifyDataSetChanged();
             mSelectCityView.resetCarType();
         }
-        if(refreshLayout.isRefreshing()) {
+        if (refreshLayout.isRefreshing()) {
             refreshLayout.finishRefresh();
         }
     }
@@ -204,7 +216,7 @@ public class MonitorFragment extends DaggerMVPFragment<MonitorPresenter, Monitor
         if (!TextUtils.isEmpty(mSelectCityView.getAddress())) {
             tvLocation.setText(mSelectCityView.getAddress());
         }
-        if(mSelectCityView.getCarType() != -1) {
+        if (mSelectCityView.getCarType() != -1) {
             tvCarType.setText(mSelectCityView.getCarTypeStateStr());
         }
         if (TextUtils.isEmpty(mSelectCityView.getAddress()) || mSelectCityView.getCarType() == -1) {
@@ -237,9 +249,16 @@ public class MonitorFragment extends DaggerMVPFragment<MonitorPresenter, Monitor
     }
 
 
-    //根据地址请求设备信息列表
+    /**
+     * 根据地址请求设备信息列表
+     *
+     * @param address
+     * @param parkingState
+     * @param currentPage
+     */
     private void requestMachines(String address, int parkingState, int currentPage) {
-        if (mAdapter != null && currentPage <= 1) {//>1时表示为加载更多，加载更多时原数据不能移除
+        if (mAdapter != null && currentPage <= 1) {
+            //>1时表示为加载更多，加载更多时原数据不能移除
             mAdapter.setMachines(null);
             mAdapter.notifyDataSetChanged();
         }

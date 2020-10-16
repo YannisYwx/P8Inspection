@@ -12,7 +12,7 @@ import com.p8.inspection.di.module.ActivityModule;
 import javax.inject.Inject;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/7 14:51
  * description :
  */

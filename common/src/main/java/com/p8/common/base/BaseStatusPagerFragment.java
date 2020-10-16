@@ -5,20 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Constraints;
 
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.orhanobut.logger.Logger;
 import com.p8.common.R;
-import com.p8.common.utils.ScreenUtil;
 import com.p8.common.utils.StatusBarUtils;
 import com.p8.common.widget.StatusPager;
 import com.p8.common.widget.TitleBar;
@@ -26,7 +22,7 @@ import com.p8.common.widget.TitleBar;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 14:47
  * description :
  */
@@ -82,7 +78,7 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
         mRootView.addView(contentView);
     }
 
-    private int getContentViewHeight(){
+    private int getContentViewHeight() {
         return ScreenUtils.getScreenHeight() - StatusBarUtils.getStatusBarHeight(this.mContext) - (hasTitleBar() ? 0 : 1) * AdaptScreenUtils.pt2Px(144);
     }
 
@@ -116,10 +112,21 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
         return true;
     }
 
+    /**
+     * 初始化控件
+     *
+     * @param view
+     */
     public abstract void initView(View view);
 
+    /**
+     * 初始化数据
+     */
     public abstract void initData();
 
+    /**
+     * 设置监听
+     */
     public abstract void setListener();
 
     private void createStatusPager(View contentView1) {
@@ -163,10 +170,23 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
         return mStatusPager;
     }
 
+    /**
+     * 触发加载数据
+     */
     protected abstract void triggerLoadData();
 
+    /**
+     * 刷新内容视图
+     *
+     * @param view
+     */
     protected abstract void refreshContentView(View view);
 
+    /**
+     * 设置布局文件
+     *
+     * @return
+     */
     public abstract int setLayoutId();
 
     public void showEmptyPager() {

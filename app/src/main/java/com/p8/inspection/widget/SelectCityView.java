@@ -121,7 +121,9 @@ public class SelectCityView extends ConstraintLayout implements View.OnClickList
 
     //初始化省份信息列表
     public void initProvincesList(Provinces provinces) {
-        if (provinces == null || provinces.getList().size() == 0) return;
+        if (provinces == null || provinces.getList().size() == 0) {
+            return;
+        }
         mProvinces = provinces;
         LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
         manager.setOrientation(RecyclerView.VERTICAL);

@@ -14,7 +14,7 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 17:22
  * description :
  */
@@ -63,5 +63,6 @@ public class LoginActivity extends BaseActivity {
     public Resources getResources() {
         return AdaptScreenUtils.adaptWidth(super.getResources(), 1080);
     }
+
 }
 

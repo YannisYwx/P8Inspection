@@ -1,7 +1,7 @@
 package com.p8.inspection.data.net.download;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/24 16:19
  * description :
  */

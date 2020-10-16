@@ -35,6 +35,12 @@ public class MonitorPresenter extends BasePresenter<MonitorContract.View> implem
                 .compose(RxUtils.getDefaultOSchedulers())
                 .as(bindLifecycle())
                 .subscribe(new P8HttpSubscriber<HttpResponse<Provinces>>(mView) {
+
+                    @Override
+                    public boolean isShowProgressDialog() {
+                        return false;
+                    }
+
                     @Override
                     protected void onSuccess(HttpResponse<Provinces> provincesHttpResponse) {
                         mView.onGetProvincesSuccess(provincesHttpResponse.getData());

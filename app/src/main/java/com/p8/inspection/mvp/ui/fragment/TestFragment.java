@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
+import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.p8.common.widget.MultiFunEditText;
 import com.p8.inspection.R;
@@ -17,7 +20,7 @@ import com.p8.inspection.mvp.contract.LoginContract;
 import com.p8.inspection.mvp.presenter.LoginPresenter;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 17:06
  * description :
  */
@@ -49,7 +52,7 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
 
             @Override
             public void onProgress(String tag, int progress) {
-                showMsg("下载进度 = " + progress);
+//                showMsg("下载进度 = " + progress);
             }
 
             @Override
@@ -59,7 +62,7 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
 
             @Override
             public void onFail(String tag, String msg) {
-
+                showMsg(tag + " = 下载失败 = " + msg);
             }
         });
     }
@@ -109,20 +112,36 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
         }
 
         if (v.getId() == R.id.btn_download) {
-//            start(ResetPwdFragment.newInstance());
-//            presenter.getProvince();
-            DownloadManager.getInstance().start("https://p8bucket.oss-cn-shenzhen.aliyuncs.com/J1-0.pdf");
+            boolean isStorageGranted = PermissionUtils.isGranted(PermissionConstants.getPermissions(PermissionConstants.STORAGE));
+            if(!isStorageGranted) {
+                PermissionUtils.permission(PermissionConstants.getPermissions(PermissionConstants.STORAGE)).callback(new PermissionUtils.SimpleCallback() {
+                    @Override
+                    public void onGranted() {
+                        showMsg("权限通过了");
+                        DownloadManager.getInstance().start("https://p8bucket.oss-cn-shenzhen.aliyuncs.com/J1-0.pdf");
+                    }
+
+                    @Override
+                    public void onDenied() {
+                        showMsg("权限没通过");
+                    }
+                }).request();
+            } else {
+                DownloadManager.getInstance().start("https://p8bucket.oss-cn-shenzhen.aliyuncs.com/J1-0.pdf");
+            }
+
         }
 
         if (v.getId() == R.id.btn_pdf) {
-            start(PdfPreviewFragment.getInstance("J1-2.pdf"));
+            start(PdfPreviewFragment.getInstance("/storage/emulated/0/Android/data/com.p8.inspection/files/p8_inspection/download/pdf/J1-0.pdf"));
+//            showHideFragment(this, PdfPreviewFragment.getInstance("J1-2.pdf"));
         }
 
         if (v.getId() == R.id.btn_me) {
-            start(MeFragment.newInstance());
+            start(MeRVFragment.newInstance());
         }
 
-        PermissionUtils.permission().request();
+//        PermissionUtils.permission().request();
     }
 
 }

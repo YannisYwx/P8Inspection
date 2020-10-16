@@ -7,7 +7,7 @@ import com.p8.inspection.P8ParkingApplication;
 import java.io.File;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/8 17:06
  * description :
  */
@@ -22,7 +22,7 @@ public interface Constants {
      */
     String DOWNLOAD_FOLDER = "/P8_download/";
 
-    String DOWNLOAD_PATH = Environment.getExternalStorageDirectory() + "/p8_inspection/download/pdf/";
+    String DOWNLOAD_PATH = P8ParkingApplication.sInstance.getExternalFilesDir(null) + "/p8_inspection/download/pdf/";
 
 
     int PAGE_SIZE = 10;

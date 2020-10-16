@@ -3,25 +3,38 @@ package com.p8.inspection.data.net.download;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.orhanobut.logger.Logger;
+import com.p8.inspection.P8ParkingApplication;
 import com.p8.inspection.core.Constants;
 
+import java.io.File;
+
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/24 16:57
  * description :
  */
 public class DownloadInfo {
 
-    /* 存储位置 */
+    /**
+     * 存储位置
+     */
     private String savePath;
-    /* 文件总长度 */
+    /**
+     * 文件总长度
+     */
     private long contentLength;
-    /* 下载长度 */
+    /**
+     * 下载长度
+     */
     private long readLength;
-
+    /**
+     * 文件名
+     */
     private String fileName;
-
-    /* 下载该文件的url */
+    /**
+     * 下载该文件的url
+     */
     private String url;
 
     private DownloadService service;
@@ -42,14 +55,14 @@ public class DownloadInfo {
     public void setUrl(String url) {
         this.url = url;
         //"http://download.sdk.mob.com/apkbus.apk";
-        String downloadPath = Environment.getExternalStorageDirectory() + "/p8_inspection/download/pdf/"+url.substring(url.lastIndexOf("/")+1);
+        String downloadPath = Environment.getExternalStorageDirectory() + "/p8_inspection/download/pdf/" + url.substring(url.lastIndexOf("/") + 1);
     }
 
-    public String getDefaultLocalPath(){
-        if(TextUtils.isEmpty(url)) {
+    public String getDefaultLocalPath() {
+        if (TextUtils.isEmpty(url) || !url.contains(File.separator)) {
             return null;
         }
-        return Constants.DOWNLOAD_PATH + url.substring(url.lastIndexOf("/")+1);
+        return Constants.DOWNLOAD_PATH + url.substring(url.lastIndexOf("/") + 1);
     }
 
     public String getSavePath() {

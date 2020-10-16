@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_loadMore"
+    android:layout_width="match_parent"
+    android:layout_height="120pt"
+    android:background="@color/translate">
+    <!--加载中-->
+    <LinearLayout
+        android:id="@+id/ll_loadMore"
+        android:layout_width="match_parent"
+        android:layout_height="120pt"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24pt"
+            android:gravity="center"
+            android:text="正在加载中..."
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_middle_size" />
+
+        <com.p8.inspection.widget.SlackLoadingView
+            android:id="@+id/slackLoadingView"
+            android:layout_width="90pt"
+            android:layout_height="90pt" />
+    </LinearLayout>
+    <!--没有更多-->
+    <TextView
+        android:id="@+id/tv_noMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="---- END ----"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_middle_size"
+        android:visibility="gone" />
+    <!--重试-->
+    <TextView
+        android:id="@+id/tv_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:text="加载失败,点击重试"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_middle_size"
+        android:visibility="invisible" />
+</FrameLayout>

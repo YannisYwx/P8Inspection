@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import retrofit2.HttpException;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/17 16:01
  * description :
  */
