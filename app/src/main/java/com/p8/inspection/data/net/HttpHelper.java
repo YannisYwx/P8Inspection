@@ -87,4 +87,15 @@ public interface HttpHelper {
      */
     Observable<HttpResponse<Machines>> getMachines(String address, int parkingStatus, int currentPage);
 
+    /**
+     * 绑定设备
+     *
+     * @param address
+     * @param parkingNumber
+     * @param lat
+     * @param lng
+     * @return
+     */
+    Observable<HttpResponse<Object>> bindDevice(String address, String parkingNumber, String lat, String lng);
+
 }

@@ -119,7 +119,11 @@ public class SelectCityView extends ConstraintLayout implements View.OnClickList
         super.onFinishInflate();
     }
 
-    //初始化省份信息列表
+    /**
+     * 初始化省份信息列表
+     *
+     * @param provinces
+     */
     public void initProvincesList(Provinces provinces) {
         if (provinces == null || provinces.getList().size() == 0) {
             return;

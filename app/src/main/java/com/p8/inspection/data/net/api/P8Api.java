@@ -62,7 +62,7 @@ public interface P8Api {
      * @param password
      * @return
      */
-    @POST("/app/inspect/login.html")
+    @POST("/app_inspect/login.html")
     Observable<HttpResponse<LoginInfo>> doLogin(@Query("loginName") String loginName, @Query("password") String password);
 
     /**
@@ -90,7 +90,7 @@ public interface P8Api {
      *
      * @return
      */
-    @GET("/app/provinces/getProvinces.html")
+    @GET("/app_inspect/region/provinces.html")
     Observable<HttpResponse<Provinces>> getProvinces();
 
     /**
@@ -98,7 +98,7 @@ public interface P8Api {
      *
      * @return
      */
-    @GET("/app/provinces/getCities.html")
+    @GET("/app_inspect/region/cities.html")
     Observable<HttpResponse<Cities>> getCites(@Query("provinceId") String provinceId);
 
     /**
@@ -106,7 +106,7 @@ public interface P8Api {
      *
      * @return
      */
-    @GET("/app/provinces/getAreas.html")
+    @GET("/app_inspect/region/areas.html")
     Observable<HttpResponse<Areas>> getAreas(@Query("cityId") String cityId);
 
     /**
@@ -114,7 +114,7 @@ public interface P8Api {
      *
      * @return
      */
-    @GET("/app/provinces/getStreet.html")
+    @GET("/app_inspect/region/street.html")
     Observable<HttpResponse<Streets>> getStreets(@Query("provinces") String provinces);
 
     /**
@@ -122,8 +122,17 @@ public interface P8Api {
      *
      * @return
      */
-    @GET("/app/provinces/getMachine.html")
-    Observable<HttpResponse<Machines>> getMachines(@Query("address") String address, @Query("parkingStatus") int parkingStatus, @Query("currentPage") int currentPage);
+    @GET("/app_inspect/machine/list.html")
+    Observable<HttpResponse<Machines>> getMachines(@Query("address") String address, @Query("parkingstatus") int parkingStatus, @Query("currentPage") int currentPage);
+
+    /**
+     * 绑定设备设备列表
+     *
+     * @return
+     */
+    @POST("/app_inspect/machine/bind.html")
+    Observable<HttpResponse<Object>> bindDevice(@Query("address") String address, @Query("parkingNumber") String parkingNumber,
+                                                @Query("lat") String lat, @Query("lng") String lng);
 
 
     public static final String GET_PROVINCES = "/app/provinces/getProvinces.html";//获取省

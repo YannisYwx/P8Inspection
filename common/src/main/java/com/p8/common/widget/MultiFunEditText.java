@@ -11,6 +11,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -27,6 +28,7 @@ public class MultiFunEditText extends ConstraintLayout implements View.OnClickLi
     private DeletableEditText detContent;
     private ImageView ivEye;
     private ImageView ivIcon;
+    private TextView tvLabel;
     private CountDownTextView tvVCode;
     private TextChangedListener mListener;
     private View vLine;
@@ -36,6 +38,7 @@ public class MultiFunEditText extends ConstraintLayout implements View.OnClickLi
     private Drawable icon;
     private int inputType;
     private String hint;
+    private String label;
     private boolean isShowEye;
     private boolean isShowBottomLine;
     private boolean mIsShow;
@@ -52,6 +55,7 @@ public class MultiFunEditText extends ConstraintLayout implements View.OnClickLi
         //读取属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MultiFunEditText);
         hint = typedArray.getString(R.styleable.MultiFunEditText_hint);
+        label = typedArray.getString(R.styleable.MultiFunEditText_editLabel);
         isShowEye = typedArray.getBoolean(R.styleable.MultiFunEditText_isPswIcon, false);
         isShowBottomLine = typedArray.getBoolean(R.styleable.MultiFunEditText_isShowBottomLine, true);
         inputType = typedArray.getInt(R.styleable.MultiFunEditText_inputType, 0);
@@ -69,18 +73,32 @@ public class MultiFunEditText extends ConstraintLayout implements View.OnClickLi
         detContent = findViewById(R.id.det_input);
         tvVCode = findViewById(R.id.tv_v_code);
         vLine = findViewById(R.id.view_bottom_line);
+        tvLabel = findViewById(R.id.tv_label);
 
         ivEye.setOnClickListener(this);
         tvVCode.setOnClickListener(this);
 
 
-        tvVCode.setVisibility(mode == 0 ? (!isShowEye ? View.GONE : View.INVISIBLE) : View.VISIBLE);
+        tvVCode.setVisibility(mode == 0 ? (!isShowEye ? View.GONE : View.GONE) : View.VISIBLE);
         tvVCode.setText("获取验证码");
         ((ConstraintLayout.LayoutParams) detContent.getLayoutParams()).rightToLeft = mode == 1 ? R.id.tv_v_code : R.id.iv_psw_icon;
         vLine.setVisibility(isShowBottomLine ? View.VISIBLE : View.GONE);
 
         if (icon != null) {
             ivIcon.setImageDrawable(icon);
+        } else {
+            ivIcon.setVisibility(GONE);
+        }
+
+        if (TextUtils.isEmpty(label)) {
+            tvLabel.setVisibility(GONE);
+        } else {
+            tvLabel.setText(label);
+        }
+
+        if (icon != null && !TextUtils.isEmpty(label)) {
+            tvLabel.setVisibility(GONE);
+            ivIcon.setVisibility(VISIBLE);
         }
 
         detContent.setHint(hint);
@@ -91,8 +109,11 @@ public class MultiFunEditText extends ConstraintLayout implements View.OnClickLi
 
     public String getTextContent() {
         Editable editable = detContent.getText();
-        if (editable != null) return editable.toString();
-        else return "";
+        if (editable != null) {
+            return editable.toString();
+        } else {
+            return "";
+        }
     }
 
     public void setTextContent(String textContent) {
@@ -116,7 +137,7 @@ public class MultiFunEditText extends ConstraintLayout implements View.OnClickLi
         }
     }
 
-    public void startCountDown(){
+    public void startCountDown() {
         if (tvVCode.getVisibility() == View.VISIBLE) {
             tvVCode.startCountDown();
         }

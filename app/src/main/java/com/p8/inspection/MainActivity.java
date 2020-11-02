@@ -3,16 +3,11 @@ package com.p8.inspection;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.orhanobut.logger.Logger;
 import com.p8.common.base.BaseActivity;
-import com.p8.common.dialog.IDialog;
-import com.p8.inspection.base.DaggerMVPActivity;
-import com.p8.inspection.di.component.ActivityComponent;
-import com.p8.inspection.mvp.contract.MainContract;
-import com.p8.inspection.mvp.ui.activity.LoginActivity;
+import com.p8.inspection.mvp.ui.EnterActivity;
 import com.p8.inspection.utils.LocationManager;
 import com.p8.inspection.widget.DialogUtils;
 
@@ -56,7 +51,7 @@ public class MainActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.btn_toLogin:
 //                DialogUtils.createProgressDialog(this,"登录中");
-                startActivity(LoginActivity.class);
+                startActivity(EnterActivity.class);
 //                DialogUtils.createDefaultDialog(this, "分享", "分享此接单码，您和乘客都将获得现金红包！",
 //                        "立即分享", new IDialog.OnClickListener() {
 //                            @Override
@@ -87,11 +82,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void doBusiness(Context mContext) {
 
-    }
-
-    @Override
-    public boolean isSetStatusBar() {
-        return true;
     }
 
 

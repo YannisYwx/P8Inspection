@@ -9,6 +9,7 @@
         android:id="@id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="144pt"
+        android:background="@color/colorPrimary"
         app:layout_constraintLeft_toLeftOf="@+id/layout_toolbar"
         app:layout_constraintRight_toRightOf="@+id/layout_toolbar"
         app:layout_constraintTop_toTopOf="@+id/layout_toolbar" />

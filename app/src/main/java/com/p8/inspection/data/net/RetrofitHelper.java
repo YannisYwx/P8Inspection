@@ -93,5 +93,10 @@ public class RetrofitHelper implements HttpHelper {
         return mApi.getMachines(address, currentPage, parkingStatus);
     }
 
+    @Override
+    public Observable<HttpResponse<Object>> bindDevice(String address, String parkingNumber, String lat, String lng) {
+        return mApi.bindDevice(address, parkingNumber, lat, lng);
+    }
+
 }
 

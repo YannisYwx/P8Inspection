@@ -2,29 +2,26 @@ package com.p8.inspection.mvp.ui.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
 
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
-import com.p8.common.widget.MultiFunEditText;
 import com.p8.inspection.R;
-import com.p8.inspection.base.DaggerMVPFragment;
+import com.p8.inspection.base.DaggerMvpFragment;
 import com.p8.inspection.data.net.download.DownloadInfo;
 import com.p8.inspection.data.net.download.DownloadListener;
 import com.p8.inspection.data.net.download.DownloadManager;
 import com.p8.inspection.di.component.FragmentComponent;
 import com.p8.inspection.mvp.contract.LoginContract;
 import com.p8.inspection.mvp.presenter.LoginPresenter;
+import com.p8.inspection.mvp.ui.entry.fragment.EntryPagerFragment;
+import com.p8.inspection.mvp.ui.main.me.fragment.ParkingMonitorFragment;
 
 /**
  * @author : WX.Y
  * date : 2020/9/16 17:06
  * description :
  */
-public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContract.View> implements LoginContract.View {
+public class TestFragment extends DaggerMvpFragment<LoginPresenter, LoginContract.View> implements LoginContract.View {
 
     public static TestFragment newInstance() {
         Bundle args = new Bundle();
@@ -40,6 +37,7 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
 
     @Override
     public void initView(View view) {
+        mTitleBar.setTitle("测试");
     }
 
     @Override
@@ -108,7 +106,7 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
         }
 
         if (v.getId() == R.id.btn_province) {
-            start(MonitorFragment.getInstance());
+            start(ParkingMonitorFragment.newInstance());
         }
 
         if (v.getId() == R.id.btn_download) {
@@ -138,7 +136,8 @@ public class TestFragment extends DaggerMVPFragment<LoginPresenter, LoginContrac
         }
 
         if (v.getId() == R.id.btn_me) {
-            start(MeRVFragment.newInstance());
+//            start(MeRVFragment.newInstance());
+            start(EntryPagerFragment.newInstance());
         }
 
 //        PermissionUtils.permission().request();

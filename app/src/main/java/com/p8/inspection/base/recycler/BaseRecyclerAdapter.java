@@ -1,12 +1,17 @@
 package com.p8.inspection.base.recycler;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.collection.SparseArrayCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.blankj.utilcode.util.ThreadUtils;
 import com.orhanobut.logger.Logger;
@@ -22,15 +27,16 @@ import static com.p8.inspection.core.Constants.PAGE_SIZE;
  * createTime : 2017/9/22  16:34
  * description :BaseRecyclerAdapter  普通条目、其他条目和加载更多的条目
  * 触发加载更多 将在线程池中进行加载任务
+ * 添加头和尾 未解决网格布局以及瀑布流布局中头尾适配
  */
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private static final int VIEW_LOAD_MORE = 1_001;
     private static final int VIEW_COMMON = 1_002;
     protected List<T> mDataList;
     private LoadMoreTask mLoadMoreTask;
     private int mCurLoadMoreState;
     private LoadMoreHolder mLoadMoreHolder;
-
 
     /**
      * 暴露一个方法,设置数据集合
@@ -57,10 +63,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         } else if (isCommonHolderPosition(position)) {
             //加载更多
             return VIEW_COMMON;
-        } else {
+        }  else {
             //其他视图
             return getOtherItemType(position);
         }
+
     }
 
     /**
@@ -70,7 +77,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
      * @return
      */
     protected boolean isCommonHolderPosition(int position) {
-        return position > initOtherItemCount() - 1 && position < mDataList.size() + initOtherItemCount();
+        return position > (initOtherItemCount() - 1 ) && position < mDataList.size() + initOtherItemCount();
     }
 
     /**
@@ -80,9 +87,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
      * @return
      */
     protected boolean isLoadMoreHolderPosition(int position) {
-        return position == mDataList.size() + initOtherItemCount();
+        return hasLoadMore() && position == mDataList.size() + initOtherItemCount();
     }
-
 
     @NonNull
     @Override
@@ -144,6 +150,17 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
+
+    /**
+     * 其他的数据条数（通用的item 以及 特殊的item ）,头尾除外
+     *
+     * @return
+     */
+    public int getRealItemCount() {
+        return initOtherItemCount() + mDataList.size();
+    }
+
+
     /**
      * 复写该方法 注入其他控件的数据
      *
@@ -200,8 +217,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mDataList == null ? 1 + initOtherItemCount() : 1 + initOtherItemCount() + mDataList.size();
+        return (mDataList == null ?  initOtherItemCount() : getRealItemCount() ) + (hasLoadMore() ? 1 : 0);
     }
+
 
     /**
      * 由子类实现,确定其他条目的类型
@@ -352,6 +370,21 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
      */
     protected View loadItemLayout(@LayoutRes int layoutRes, ViewGroup parent) {
         return LayoutInflater.from(parent.getContext()).inflate(layoutRes, parent, false);
+    }
+
+
+    static class HeaderHolder extends RecyclerView.ViewHolder {
+
+        public HeaderHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    static class FooterHolder extends RecyclerView.ViewHolder {
+
+        public FooterHolder(View itemView) {
+            super(itemView);
+        }
     }
 
     public interface OnItemClickListener {

@@ -6,6 +6,9 @@
     <attr name="isPswIcon" format="boolean" />
     <!--删除图标是否可见-->
     <attr name="isDeletable" format="boolean" />
+
+    <attr name="lineColor" format="color" />
+
     <!--输入类型-->
     <attr name="inputType" format="enum">
         <enum name="number" value="1" />
@@ -28,6 +31,16 @@
         <attr name="mode" />
     </declare-styleable>
 
+    <declare-styleable name="LoopView">
+        <attr name="lineColor" />
+        <attr name="topBottomTextColor" format="color" />
+        <attr name="centerTextColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="canLoop" format="boolean" />
+        <attr name="initPosition" format="integer" />
+        <attr name="drawItemCount" format="integer" />
+    </declare-styleable>
+
     <!--编辑框的属性-->
     <declare-styleable name="MultiFunEditText">
         <!-- 定义了一个新的属性,用来指定文本 -->
@@ -39,6 +52,17 @@
         <attr name="icon" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="TriangleIndicatorView">
+        <attr name="triangleColor" format="color" />
+        <attr name="tableSize" format="integer"/>
+        <attr name="openAnimator" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ClockView">
+        <attr name="clockColor" format="color"/>
+        <attr name="labelColor" format="color"/>
+        <attr name="timeColor" format="color"/>
+    </declare-styleable>
 
     <!--标题栏-->
     <declare-styleable name="TitleBar">

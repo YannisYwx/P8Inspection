@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".mvp.ui.activity.LoginActivity">
+        <activity android:name=".mvp.ui.EnterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".mvp.ui.MainActivity"/>
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="32e62ecfbe3391db036423a9799daa59" />

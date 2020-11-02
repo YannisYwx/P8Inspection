@@ -1,9 +1,6 @@
 #
 #-------------------------------------------基本不用动区域----------------------------------------------
 #
-#
-# -----------------------------基本 -----------------------------
-#
 
 # 指定代码的压缩级别 0 - 7(指定代码进行迭代优化的次数，在Android里面默认是5，这条指令也只有在可以优化时起作用。)
 -optimizationpasses 5
@@ -84,7 +81,7 @@
     public void *(android.view.View);
 }
 
-#表示不混淆枚举中的values()和valueOf()方法，枚举我用的非常少，这个就不评论了
+#使用enum类型时需要注意避免以下两个方法混淆，因为enum类的特殊性，以下两个方法会被反射调用
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
@@ -109,6 +106,7 @@
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;
 }
+
 # 这指定了继承Serizalizable的类的如下成员不被移除混淆
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
@@ -118,10 +116,12 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
 # 保留R下面的资源
 -keep class **.R$* {
  *;
 }
+
 #不混淆资源类下static的
 -keepclassmembers class **.R$* {
     public static <fields>;
@@ -133,19 +133,9 @@
     void *(**On*Listener);
 }
 
-# 保留我们自定义控件（继承自View）不被混淆
--keep public class * extends android.view.View{
-    *** get*();
-    void set*(***);
-    public <init>(android.content.Context);
-    public <init>(android.content.Context, android.util.AttributeSet);
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-}
-
 #
-#----------------------------- WebView(项目中没有可以忽略) -----------------------------
+#----------------------------- WebView需要进行特殊处理(项目中没有可以忽略) -----------------------------
 #
-#webView需要进行特殊处理
 -keepclassmembers class fqcn.of.javascript.interface.for.Webview {
    public *;
 }
@@ -154,7 +144,7 @@
     public boolean *(android.webkit.WebView, java.lang.String);
 }
 -keepclassmembers class * extends android.webkit.WebViewClient {
-    public void *(android.webkit.WebView, jav.lang.String);
+    public void *(android.webkit.WebView, java.lang.String);
 }
 #在app中与HTML5的JavaScript的交互进行特殊处理
 #我们需要确保这些js要调用的原生方法不能够被混淆，于是我们需要做如下处理：
@@ -203,7 +193,7 @@
 # Application classes that will be serialized/deserialized list Gson
 -keep class com.p8.inspection.data.bean.** { *; }# 实体类不被混淆
 -keepclassmembers enum * { *; }# 枚举类不被混淆
-
+#HttpResponse<T> 不能混淆 否则无法被gson解析
 -keep class com.p8.common.http.** { *; }
 
 ##-----------------Begin: proguard configuration for {butterknife}  ----------------
@@ -217,7 +207,7 @@
     @butterknife.* <methods>;
 }
 
-##-----------------Begin: proguard configuration for {glide}  ----------------
+##-----------------Begin: proguard configuration for {Glide}  ----------------
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
@@ -225,7 +215,7 @@
   public *;
 }
 
-##-----------------Begin: proguard configuration for {greendao}  ----------------
+##-----------------Begin: proguard configuration for {GreenDao}  ----------------
 -keep class org.greenrobot.greendao.**{*;}
 -keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
 public static java.lang.String TABLENAME;
@@ -294,8 +284,8 @@ public static java.lang.String TABLENAME;
 -keep class com.blankj.utilcode.**{*;}
 
 ##-----------------Begin: proguard configuration for {smartrefresh}  ----------------
--dontwarn com.scwang.smartrefresh.layout.**
--keep class com.scwang.smartrefresh.layout.**{*;}
+#-dontwarn com.scwang.smartrefresh.layout.**
+#-keep class com.scwang.smartrefresh.layout.**{*;}
 
 ##-----------------Begin: proguard configuration for {PictureSelector 2.0}  ----------------
 -keep class com.luck.picture.lib.** { *; }
@@ -360,9 +350,6 @@ public static java.lang.String TABLENAME;
 }
 
 -dontwarn io.reactivex.internal.util.unsafe.**
-
-
-
 
 #rxpermissions2
 -keep class com.tbruyelle.rxpermissions2.** { *; }

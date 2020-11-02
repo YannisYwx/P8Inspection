@@ -3,11 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!--登记点的大小是10dp-->
+    <dimen name="bottom_bar_height">150pt</dimen>
 
-    <dimen name="text_large_size">54pt</dimen><!--大字-->
-    <dimen name="text_middle_size">48pt</dimen><!--中等字-->
-    <dimen name="text_mini_size">36pt</dimen><!--小字-->
+    <!--登记点的大小是10dp-->
+    <dimen name="title_bar_height">144pt</dimen>
+    <dimen name="text_large_size">54pt</dimen><!--18sp 大字-->
+    <dimen name="text_middle_size">48pt</dimen><!--15sp 中等字-->
+    <dimen name="text_mini_size">36pt</dimen><!--12sp 小字-->
     <dimen name="text_small_size">24pt</dimen><!--小字-->
 
     <dimen name="icon_large_size">135pt</dimen><!--大图标-->

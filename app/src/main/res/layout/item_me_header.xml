@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="540pt">
+
     <ImageView
         android:id="@+id/iv_top_bg"
         android:layout_width="match_parent"
-        android:layout_height="250pt"
-        android:src="@color/wheat"
+        android:layout_height="280pt"
+        android:background="@mipmap/user_header_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_grade"
         app:layout_constraintVertical_bias="0.3" />
-    <View
-        android:id="@+id/v_info_bg"
+
+    <TextView
+        android:id="@+id/tv_grade"
         android:layout_width="match_parent"
-        android:layout_height="250pt"
-        android:background="#222630"
+        android:layout_height="144pt"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="地主"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_large_size"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_top_bg" />
+        app:layout_constraintTop_toBottomOf="@id/v_status_bar_bg" />
+
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10pt"
+        android:layout_marginTop="16pt"
         android:text="华仔"
-        android:textColor="@color/white"
+        android:textColor="@color/text_black"
         android:textSize="@dimen/text_middle_size"
         app:layout_constraintLeft_toLeftOf="@id/civ_user_header"
         app:layout_constraintRight_toRightOf="@id/civ_user_header"
         app:layout_constraintTop_toBottomOf="@+id/civ_user_header" />
+
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10pt"
+        android:layout_marginTop="18pt"
         android:lines="1"
         android:text="深圳市南山区西丽茶光"
-        android:textColor="@color/text_gray"
+        android:drawablePadding="8pt"
+        android:textColor="@color/text_deep_gray"
         android:textSize="@dimen/text_small_size"
         app:layout_constraintLeft_toLeftOf="@id/civ_user_header"
         app:layout_constraintRight_toRightOf="@id/civ_user_header"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:drawableStartCompat="@mipmap/icon_location" />
+
     <TextView
         android:id="@+id/tv_landlord_value"
         android:layout_width="wrap_content"
@@ -50,72 +62,87 @@
         android:layout_marginStart="60pt"
         android:layout_marginTop="45pt"
         android:text="14"
-        android:textColor="@color/white"
+        android:textColor="@color/text_black"
         android:textSize="@dimen/text_middle_size"
         app:layout_constraintLeft_toRightOf="@id/civ_user_header"
-        app:layout_constraintTop_toTopOf="@+id/v_info_bg" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_top_bg" />
+
     <TextView
         android:id="@+id/tv_order_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160pt"
         android:text="331"
-        android:textColor="@color/white"
+        android:textColor="@color/text_black"
         android:textSize="@dimen/text_middle_size"
         app:layout_constraintBottom_toBottomOf="@id/tv_landlord_value"
         app:layout_constraintLeft_toRightOf="@id/tv_landlord_value"
         app:layout_constraintTop_toTopOf="@+id/tv_landlord_value" />
+
     <TextView
         android:id="@+id/tv_check_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160pt"
         android:text="5"
-        android:textColor="@color/white"
+        android:textColor="@color/text_black"
         android:textSize="@dimen/text_middle_size"
         app:layout_constraintBottom_toBottomOf="@id/tv_landlord_value"
         app:layout_constraintLeft_toRightOf="@id/tv_order_value"
         app:layout_constraintTop_toTopOf="@+id/tv_landlord_value" />
+
     <TextView
         android:id="@+id/tv_landlord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10pt"
         android:text="地主"
-        android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_middle_size"
+        android:textColor="@color/text_deep_gray"
+        android:textSize="@dimen/text_mini_size"
         app:layout_constraintLeft_toLeftOf="@id/tv_landlord_value"
         app:layout_constraintRight_toRightOf="@id/tv_landlord_value"
         app:layout_constraintTop_toBottomOf="@+id/tv_landlord_value" />
+
     <TextView
         android:id="@+id/tv_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="完成工单"
-        android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_middle_size"
+        android:textColor="@color/text_deep_gray"
+        android:textSize="@dimen/text_mini_size"
         app:layout_constraintBottom_toBottomOf="@id/tv_landlord"
         app:layout_constraintLeft_toLeftOf="@id/tv_order_value"
         app:layout_constraintRight_toRightOf="@id/tv_order_value" />
+
     <TextView
         android:id="@+id/tv_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="待审核"
-        android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_middle_size"
+        android:textColor="@color/text_deep_gray"
+        android:textSize="@dimen/text_mini_size"
         app:layout_constraintBottom_toBottomOf="@id/tv_landlord"
         app:layout_constraintLeft_toLeftOf="@id/tv_check_value"
         app:layout_constraintRight_toRightOf="@id/tv_check_value"
         app:layout_constraintTop_toTopOf="@+id/tv_landlord" />
+
+    <View
+        android:id="@+id/v_status_bar_bg"
+        android:layout_width="match_parent"
+        android:layout_height="72pt"
+        android:background="@color/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_user_header"
         android:layout_width="320pt"
         android:layout_height="320pt"
         android:layout_marginStart="48pt"
-        android:layout_marginTop="30pt"
-        android:src="@mipmap/login_logo"
+        android:layout_marginTop="40pt"
+        android:src="@mipmap/default_avatar"
         app:civ_border_color="@color/white"
         app:civ_border_overlay="true"
         app:civ_border_width="3pt"

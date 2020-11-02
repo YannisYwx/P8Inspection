@@ -7,7 +7,7 @@ import com.p8.inspection.mvp.contract.MeContract;
 import javax.inject.Inject;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/10/12 15:41
  * description :
  */

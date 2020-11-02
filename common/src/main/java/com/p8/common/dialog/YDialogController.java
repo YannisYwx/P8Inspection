@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.p8.common.R;
-import com.p8.common.utils.ScreenUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -98,7 +98,9 @@ public class YDialogController {
 
     private void dealDefaultDialog(IDialog.OnClickListener positiveBtnListener, IDialog.OnClickListener negativeBtnListener, final String titleStr, final String contentStr,
                                    boolean showBtnLeft, String negativeStr, boolean showBtnRight, String positiveStr) {
-        if (dialogView == null) return;
+        if (dialogView == null) {
+            return;
+        }
         this.mNegativeButtonListener = negativeBtnListener;
         this.mPositiveButtonListener = positiveBtnListener;
         btn_ok = (Button) dialogView.findViewById(R.id.btn_ok);
@@ -141,7 +143,7 @@ public class YDialogController {
             tv_title.setVisibility(TextUtils.isEmpty(titleStr) ? View.GONE : View.VISIBLE);
             tv_title.setText(Html.fromHtml(!TextUtils.isEmpty(titleStr) ? titleStr : "Title"));
             if (TextUtils.isEmpty(contentStr) && mDialog.get() != null && mDialog.get().getContext() != null) {
-                tv_title.setMinHeight(ScreenUtil.dp2px(mDialog.get().getContext(), 100));
+                tv_title.setMinHeight(SizeUtils.dp2px(100));
                 tv_title.setGravity(Gravity.CENTER);
                 tv_title.setPadding(0, 10, 0, 0);
             }
@@ -168,8 +170,9 @@ public class YDialogController {
                     if (TextUtils.isEmpty(titleStr)) {
                         //没有title，只有content
                         tv_content.setTextSize(18);
-                        if (mDialog.get() == null || mDialog.get().getContext() == null || mDialog.get().getContext().getResources() == null)
+                        if (mDialog.get() == null || mDialog.get().getContext() == null || mDialog.get().getContext().getResources() == null) {
                             return true;
+                        }
                         tv_content.setTextColor(mDialog.get().getContext().getResources().getColor(R.color.c333333));
                     }
                     return true;
@@ -184,12 +187,16 @@ public class YDialogController {
         @Override
         public void onClick(View view) {
             if (view == btn_cancel) {
-                if (mDialog.get() == null) return;
+                if (mDialog.get() == null) {
+                    return;
+                }
                 if (mNegativeButtonListener != null) {
                     mNegativeButtonListener.onClick(mDialog.get());
                 }
             } else if (view == btn_ok) {
-                if (mDialog.get() == null) return;
+                if (mDialog.get() == null) {
+                    return;
+                }
                 if (mPositiveButtonListener != null) {
                     mPositiveButtonListener.onClick(mDialog.get());
                 }

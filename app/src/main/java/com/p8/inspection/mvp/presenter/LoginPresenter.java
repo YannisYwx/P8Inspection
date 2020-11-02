@@ -32,9 +32,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                 .as(bindLifecycle()).subscribe(new P8HttpSubscriber<HttpResponse<LoginInfo>>(mView) {
             @Override
             protected void onSuccess(HttpResponse<LoginInfo> loginInfoHttpResponse) {
-                mView.onLoginSuccess();
                 String token = loginInfoHttpResponse.getData().getToken();
                 mDataManager.saveToken(token);
+                mView.onLoginSuccess();
             }
         });
 

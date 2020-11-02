@@ -44,7 +44,6 @@ public abstract class ObservableSubscriber<T> extends ResourceObserver<T> {
 
     @Override
     public void onError(Throwable t) {
-        Logger.e("-------------------onError");
         Logger.e(t.toString());
         HttpError httpError;
         if (t instanceof HttpError) {

@@ -42,10 +42,10 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
 
     @Override
     protected void onEnd() {
-        super.onEnd();
         if (isShowProgressDialog()) {
             DialogUtils.closeLoadingDialog(mView.getContext());
         }
+        super.onEnd();
     }
 
     public boolean isShowProgressDialog() {

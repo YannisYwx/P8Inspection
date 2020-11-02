@@ -22,7 +22,9 @@ import com.p8.common.R;
  * description :
  */
 public class DeletableEditText extends AppCompatEditText implements TextWatcher, View.OnFocusChangeListener {
-    //EditText右侧的删除按钮
+    /**
+     * EditText右侧的删除按钮
+     */
     private Drawable mClearDrawable;
     private boolean hasFocus;
 

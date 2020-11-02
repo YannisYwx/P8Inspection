@@ -29,7 +29,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/11 11:28
  * description :
  */
@@ -62,6 +62,11 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
     }
 
     public interface OnEventTriggerListener {
+        /**
+         * 事件触发
+         *
+         * @param type
+         */
         void onEventTrigger(@Event int type);
     }
 
@@ -83,7 +88,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
     }
 
     private void initView(Context context, AttributeSet attrs) {
-        LayoutInflater.from(context).inflate(R.layout.view_title_bar_c, this, true);
+        LayoutInflater.from(context).inflate(R.layout.view_title_bar, this, true);
         if (attrs == null) {
             return;
         }
@@ -105,8 +110,8 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         a.recycle();
     }
 
-    private void setPaddingStatusBar(){
-        setPadding(0,getStatusBarHeight(),0,0);
+    private void setPaddingStatusBar() {
+        setPadding(0, BarUtils.getStatusBarHeight(), 0, 0);
     }
 
     public void setLeftVisibility(boolean isVisible) {
@@ -188,7 +193,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         tvLeft.setOnClickListener(this);
         tvRight.setOnClickListener(this);
         tvTitle.setOnClickListener(this);
-        setPaddingStatusBar();
+//        setPaddingStatusBar();
         super.onFinishInflate();
     }
 
@@ -283,7 +288,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
 
     public void setEmptyTitle() {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) this.getLayoutParams();
-        params.height = getStatusBarHeight();
+        params.height = BarUtils.getStatusBarHeight();
         this.setLayoutParams(params);
     }
 
@@ -340,14 +345,6 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         ivRTRight.setVisibility(VISIBLE);
         ivRTRight.setImageDrawable(drawable);
         invalidate();
-    }
-
-    public static int getStatusBarHeight() {
-        Resources resources = Resources.getSystem();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        int height = resources.getDimensionPixelSize(resourceId);
-        int height_ = BarUtils.getStatusBarHeight();
-        return Math.max(height_, height);
     }
 
 }
