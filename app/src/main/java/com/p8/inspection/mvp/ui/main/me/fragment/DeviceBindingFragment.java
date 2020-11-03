@@ -141,7 +141,7 @@ public class DeviceBindingFragment extends DaggerMvpFragment<DeviceBindingPresen
     @Override
     public void onEventTrigger(int type) {
         super.onEventTrigger(type);
-        if (type == TitleBar.Event.textRight) {
+        if (type == TitleBar.Event.TV_RIGHT) {
             presenter.bindDevice(deviceAddress,"0755123456",lat,lng);
         }
     }

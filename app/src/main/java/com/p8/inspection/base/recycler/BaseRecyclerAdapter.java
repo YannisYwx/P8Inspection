@@ -1,26 +1,20 @@
 package com.p8.inspection.base.recycler;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.collection.SparseArrayCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.blankj.utilcode.util.ThreadUtils;
 import com.orhanobut.logger.Logger;
 import com.p8.inspection.R;
-import com.p8.inspection.utils.ThreadPoolManager;
 
 import java.util.List;
 
-import static com.p8.inspection.core.Constants.PAGE_SIZE;
+import static com.p8.inspection.data.Constants.PAGE_SIZE;
 
 /**
  * @author : WX.Y

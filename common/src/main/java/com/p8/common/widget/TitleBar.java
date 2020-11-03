@@ -48,17 +48,18 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
     private int titleColor, leftTextColor, rightTextColor;
     private OnEventTriggerListener mListener;
 
-    @IntDef({Event.textLeft, Event.textRight, Event.textTitle, Event.imageLeft, Event.imageRight, Event.imageRight2, Event.buttonLeft, Event.buttonRight})
+    @IntDef({Event.TV_LEFT, Event.TV_RIGHT, Event.TV_TITLE,
+            Event.IV_LEFT, Event.IV_RIGHT, Event.IV_RIGHT2, Event.BTN_LEFT, Event.BTN_RIGHT})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Event {
-        int textLeft = 0;
-        int textRight = 1;
-        int textTitle = 2;
-        int imageLeft = 3;
-        int imageRight = 4;
-        int imageRight2 = 5;
-        int buttonLeft = 6;
-        int buttonRight = 7;
+        int TV_LEFT = 0;
+        int TV_RIGHT = 1;
+        int TV_TITLE = 2;
+        int IV_LEFT = 3;
+        int IV_RIGHT = 4;
+        int IV_RIGHT2 = 5;
+        int BTN_LEFT = 6;
+        int BTN_RIGHT = 7;
     }
 
     public interface OnEventTriggerListener {
@@ -252,17 +253,17 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         }
         int id = view.getId();
         if (id == R.id.tv_titleBar_left) {
-            mListener.onEventTrigger(Event.textLeft);
+            mListener.onEventTrigger(Event.TV_LEFT);
         } else if (id == R.id.tv_titleBar_Right) {
-            mListener.onEventTrigger(Event.textRight);
+            mListener.onEventTrigger(Event.TV_RIGHT);
         } else if (id == R.id.tv_titleBar_title) {
-            mListener.onEventTrigger(Event.textTitle);
+            mListener.onEventTrigger(Event.TV_TITLE);
         } else if (id == R.id.ib_titleBar_left) {
-            mListener.onEventTrigger(Event.imageLeft);
+            mListener.onEventTrigger(Event.IV_LEFT);
         } else if (id == R.id.ib_titleBar_right) {
-            mListener.onEventTrigger(Event.imageRight);
+            mListener.onEventTrigger(Event.IV_RIGHT);
         } else if (id == R.id.ib_titleBar_right_ot) {
-            mListener.onEventTrigger(Event.imageRight2);
+            mListener.onEventTrigger(Event.IV_RIGHT2);
         }
     }
 
@@ -274,7 +275,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
             if (mListener == null) {
                 return;
             }
-            mListener.onEventTrigger(Event.buttonLeft);
+            mListener.onEventTrigger(Event.BTN_LEFT);
 
         } else if (checkedId == R.id.rb_titleBar_right) {
             rbRight.setBackground(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.shape_toggle_btn_fg_left, null));
@@ -282,7 +283,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
             if (mListener == null) {
                 return;
             }
-            mListener.onEventTrigger(Event.buttonRight);
+            mListener.onEventTrigger(Event.BTN_RIGHT);
         }
     }
 

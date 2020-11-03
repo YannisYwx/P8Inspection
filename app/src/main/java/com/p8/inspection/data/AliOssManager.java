@@ -1,4 +1,4 @@
-package com.p8.inspection.core;
+package com.p8.inspection.data;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,18 +23,14 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.p8.inspection.data.prefs.AppPreferencesHelper;
 import com.p8.inspection.utils.GlideUtils;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.p8.inspection.data.prefs.AppPreferencesHelper.KEY_TOKEN;
 

@@ -41,8 +41,6 @@ public class EnterActivity extends BaseActivity {
     public void initView(View view) {
         if (findFragment(LoginFragment.class) == null) {
             loadRootFragment(R.id.fl_container, EntryPagerFragment.newInstance());
-//            loadRootFragment(R.id.fl_container, UserCenterFragment.newInstance());
-//            loadRootFragment(R.id.fl_container, TestFragment.newInstance());
         }
     }
 

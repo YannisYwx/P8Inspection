@@ -16,12 +16,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.orhanobut.logger.Logger;
 import com.p8.common.R;
 import com.p8.common.widget.StatusPager;
 import com.p8.common.widget.TitleBar;
-
-import java.util.Map;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -83,11 +80,11 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
      * @param contentView 主视图
      */
     private void addContentView(View contentView) {
-        int sh = ScreenUtils.getScreenHeight();
-        int sbh = BarUtils.getStatusBarHeight();
-        int nah = BarUtils.getNavBarHeight();
-        int ch = getContentViewHeight();
-        //Logger.e("ScreenHeight + " + sh + "\nStatusBarHeight = " + sbh + "\nNavBarHeight = " + nah + "\nContentViewHeight = " + ch);
+//        int sh = ScreenUtils.getScreenHeight();
+//        int sbh = BarUtils.getStatusBarHeight();
+//        int nah = BarUtils.getNavBarHeight();
+//        int ch = getContentViewHeight();
+//        Logger.e("ScreenHeight + " + sh + "\nStatusBarHeight = " + sbh + "\nNavBarHeight = " + nah + "\nContentViewHeight = " + ch);
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.topToBottom = R.id.titleBar;
@@ -232,9 +229,9 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
 
     @Override
     public void onEventTrigger(int type) {
-        if (type == TitleBar.Event.imageLeft) {
+        if (type == TitleBar.Event.IV_LEFT) {
             onTitleBarLeftClick();
-        } else if (type == TitleBar.Event.imageRight) {
+        } else if (type == TitleBar.Event.IV_RIGHT) {
             onTitleBarRightClick();
         }
     }

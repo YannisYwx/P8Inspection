@@ -13,7 +13,7 @@ import androidx.annotation.StringRes;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.p8.inspection.core.Constants.EXTRA;
+import static com.p8.inspection.data.Constants.EXTRA;
 
 
 /**

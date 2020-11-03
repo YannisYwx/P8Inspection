@@ -111,9 +111,9 @@ public abstract class BaseFragment extends SupportFragment implements View.OnCli
 
     @Override
     public void onEventTrigger(int type) {
-        if (type == TitleBar.Event.imageLeft) {
+        if (type == TitleBar.Event.IV_LEFT) {
             onTitleBarLeftClick();
-        } else if (type == TitleBar.Event.imageRight) {
+        } else if (type == TitleBar.Event.IV_RIGHT) {
             onTitleBarRightClick();
         }
     }

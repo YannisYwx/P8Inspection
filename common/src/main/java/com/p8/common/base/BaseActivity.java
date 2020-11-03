@@ -239,7 +239,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
 
     @Override
     public void onEventTrigger(int type) {
-        if (type == TitleBar.Event.imageLeft) {
+        if (type == TitleBar.Event.IV_LEFT) {
             finish();
         }
     }

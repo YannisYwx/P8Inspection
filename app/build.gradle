@@ -33,10 +33,10 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "false"
         }
         debug {
-            minifyEnabled false   //是否代码混淆
+            minifyEnabled true   //是否代码混淆
             multiDexEnabled true //防止方法数量超过65536导致错误
             zipAlignEnabled true  //压缩优化
-            shrinkResources false  //移出无用资源
+            shrinkResources true  //移出无用资源
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             buildConfigField "boolean", "LOG_DEBUG", "true"

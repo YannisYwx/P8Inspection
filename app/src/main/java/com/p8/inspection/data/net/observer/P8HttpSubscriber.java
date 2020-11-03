@@ -7,10 +7,8 @@ import com.p8.common.base.mvp.BaseContract;
 import com.p8.common.http.HttpError;
 import com.p8.common.http.HttpResponse;
 import com.p8.common.rx.ObservableSubscriber;
-import com.p8.inspection.core.Constants;
+import com.p8.inspection.data.Constants;
 import com.p8.inspection.widget.DialogUtils;
-
-import java.util.Objects;
 
 /**
  * @author : WX.Y

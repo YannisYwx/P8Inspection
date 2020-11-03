@@ -3,9 +3,7 @@ package com.p8.inspection.data.net.download;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.orhanobut.logger.Logger;
-import com.p8.inspection.P8ParkingApplication;
-import com.p8.inspection.core.Constants;
+import com.p8.inspection.data.Constants;
 
 import java.io.File;
 

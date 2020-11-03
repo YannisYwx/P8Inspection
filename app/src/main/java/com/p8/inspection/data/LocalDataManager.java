@@ -9,8 +9,10 @@ import com.blankj.utilcode.util.JsonUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+import com.p8.inspection.R;
 import com.p8.inspection.data.bean.Province;
 import com.p8.inspection.data.bean.ProvinceBean;
+import com.p8.inspection.data.bean.UserMenu;
 
 import org.json.JSONArray;
 
@@ -23,7 +25,7 @@ import java.util.List;
 /**
  * @author : WX.Y
  * date : 2020/10/30 16:17
- * description :
+ * description : 本地数据中心
  */
 public class LocalDataManager {
 
@@ -58,6 +60,11 @@ public class LocalDataManager {
         return areas;
     }
 
+    /**
+     * 初始化省市区数据
+     *
+     * @param context
+     */
     public void initProvinces(Context context) {
         //获取assets目录下的json文件数据
         ThreadUtils.getSinglePool().execute(() -> {
@@ -123,6 +130,56 @@ public class LocalDataManager {
             e.printStackTrace();
         }
         return detail;
+    }
+
+    /**
+     * 根据登入类型获取菜单选项
+     *
+     * @param userType 用户类型
+     * @return 菜单集合
+     */
+    public static List<UserMenu> getUserMenus(@UserMenu.UserType int userType) {
+        List<UserMenu> userMenus = new ArrayList<>();
+        switch (userType) {
+            case UserMenu.UserType.LARGE: {
+                //大主菜单
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "个人中心", R.mipmap.icon_user, 0));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "J架管理", R.mipmap.icon_settings, 1));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "配件管理", R.mipmap.icon_device_settings, 2));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "订单管理", R.mipmap.icon_order_manage, 3));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "财务管理", R.mipmap.icon_money_chart, 4));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "地主管理", R.mipmap.icon_user_manager, 5));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "工单管理", R.mipmap.icon_order, 6));
+                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "公告管理", R.mipmap.icon_noitce, 7));
+            }
+            break;
+            case UserMenu.UserType.MEDIUM:
+                break;
+            case UserMenu.UserType.SMALL:
+                break;
+            case UserMenu.UserType.LAND: {
+                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "个人中心", R.mipmap.icon_user, 0));
+                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "停车监控", R.mipmap.icon_parking_moniter, 1));
+                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "设备安装", R.mipmap.icon_device_settings, 2));
+                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "工单处理", R.mipmap.icon_order, 3));
+                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "签到签出", R.mipmap.icon_clock, 4));
+            }
+            break;
+            case UserMenu.UserType.BUILD:
+                break;
+            case UserMenu.UserType.ONESELF:
+                break;
+            case UserMenu.UserType.OTHER:
+                break;
+            case UserMenu.UserType.PLACE:
+                break;
+            case UserMenu.UserType.PLATFORM:
+                break;
+            default:
+                break;
+        }
+
+        return userMenus;
     }
 }
 

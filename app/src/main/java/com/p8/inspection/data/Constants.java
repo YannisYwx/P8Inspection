@@ -1,4 +1,4 @@
-package com.p8.inspection.core;
+package com.p8.inspection.data;
 
 import android.os.Environment;
 

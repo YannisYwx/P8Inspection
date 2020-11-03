@@ -46,7 +46,7 @@ public class AttendanceFragment extends DaggerMvpFragment<AttendancePresenter, A
     @Override
     public void onEventTrigger(int type) {
         super.onEventTrigger(type);
-        if (type == TitleBar.Event.textRight) {
+        if (type == TitleBar.Event.TV_RIGHT) {
             startByParent(HistoryFragment.newInstance());
         }
     }

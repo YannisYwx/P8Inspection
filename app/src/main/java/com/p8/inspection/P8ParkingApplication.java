@@ -4,9 +4,8 @@ import android.app.Application;
 import android.os.Environment;
 
 import com.blankj.utilcode.util.Utils;
-import com.orhanobut.logger.Logger;
 import com.p8.common.utils.ActUtils;
-import com.p8.inspection.core.AliOssManager;
+import com.p8.inspection.data.AliOssManager;
 import com.p8.inspection.data.LocalDataManager;
 import com.p8.inspection.utils.LocationManager;
 import com.squareup.leakcanary.LeakCanary;

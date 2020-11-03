@@ -5,7 +5,7 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.p8.inspection.BuildConfig;
 import com.p8.inspection.P8ParkingApplication;
-import com.p8.inspection.core.Constants;
+import com.p8.inspection.data.Constants;
 import com.p8.inspection.data.net.api.P8Api;
 import com.p8.inspection.data.net.interceptor.LoggerInterceptor;
 import com.p8.inspection.data.net.interceptor.TokenInterceptor;
