@@ -5,7 +5,7 @@
     <!--登录 注册 忘记密码-->
     <string name="account">账 号：</string>
     <string name="password">密 码：</string>
-    <string name="immediatelyLogin">立即登录</string>
+    <string name="immediatelyLogin">登录</string>
     <string name="finish">完成</string>
     <string name="fastRegister">快速注册</string>
     <string name="forgetPwd">忘记密码?</string>
@@ -17,5 +17,32 @@
     <string name="tipRegister">没有此项可以不填</string>
     <string name="resetPwd">重置密码</string>
     <string name="press_again_exit">再次点击退出应用</string>
+
+    <string name="main_table_home">首页</string>
+    <string name="main_table_attendance">考勤</string>
+    <string name="main_table_me">我的</string>
+
+    <string name="title_device_binding">设备绑定</string>
+    <string name="title_device_debug">设备调试</string>
+    <string name="title_attendance">考勤打卡</string>
+    <string name="title_search">搜索</string>
+    <string name="title_user_center">个人中心</string>
+    <string name="title_modify_password">修改密码</string>
+    <string name="title_message_center">消息中心</string>
+    <string name="title_settings">设置</string>
+    <string name="title_attendance_history">考勤记录</string>
+    <string name="title_parking_monitor">停车监控</string>
+
+    <string-array name="userType">
+        <item>大主</item>
+        <item>地主</item>
+        <item>场主</item>
+        <item>小主</item>
+        <item>台主</item>
+        <item>中主</item>
+        <item>自主</item>
+        <item>施主</item>
+        <item>其他</item>
+    </string-array>
 
 </resources>

@@ -1,7 +1,5 @@
 package com.p8.inspection.data.net.interceptor;
 
-import com.blankj.utilcode.util.StringUtils;
-import com.p8.common.utils.SPUtils;
 import com.p8.inspection.data.prefs.AppPreferencesHelper;
 
 import java.io.IOException;
@@ -20,7 +18,7 @@ public class TokenInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException{
         Request request = chain.request();
-        String token = (String) SPUtils.getInstance().getData(AppPreferencesHelper.KEY_TOKEN,"");;
+        String token = AppPreferencesHelper.getSPUtils().getString(AppPreferencesHelper.KEY_TOKEN);
         HttpUrl httpUrl = request.url()
                 .newBuilder()
                 /* add parameter */

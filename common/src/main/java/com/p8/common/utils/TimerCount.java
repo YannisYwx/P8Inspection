@@ -4,7 +4,7 @@ import android.os.CountDownTimer;
 import android.widget.TextView;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/14 18:18
  * description :
  */

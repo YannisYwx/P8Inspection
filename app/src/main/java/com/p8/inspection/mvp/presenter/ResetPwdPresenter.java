@@ -11,7 +11,7 @@ import com.p8.inspection.mvp.contract.ResetPwdContract;
 import javax.inject.Inject;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/11 17:43
  * description :
  */

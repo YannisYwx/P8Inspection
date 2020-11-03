@@ -55,7 +55,7 @@ public class DialogUtils {
         builder.show();
     }
 
-    public static YDialog createProgressDialog(Context context,String msg) {
+    public static YDialog createProgressDialog(Context context, String msg) {
         closeLoadingDialog(context);
         YDialog.Builder builder = new YDialog.Builder(context);
         YDialog dialog = builder.setDialogView(R.layout.dialog_loading)
@@ -65,7 +65,7 @@ public class DialogUtils {
                 .setWindowBackgroundP(0.2f)//设置背景透明度 0.0f-1.0f 1.0f完全不透明
                 .setCancelable(true)//设置是否屏蔽物理返回键 true不屏蔽  false屏蔽
                 .setCancelableOutSide(true)//设置dialog外点击是否可以让dialog消失
-                .setAnimStyle(0).setBuildChildListener((iDialog, view, layoutRes) -> {
+                .setBuildChildListener((iDialog, view, layoutRes) -> {
                     TextView tvMsg = view.findViewById(R.id.tv_msg);
                     tvMsg.setText(msg);
                 }).show();
@@ -86,5 +86,40 @@ public class DialogUtils {
             dialog.dismiss();
         }
     }
+
+    public static void showTakePhotoDialog(Context context, OnTakePhotoDialogChoiceListener listener) {
+        if (listener == null) return;
+        YDialog.Builder builder = new YDialog.Builder(context);
+        builder.setDialogView(R.layout.dialog_select_photo)
+                .setAnimStyle(R.style.AnimUp)
+                .setGravity(Gravity.BOTTOM)
+                .setCancelable(true)
+                .setWindowBackgroundP(0.3f)
+                .setCancelableOutSide(true)
+                .setBuildChildListener((dialog, view, layoutRes) -> {
+                    view.findViewById(R.id.tv_select_camera).setOnClickListener(v -> {
+                        listener.onSelectCamera();
+                        dialog.dismiss();
+                    });
+
+                    view.findViewById(R.id.tv_select_gallery).setOnClickListener(v -> {
+                        listener.onSelectGallery();
+                        dialog.dismiss();
+                    });
+
+                    view.findViewById(R.id.btn_cancel).setOnClickListener(v -> {
+                        dialog.dismiss();
+                    });
+                }).show();
+    }
+
+
+    public interface OnTakePhotoDialogChoiceListener {
+        void onSelectCamera();
+
+        void onSelectGallery();
+    }
+
+
 }
 

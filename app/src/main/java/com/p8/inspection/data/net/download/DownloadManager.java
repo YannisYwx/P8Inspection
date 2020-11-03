@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.p8.inspection.data.net.download.DownloadService.HOST;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/24 14:28
  * description :
  */
@@ -105,11 +105,16 @@ public class DownloadManager implements DownloadProgressListener {
                 for (DownloadListener listener : mListeners) {
                     listener.onProgress(mDownloadInfo.getUrl(), (int) (downSize * 100 / totalSize));
                 }
+//                if (mDownloadInfo.getContentLength() == mDownloadInfo.getReadLength()) {
+//                    mDownloadInfo.setReadLength(0L);
+//                }
             }
 
             @Override
             public void onError(Throwable e) {
-
+                for (DownloadListener listener : mListeners) {
+                    listener.onFail("666", e.getMessage());
+                }
             }
 
             @Override
@@ -129,6 +134,7 @@ public class DownloadManager implements DownloadProgressListener {
      * @param url
      */
     public void start(String url) {
+        mDownloadInfo.setReadLength(0L);
         mDownloadInfo.setUrl(url);
         downLoad();
     }
@@ -137,12 +143,13 @@ public class DownloadManager implements DownloadProgressListener {
      * 暂停下载
      */
     public void pause() {
-        if (mDisposable != null)
+        if (mDisposable != null) {
             mDisposable.dispose();
+        }
     }
 
     private void downLoad() {
-        mDisposable = service.download( mDownloadInfo.getUrl())
+        mDisposable = service.download(mDownloadInfo.getUrl())
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .retryWhen(new RetryFunction())
@@ -160,38 +167,45 @@ public class DownloadManager implements DownloadProgressListener {
      *
      * @param file
      * @param info
-     * @throws IOException
      */
-    public static void writeCache(ResponseBody responseBody, @NonNull File file, DownloadInfo info) throws IOException {
-        File dir = file.getParentFile();
-        if (dir != null && !dir.exists()) {
-            if (!dir.mkdirs()) {
-                return;
+    public static void writeCache(ResponseBody responseBody, @NonNull File file, DownloadInfo info) {
+        try{
+            File dir = file.getParentFile();
+            if (dir != null && !dir.exists()) {
+                if (!dir.mkdirs()) {
+                    return;
+                }
             }
-        }
-        long allLength;
-        if (info.getContentLength() == 0) {
-            allLength = responseBody.contentLength();
-        } else {
-            allLength = info.getContentLength();
+            Logger.e(file.getAbsolutePath());
+            long allLength;
+            if (info.getContentLength() == 0) {
+                allLength = responseBody.contentLength();
+            } else {
+                allLength = info.getContentLength();
+            }
+
+            FileChannel channelOut;
+            RandomAccessFile randomAccessFile;
+            randomAccessFile = new RandomAccessFile(file, "rwd");
+            channelOut = randomAccessFile.getChannel();
+            MappedByteBuffer mappedBuffer = channelOut.map(FileChannel.MapMode.READ_WRITE,
+                    info.getReadLength(), allLength - info.getReadLength());
+            byte[] buffer = new byte[1024 * 4];
+            int len;
+            int record = 0;
+            while ((len = responseBody.byteStream().read(buffer)) != -1) {
+                mappedBuffer.put(buffer, 0, len);
+                record += len;
+            }
+            responseBody.byteStream().close();
+            channelOut.close();
+            randomAccessFile.close();
+            Logger.e("文件写入成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            Logger.e(e.getMessage());
         }
 
-        FileChannel channelOut = null;
-        RandomAccessFile randomAccessFile = null;
-        randomAccessFile = new RandomAccessFile(file, "rwd");
-        channelOut = randomAccessFile.getChannel();
-        MappedByteBuffer mappedBuffer = channelOut.map(FileChannel.MapMode.READ_WRITE,
-                info.getReadLength(), allLength - info.getReadLength());
-        byte[] buffer = new byte[1024 * 4];
-        int len;
-        int record = 0;
-        while ((len = responseBody.byteStream().read(buffer)) != -1) {
-            mappedBuffer.put(buffer, 0, len);
-            record += len;
-        }
-        responseBody.byteStream().close();
-        channelOut.close();
-        randomAccessFile.close();
     }
 
 }

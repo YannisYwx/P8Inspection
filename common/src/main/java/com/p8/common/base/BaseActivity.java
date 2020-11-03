@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,16 +19,14 @@ import androidx.core.app.ActivityCompat;
 
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.BarUtils;
-import com.blankj.utilcode.util.CacheMemoryUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.p8.common.R;
-import com.p8.common.utils.StatusBarUtils;
-import com.p8.common.utils.ToastUtils;
 import com.p8.common.widget.TitleBar;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/4 15:11
  * description : activity 基类用来做一些初始化工作
  */
@@ -64,19 +65,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         if (mAllowFullScreen) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
-//        if (isSetStatusBar()) {
-//            //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
-//            StatusBarUtils.setRootViewFitsSystemWindows(this, true);
-//            //设置状态栏透明
-//            StatusBarUtils.setTranslucentStatus(this);
-//            //一般的手机的状态栏文字和图标都是白色的, 可如果你的应用也是纯白色的, 或导致状态栏文字看不清
-//            //所以如果你是这种情况,请使用以下代码, 设置状态使用深色文字图标风格, 否则你可以选择性注释掉这个if内容
-//            if (!StatusBarUtils.setStatusBarDarkTheme(this, true)) {
-//                //如果不支持设置深色风格 为了兼容总不能让状态栏白白的看不清, 于是设置一个状态栏颜色为半透明,
-//                //这样半透明+白=灰, 状态栏的文字能看得清
-//                StatusBarUtils.setStatusBarColor(this, 0x55000000);
-//            }
-//        }
+
         BarUtils.setStatusBarColor(this, getResources().getColor(R.color.transparent));
         setContentView(mContextView);
         if (!isAllowScreenRotate()) {
@@ -92,6 +81,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         } else {
             BarUtils.setStatusBarLightMode(this, isLightMode());
         }
+
     }
 
     public void setStatusBarLightMode(boolean isLightMode) {
@@ -126,11 +116,10 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
 
     }
 
+    /**
+     * 初始化数据
+     */
     public abstract void initData();
-
-    public boolean isSetStatusBar() {
-        return true;
-    }
 
     /**
      * 是否允许屏幕旋转
@@ -234,31 +223,6 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         ToastUtils.cancel();
@@ -275,7 +239,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
 
     @Override
     public void onEventTrigger(int type) {
-        if (type == TitleBar.Event.imageLeft) {
+        if (type == TitleBar.Event.IV_LEFT) {
             finish();
         }
     }

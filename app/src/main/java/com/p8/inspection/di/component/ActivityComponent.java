@@ -1,9 +1,8 @@
 package com.p8.inspection.di.component;
 
-import com.p8.inspection.MainActivity;
 import com.p8.inspection.di.module.ActivityModule;
 import com.p8.inspection.di.scope.ActivityScope;
-import com.p8.inspection.mvp.ui.activity.LoginActivity;
+import com.p8.inspection.mvp.ui.EnterActivity;
 
 import dagger.Subcomponent;
 
@@ -18,7 +17,7 @@ public interface ActivityComponent {
 
 //    void inject(MainActivity mainActivity);
 
-    void inject(LoginActivity loginActivity);
+    void inject(EnterActivity enterActivity);
 
 //    @Subcomponent.Builder
 //    interface Builder {

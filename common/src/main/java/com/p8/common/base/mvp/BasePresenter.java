@@ -15,7 +15,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/7 16:30
  * description :
  */

@@ -110,4 +110,9 @@ public class DataManager implements PreferencesHelper, DBHelper, HttpHelper {
     public Observable<HttpResponse<Machines>> getMachines(String address, int parkingStatus, int currentPage) {
         return mHttpHelper.getMachines(address, parkingStatus, currentPage);
     }
+
+    @Override
+    public Observable<HttpResponse<Object>> bindDevice(String address, String parkingNumber, String lat, String lng) {
+        return mHttpHelper.bindDevice(address, parkingNumber, lat, lng);
+    }
 }

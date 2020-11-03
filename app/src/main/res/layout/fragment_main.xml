@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fl_tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottom_bar_height" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/bottom_bar_height"
+        android:background="@mipmap/actionbar_shadow_up" />
+
+    <RadioGroup
+        android:id="@+id/rg_main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_main_home"
+            style="@style/TabStyle"
+            android:drawableTop="@drawable/home_selector"
+            android:text="@string/main_table_home" />
+
+        <RadioButton
+            android:id="@+id/rb_main_attendance"
+            style="@style/TabStyle"
+            android:drawableTop="@drawable/home_selector"
+            android:text="@string/main_table_attendance" />
+
+        <RadioButton
+            android:id="@+id/rb_main_me"
+            style="@style/TabStyle"
+            android:drawableTop="@drawable/home_selector"
+            android:text="@string/main_table_me" />
+
+    </RadioGroup>
+
+</FrameLayout>

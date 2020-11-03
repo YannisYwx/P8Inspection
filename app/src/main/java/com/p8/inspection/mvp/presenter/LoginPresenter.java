@@ -12,7 +12,7 @@ import com.p8.inspection.mvp.contract.LoginContract;
 import javax.inject.Inject;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/11 17:43
  * description :
  */
@@ -32,9 +32,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                 .as(bindLifecycle()).subscribe(new P8HttpSubscriber<HttpResponse<LoginInfo>>(mView) {
             @Override
             protected void onSuccess(HttpResponse<LoginInfo> loginInfoHttpResponse) {
-                mView.onLoginSuccess();
                 String token = loginInfoHttpResponse.getData().getToken();
                 mDataManager.saveToken(token);
+                mView.onLoginSuccess();
             }
         });
 

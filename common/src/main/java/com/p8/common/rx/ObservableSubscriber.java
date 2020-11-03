@@ -3,6 +3,7 @@ package com.p8.common.rx;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.MalformedJsonException;
+import com.orhanobut.logger.Logger;
 import com.p8.common.http.HttpError;
 
 import org.json.JSONException;
@@ -16,7 +17,7 @@ import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/17 15:50
  * description :
  */
@@ -43,6 +44,7 @@ public abstract class ObservableSubscriber<T> extends ResourceObserver<T> {
 
     @Override
     public void onError(Throwable t) {
+        Logger.e(t.toString());
         HttpError httpError;
         if (t instanceof HttpError) {
             httpError = (HttpError) t;

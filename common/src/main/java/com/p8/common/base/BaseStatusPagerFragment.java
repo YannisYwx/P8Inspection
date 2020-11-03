@@ -1,29 +1,29 @@
 package com.p8.common.base;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Constraints;
 
-import com.orhanobut.logger.Logger;
+import com.blankj.utilcode.util.AdaptScreenUtils;
+import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.p8.common.R;
-import com.p8.common.utils.StatusBarUtils;
 import com.p8.common.widget.StatusPager;
 import com.p8.common.widget.TitleBar;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/16 14:47
  * description :
  */
@@ -67,15 +67,45 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
         return mRootView;
     }
 
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        BarUtils.setStatusBarLightMode(_mActivity, !hasTitleBar());
+    }
+
+    /**
+     * 添加主视图
+     * 因为ConstraintLayout的一些缘故 需要重新计算主视图的高度
+     *
+     * @param contentView 主视图
+     */
     private void addContentView(View contentView) {
+//        int sh = ScreenUtils.getScreenHeight();
+//        int sbh = BarUtils.getStatusBarHeight();
+//        int nah = BarUtils.getNavBarHeight();
+//        int ch = getContentViewHeight();
+//        Logger.e("ScreenHeight + " + sh + "\nStatusBarHeight = " + sbh + "\nNavBarHeight = " + nah + "\nContentViewHeight = " + ch);
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+                ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.topToBottom = R.id.titleBar;
         layoutParams.leftToLeft = R.id.layout_toolbar;
         layoutParams.rightToRight = R.id.layout_toolbar;
         layoutParams.bottomToBottom = R.id.layout_toolbar;
+        layoutParams.height = getContentViewHeight();
         contentView.setLayoutParams(layoutParams);
         mRootView.addView(contentView);
+    }
+
+    /**
+     * 获取主视图高度
+     *
+     * @return 屏幕高度 - 系统状态栏高度 - 自定义titleBar高度 - 系统导航栏高度
+     */
+    private int getContentViewHeight() {
+        return ScreenUtils.getScreenHeight()
+                - BarUtils.getStatusBarHeight()
+                - (hasTitleBar() ? 1 : 0) * AdaptScreenUtils.pt2Px(144)
+                - (!BarUtils.isNavBarVisible(_mActivity) ? 0 : BarUtils.getNavBarHeight());
     }
 
     @Override
@@ -89,9 +119,13 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
 
     public void initTitleBar() {
         mTitleBar = mRootView.findViewById(R.id.titleBar);
-        mTitleBar.setOnEventTriggerListener(this);
         if (hasTitleBar()) {
-            mTitleBar.setPadding(0, StatusBarUtils.getStatusBarHeight(this.mContext), 0, 0);
+            mTitleBar.setOnEventTriggerListener(this);
+            //需要填充状态栏
+            mTitleBar.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0);
+            mTitleBar.setTitleColor(Color.WHITE);
+            mTitleBar.setRightTextColor(Color.WHITE);
+            mTitleBar.setLeftTextColor(Color.WHITE);
         } else {
             dismissTitleBar();
         }
@@ -100,41 +134,33 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
     public void dismissTitleBar() {
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.height = StatusBarUtils.getStatusBarHeight(mContext);
+        params.height = BarUtils.getStatusBarHeight();
         mTitleBar.setLayoutParams(params);
+        mTitleBar.setVisibility(View.GONE);
     }
 
     public boolean hasTitleBar() {
         return true;
     }
 
+    /**
+     * 初始化控件
+     *
+     * @param view
+     */
     public abstract void initView(View view);
 
+    /**
+     * 初始化数据
+     */
     public abstract void initData();
 
+    /**
+     * 设置监听
+     */
     public abstract void setListener();
 
-    private void createStatusPager(View contentView1) {
-        mStatusPager = new StatusPager(mContext) {
-
-            @Override
-            public void triggerLoadData() {
-                BaseStatusPagerFragment.this.triggerLoadData();
-            }
-
-            @Override
-            public void refreshContentView(View view) {
-                BaseStatusPagerFragment.this.refreshContentView(view);
-            }
-
-            @Override
-            public View initContentView() {
-                return contentView1;
-            }
-        };
-    }
-
-    private View createView() {
+    private void createStatusPager(View contentView) {
         mStatusPager = new StatusPager(mContext) {
 
             @Override
@@ -152,13 +178,25 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
                 return contentView;
             }
         };
-        return mStatusPager;
     }
 
+    /**
+     * 触发加载数据
+     */
     protected abstract void triggerLoadData();
 
+    /**
+     * 刷新内容视图
+     *
+     * @param view
+     */
     protected abstract void refreshContentView(View view);
 
+    /**
+     * 设置布局文件
+     *
+     * @return
+     */
     public abstract int setLayoutId();
 
     public void showEmptyPager() {
@@ -183,15 +221,17 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
     }
 
     protected <T extends View> T $(int resId) {
-        if (contentView == null) throw new NullPointerException("contentView can't be null");
+        if (contentView == null) {
+            throw new NullPointerException("contentView can't be null");
+        }
         return contentView.findViewById(resId);
     }
 
     @Override
     public void onEventTrigger(int type) {
-        if (type == TitleBar.Event.imageLeft) {
+        if (type == TitleBar.Event.IV_LEFT) {
             onTitleBarLeftClick();
-        } else if (type == TitleBar.Event.imageRight) {
+        } else if (type == TitleBar.Event.IV_RIGHT) {
             onTitleBarRightClick();
         }
     }
@@ -213,5 +253,12 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
     public void setStatusBarLightMode(boolean lightMode) {
         ((BaseActivity) _mActivity).setStatusBarLightMode(lightMode);
     }
+
+    public void setClickListener(int... ids) {
+        for (int id : ids) {
+            $(id).setOnClickListener(this);
+        }
+    }
+
 }
 

@@ -29,7 +29,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/11 11:28
  * description :
  */
@@ -48,20 +48,26 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
     private int titleColor, leftTextColor, rightTextColor;
     private OnEventTriggerListener mListener;
 
-    @IntDef({Event.textLeft, Event.textRight, Event.textTitle, Event.imageLeft, Event.imageRight, Event.imageRight2, Event.buttonLeft, Event.buttonRight})
+    @IntDef({Event.TV_LEFT, Event.TV_RIGHT, Event.TV_TITLE,
+            Event.IV_LEFT, Event.IV_RIGHT, Event.IV_RIGHT2, Event.BTN_LEFT, Event.BTN_RIGHT})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Event {
-        int textLeft = 0;
-        int textRight = 1;
-        int textTitle = 2;
-        int imageLeft = 3;
-        int imageRight = 4;
-        int imageRight2 = 5;
-        int buttonLeft = 6;
-        int buttonRight = 7;
+        int TV_LEFT = 0;
+        int TV_RIGHT = 1;
+        int TV_TITLE = 2;
+        int IV_LEFT = 3;
+        int IV_RIGHT = 4;
+        int IV_RIGHT2 = 5;
+        int BTN_LEFT = 6;
+        int BTN_RIGHT = 7;
     }
 
     public interface OnEventTriggerListener {
+        /**
+         * 事件触发
+         *
+         * @param type
+         */
         void onEventTrigger(@Event int type);
     }
 
@@ -83,7 +89,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
     }
 
     private void initView(Context context, AttributeSet attrs) {
-        LayoutInflater.from(context).inflate(R.layout.view_title_bar_c, this, true);
+        LayoutInflater.from(context).inflate(R.layout.view_title_bar, this, true);
         if (attrs == null) {
             return;
         }
@@ -105,8 +111,8 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         a.recycle();
     }
 
-    private void setPaddingStatusBar(){
-        setPadding(0,getStatusBarHeight(),0,0);
+    private void setPaddingStatusBar() {
+        setPadding(0, BarUtils.getStatusBarHeight(), 0, 0);
     }
 
     public void setLeftVisibility(boolean isVisible) {
@@ -188,7 +194,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         tvLeft.setOnClickListener(this);
         tvRight.setOnClickListener(this);
         tvTitle.setOnClickListener(this);
-        setPaddingStatusBar();
+//        setPaddingStatusBar();
         super.onFinishInflate();
     }
 
@@ -247,17 +253,17 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         }
         int id = view.getId();
         if (id == R.id.tv_titleBar_left) {
-            mListener.onEventTrigger(Event.textLeft);
+            mListener.onEventTrigger(Event.TV_LEFT);
         } else if (id == R.id.tv_titleBar_Right) {
-            mListener.onEventTrigger(Event.textRight);
+            mListener.onEventTrigger(Event.TV_RIGHT);
         } else if (id == R.id.tv_titleBar_title) {
-            mListener.onEventTrigger(Event.textTitle);
+            mListener.onEventTrigger(Event.TV_TITLE);
         } else if (id == R.id.ib_titleBar_left) {
-            mListener.onEventTrigger(Event.imageLeft);
+            mListener.onEventTrigger(Event.IV_LEFT);
         } else if (id == R.id.ib_titleBar_right) {
-            mListener.onEventTrigger(Event.imageRight);
+            mListener.onEventTrigger(Event.IV_RIGHT);
         } else if (id == R.id.ib_titleBar_right_ot) {
-            mListener.onEventTrigger(Event.imageRight2);
+            mListener.onEventTrigger(Event.IV_RIGHT2);
         }
     }
 
@@ -269,7 +275,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
             if (mListener == null) {
                 return;
             }
-            mListener.onEventTrigger(Event.buttonLeft);
+            mListener.onEventTrigger(Event.BTN_LEFT);
 
         } else if (checkedId == R.id.rb_titleBar_right) {
             rbRight.setBackground(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.shape_toggle_btn_fg_left, null));
@@ -277,13 +283,13 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
             if (mListener == null) {
                 return;
             }
-            mListener.onEventTrigger(Event.buttonRight);
+            mListener.onEventTrigger(Event.BTN_RIGHT);
         }
     }
 
     public void setEmptyTitle() {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) this.getLayoutParams();
-        params.height = getStatusBarHeight();
+        params.height = BarUtils.getStatusBarHeight();
         this.setLayoutParams(params);
     }
 
@@ -340,14 +346,6 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener, Ra
         ivRTRight.setVisibility(VISIBLE);
         ivRTRight.setImageDrawable(drawable);
         invalidate();
-    }
-
-    public static int getStatusBarHeight() {
-        Resources resources = Resources.getSystem();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        int height = resources.getDimensionPixelSize(resourceId);
-        int height_ = BarUtils.getStatusBarHeight();
-        return Math.max(height_, height);
     }
 
 }

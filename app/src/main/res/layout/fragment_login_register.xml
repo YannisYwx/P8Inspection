@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/v_top_bg"
+        android:layout_width="match_parent"
+        android:layout_height="640pt"
+        android:background="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="欢迎使用P8车服"
+        android:drawableStart="@mipmap/logo"
+        app:layout_constraintLeft_toLeftOf="@id/v_top_bg"
+        app:layout_constraintRight_toRightOf="@id/v_top_bg"
+        app:layout_constraintTop_toTopOf="@id/v_top_bg"
+        android:layout_marginTop="200pt"
+        android:gravity="center"
+        android:textColor="#3B3B5B"
+        android:textSize="80pt"
+        android:drawablePadding="30pt" />
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_middle_size"
+        app:layout_constraintLeft_toLeftOf="@id/v_top_bg"
+        app:layout_constraintRight_toRightOf="@id/v_top_bg"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        android:layout_marginTop="30pt"
+        android:textColor="#CDCDD6"
+        android:text="专注运营互联网物联网智能停车管理平台"/>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="登录"
+        android:textSize="@dimen/text_large_size"
+        android:layout_margin="40pt"
+        android:textColor="@color/selector_color_login_register"
+        app:layout_constraintBottom_toBottomOf="@id/v_top_bg"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="@id/v_top_bg"
+        app:layout_constraintRight_toLeftOf="@id/tv_register"/>
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="注册"
+        android:textSize="@dimen/text_large_size"
+        android:layout_margin="40pt"
+        android:textColor="@color/selector_color_login_register"
+        app:layout_constraintBottom_toBottomOf="@id/v_top_bg"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/tv_login"
+        app:layout_constraintRight_toRightOf="@id/v_top_bg" />
+
+    <com.p8.inspection.widget.TriangleIndicatorView
+        android:id="@+id/v_tiv"
+        android:layout_width="match_parent"
+        android:layout_height="40pt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_top_bg"
+        app:tableSize="2"
+        app:openAnimator="true"
+        app:triangleColor="@color/white"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="btn_login,
+        tv_forget_pwd,tv_user,tv_password,
+        v_line_password,v_line_user,et_password,et_userName"/>
+
+    <TextView
+        android:id="@+id/tv_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_tiv"
+        app:layout_constraintRight_toLeftOf="@id/et_userName"
+        app:layout_constraintHorizontal_weight="1"
+        android:text="用户名"
+        android:textSize="@dimen/text_large_size"
+        android:layout_marginTop="60pt"
+        android:layout_marginStart="60pt"
+        android:gravity="start"
+        android:textColor="@color/text_black"
+        />
+
+    <EditText
+        android:id="@+id/et_userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="4"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_user"
+        app:layout_constraintBottom_toBottomOf="@id/tv_user"
+        app:layout_constraintLeft_toRightOf="@id/tv_user"
+        android:textSize="@dimen/text_large_size"
+        android:textColor="@color/text_deep_gray"
+        android:background="@null"
+        />
+    <View
+        android:id="@+id/v_line_user"
+        android:layout_width="0dp"
+        android:layout_height="3pt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_user"
+        android:layout_marginTop="30pt"
+        android:background="@color/line_gray"/>
+
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_line_user"
+        app:layout_constraintRight_toLeftOf="@id/et_userName"
+        app:layout_constraintHorizontal_weight="1"
+        android:text="密码"
+        android:textSize="@dimen/text_large_size"
+        android:layout_marginTop="60pt"
+        android:layout_marginStart="60pt"
+        android:gravity="start"
+        android:textColor="@color/text_black"
+        />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="4"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_password"
+        app:layout_constraintBottom_toBottomOf="@id/tv_password"
+        app:layout_constraintLeft_toRightOf="@id/tv_password"
+        android:textSize="@dimen/text_large_size"
+        android:textColor="@color/text_deep_gray"
+        android:background="@null"
+        android:inputType="textPassword"
+        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        />
+    <View
+        android:id="@+id/v_line_password"
+        android:layout_width="0dp"
+        android:layout_height="3pt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_password"
+        android:layout_marginTop="30pt"
+        android:background="@color/line_gray"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/NormalButton"
+        android:layout_marginTop="80pt"
+        android:text="@string/immediatelyLogin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_line_password" />
+
+
+    <TextView
+        android:id="@+id/tv_forget_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/forgetPwd"
+        android:textSize="@dimen/text_large_size"
+        android:textColor="@color/text_deep_gray"
+        android:layout_marginBottom="60pt"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

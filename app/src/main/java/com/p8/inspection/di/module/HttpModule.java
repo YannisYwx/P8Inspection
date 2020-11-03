@@ -3,10 +3,9 @@ package com.p8.inspection.di.module;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.p8.common.utils.SPUtils;
 import com.p8.inspection.BuildConfig;
 import com.p8.inspection.P8ParkingApplication;
-import com.p8.inspection.core.Constants;
+import com.p8.inspection.data.Constants;
 import com.p8.inspection.data.net.api.P8Api;
 import com.p8.inspection.data.net.interceptor.LoggerInterceptor;
 import com.p8.inspection.data.net.interceptor.TokenInterceptor;
@@ -27,11 +26,9 @@ import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -146,7 +143,7 @@ public class HttpModule {
 
         LoggerInterceptor logInterceptor = new LoggerInterceptor(Logger::d);
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        String token = (String) SPUtils.getInstance().getData(AppPreferencesHelper.KEY_TOKEN,"");;
+        String token = AppPreferencesHelper.getSPUtils().getString(AppPreferencesHelper.KEY_TOKEN);
         //提交数据
         Interceptor authInterceptor = chain -> {
             Request request = chain.request()
