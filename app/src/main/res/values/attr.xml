@@ -98,4 +98,11 @@
             <enum name="parkingType" value="2" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CitySelectView">
+        <attr name="indicationColor" format="color"/>
+        <attr name="selectTextColor" format="color"/>
+        <attr name="selectBackground" format="color"/>
+        <attr name="normalTextColor" format="color"/>
+    </declare-styleable>
 </resources>

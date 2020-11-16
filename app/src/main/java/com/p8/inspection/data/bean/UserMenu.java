@@ -2,6 +2,8 @@ package com.p8.inspection.data.bean;
 
 import androidx.annotation.IntDef;
 
+import com.p8.inspection.data.Constants;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -11,23 +13,26 @@ import java.lang.annotation.RetentionPolicy;
  * description : 用户菜单
  */
 public class UserMenu {
+    @Constants.UserType
     private int userType;
     private String menuLabel;
     private int iconRes;
-    private int id;
+    @MenuType
+    private int menuTye;
 
-    public UserMenu(int userType, String menuLabel, int iconRes, int id) {
+    public UserMenu(@Constants.UserType int userType, String menuLabel, int iconRes, @MenuType int menuTye) {
         this.userType = userType;
         this.menuLabel = menuLabel;
         this.iconRes = iconRes;
-        this.id = id;
+        this.menuTye = menuTye;
     }
 
+    @Constants.UserType
     public int getUserType() {
         return userType;
     }
 
-    public void setUserType(int userType) {
+    public void setUserType(@Constants.UserType int userType) {
         this.userType = userType;
     }
 
@@ -47,12 +52,13 @@ public class UserMenu {
         this.iconRes = iconRes;
     }
 
-    public int getId() {
-        return id;
+    @MenuType
+    public int getMenuTye() {
+        return menuTye;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMenuTye(@MenuType int menuTye) {
+        this.menuTye = menuTye;
     }
 
     @Override
@@ -61,51 +67,86 @@ public class UserMenu {
                 "userType=" + userType +
                 ", menuLabel='" + menuLabel + '\'' +
                 ", iconRes='" + iconRes + '\'' +
-                ", id=" + id +
+                ", menuTye=" + menuTye +
                 '}';
     }
 
-    @IntDef({UserType.LARGE, UserType.MEDIUM, UserType.SMALL, UserType.LAND, UserType.PLATFORM,
-            UserType.PLACE, UserType.BUILD, UserType.ONESELF, UserType.OTHER})
+    @IntDef({MenuType.USER_CENTER, MenuType.PARKING_MONITOR, MenuType.DEVICE_BINDING,
+            MenuType.WORK_ORDER_PROCESSING, MenuType.CLOCK, MenuType.J_MANAGE,
+            MenuType.MOUNTINGS_MANAGE, MenuType.FINANCE_MANAGE, MenuType.LAND_MANAGE,
+            MenuType.NOTICE_MANAGE, MenuType.ORDER_MANAGE, MenuType.MODIFY_PASSWORD,
+            MenuType.APP_UPDATE, MenuType.SETTINGS, MenuType.MESSAGE_CENTER,
+            MenuType.CLEAR_CACHE, MenuType.DEVICE_DEBUG})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface UserType {
+    public @interface MenuType {
         /**
-         * 大主
+         * 用户中心
          */
-        int LARGE = 0;
+        int USER_CENTER = 0;
         /**
-         * 中主
+         * 停车监控
          */
-        int MEDIUM = 1;
+        int PARKING_MONITOR = 1;
         /**
-         * 小主
+         * 设备绑定
          */
-        int SMALL = 2;
+        int DEVICE_BINDING = 2;
         /**
-         * 地主
+         * 设备调试
          */
-        int LAND = 3;
+        int DEVICE_DEBUG = 3;
         /**
-         * 台主
+         * 工单处理
          */
-        int PLATFORM = 4;
+        int WORK_ORDER_PROCESSING = 4;
         /**
-         * 场主
+         * J架管理
          */
-        int PLACE = 5;
+        int J_MANAGE = 5;
         /**
-         * 自主
+         * 配件管理
          */
-        int ONESELF = 6;
+        int MOUNTINGS_MANAGE = 6;
         /**
-         * 施主
+         * 财务管理
          */
-        int BUILD = 7;
+        int FINANCE_MANAGE = 7;
         /**
-         * 地主
+         * 地主管理
          */
-        int OTHER = 8;
-
+        int LAND_MANAGE = 8;
+        /**
+         * 公告管理
+         */
+        int NOTICE_MANAGE = 9;
+        /**
+         * 订单管理
+         */
+        int ORDER_MANAGE = 10;
+        /**
+         * 修改密码
+         */
+        int MODIFY_PASSWORD = 11;
+        /**
+         * App更新
+         */
+        int APP_UPDATE = 12;
+        /**
+         * 设置
+         */
+        int SETTINGS = 13;
+        /**
+         * 消息中心
+         */
+        int MESSAGE_CENTER = 14;
+        /**
+         * 清理缓存
+         */
+        int CLEAR_CACHE = 15;
+        /**
+         * 签到签出
+         */
+        int CLOCK = 16;
     }
 }
 

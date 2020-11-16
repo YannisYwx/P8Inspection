@@ -1,6 +1,6 @@
 package com.p8.inspection.data.bean;
 
-import com.contrarywind.interfaces.IPickerViewData;
+import com.p8.common.widget.wheelview.interfaces.IPickerViewData;
 
 import java.util.List;
 

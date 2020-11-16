@@ -11,6 +11,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.blankj.utilcode.util.AdaptScreenUtils;
@@ -111,10 +112,18 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        beforeInitView();
         initTitleBar();
-        initView(view);
+        initView(view, savedInstanceState);
         initData();
         setListener();
+    }
+
+    /**
+     * 一些需要在初始化UI之前需要做的事 比如根据数据改变title bar内容
+     */
+    public void beforeInitView() {
+
     }
 
     public void initTitleBar() {
@@ -126,9 +135,31 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
             mTitleBar.setTitleColor(Color.WHITE);
             mTitleBar.setRightTextColor(Color.WHITE);
             mTitleBar.setLeftTextColor(Color.WHITE);
+
+            if (isTitleBarBackEnable()) {
+                mTitleBar.setLeftDrawable(R.mipmap.icon_back);
+            }
+            mTitleBar.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimary));
+            mTitleBar.getTitleView().setTextColor(Color.WHITE);
+            mTitleBar.setTitle(setTitle() == 0 ? "" : getString(setTitle()));
         } else {
             dismissTitleBar();
         }
+    }
+
+    public boolean isTitleBarBackEnable() {
+        return true;
+    }
+
+
+    /**
+     * 设置标题 默认为空
+     *
+     * @return 页面title
+     */
+    @StringRes
+    public int setTitle() {
+        return 0;
     }
 
     public void dismissTitleBar() {
@@ -147,8 +178,9 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
      * 初始化控件
      *
      * @param view
+     * @param savedInstanceState
      */
-    public abstract void initView(View view);
+    public abstract void initView(View view, @Nullable Bundle savedInstanceState);
 
     /**
      * 初始化数据
@@ -183,14 +215,18 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
     /**
      * 触发加载数据
      */
-    protected abstract void triggerLoadData();
+    protected void triggerLoadData() {
+    }
 
     /**
      * 刷新内容视图
      *
      * @param view
      */
-    protected abstract void refreshContentView(View view);
+    protected void refreshContentView(View view) {
+    }
+
+    ;
 
     /**
      * 设置布局文件
@@ -217,6 +253,10 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
 
     @Override
     public void onClick(View v) {
+        onClick(v.getId());
+    }
+
+    public void onClick(@IdRes int viewId) {
 
     }
 
@@ -229,9 +269,9 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
 
     @Override
     public void onEventTrigger(int type) {
-        if (type == TitleBar.Event.IV_LEFT) {
+        if (type == TitleBar.Event.IV_LEFT || type == TitleBar.Event.TV_LEFT) {
             onTitleBarLeftClick();
-        } else if (type == TitleBar.Event.IV_RIGHT) {
+        } else if (type == TitleBar.Event.IV_RIGHT || type == TitleBar.Event.TV_RIGHT) {
             onTitleBarRightClick();
         }
     }
@@ -254,7 +294,7 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
         ((BaseActivity) _mActivity).setStatusBarLightMode(lightMode);
     }
 
-    public void setClickListener(int... ids) {
+    public void bindClickListener(int... ids) {
         for (int id : ids) {
             $(id).setOnClickListener(this);
         }

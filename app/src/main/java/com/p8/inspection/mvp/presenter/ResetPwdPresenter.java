@@ -13,7 +13,7 @@ import javax.inject.Inject;
 /**
  * @author : WX.Y
  * date : 2020/9/11 17:43
- * description :
+ * description : 重置密码
  */
 public class ResetPwdPresenter extends BasePresenter<ResetPwdContract.View> implements ResetPwdContract.Presenter {
 
@@ -24,30 +24,16 @@ public class ResetPwdPresenter extends BasePresenter<ResetPwdContract.View> impl
         this.mDataManager = manager;
     }
 
-    @Override
-    public void getVCode(String phoneNum) {
-        mDataManager.getVCode(phoneNum)
-                .compose(RxUtils.getDefaultOSchedulers())
-                .as(bindLifecycle())
-                .subscribe(new P8HttpSubscriber<HttpResponse<VCode>>(mView) {
-                    @Override
-                    protected void onSuccess(HttpResponse<VCode> vCodeHttpResponse) {
-                        if (vCodeHttpResponse.getData() != null) {
-                            mView.showMsg(vCodeHttpResponse.getData().getMsg());
-                        }
-                    }
-                });
-    }
 
     @Override
-    public void resetPassword(String phoneNumber, String vCode, String password) {
-        mDataManager.resetPassword(phoneNumber, vCode, password)
+    public void resetPassword(String url, String newPassword, String oldPassword) {
+        mDataManager.resetPassword(url, newPassword, oldPassword)
                 .compose(RxUtils.getDefaultOSchedulers())
                 .as(bindLifecycle())
                 .subscribe(new P8HttpSubscriber<HttpResponse<String>>(mView) {
                     @Override
                     protected void onSuccess(HttpResponse<String> stringHttpResponse) {
-
+                        mView.resetPasswordSuccess();
                     }
                 });
     }

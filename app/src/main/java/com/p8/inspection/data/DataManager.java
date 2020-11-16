@@ -1,11 +1,14 @@
 package com.p8.inspection.data;
 
 import com.p8.common.http.HttpResponse;
+import com.p8.inspection.data.bean.Agency;
 import com.p8.inspection.data.bean.Areas;
 import com.p8.inspection.data.bean.Cities;
+import com.p8.inspection.data.bean.Landlord;
+import com.p8.inspection.data.bean.Landlords;
 import com.p8.inspection.data.bean.LoginInfo;
 import com.p8.inspection.data.bean.Machines;
-import com.p8.inspection.data.bean.Province;
+import com.p8.inspection.data.bean.Orders;
 import com.p8.inspection.data.bean.Provinces;
 import com.p8.inspection.data.bean.Streets;
 import com.p8.inspection.data.bean.VCode;
@@ -16,7 +19,7 @@ import com.p8.inspection.data.prefs.PreferencesHelper;
 import io.reactivex.Observable;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/8 17:00
  * description :
  */
@@ -72,8 +75,28 @@ public class DataManager implements PreferencesHelper, DBHelper, HttpHelper {
     }
 
     @Override
-    public Observable<HttpResponse<LoginInfo>> doLogin(String username, String password) {
-        return mHttpHelper.doLogin(username, password);
+    public Observable<HttpResponse<LoginInfo>> doLoginByLandlord(String username, String password) {
+        return mHttpHelper.doLoginByLandlord(username, password);
+    }
+
+    @Override
+    public Observable<HttpResponse<LoginInfo>> doLoginByLargeMaster(String loginName, String password) {
+        return mHttpHelper.doLoginByLargeMaster(loginName, password);
+    }
+
+    @Override
+    public Observable<HttpResponse<Agency>> getAgencyInfo() {
+        return mHttpHelper.getAgencyInfo();
+    }
+
+    @Override
+    public Observable<HttpResponse<Landlords>> getLandlords(int currentPage, int pageSize) {
+        return mHttpHelper.getLandlords(currentPage, pageSize);
+    }
+
+    @Override
+    public Observable<HttpResponse<Orders>> getOrders(int currentPage, int pageSize) {
+        return mHttpHelper.getOrders(currentPage, pageSize);
     }
 
     @Override
@@ -82,8 +105,8 @@ public class DataManager implements PreferencesHelper, DBHelper, HttpHelper {
     }
 
     @Override
-    public Observable<HttpResponse<String>> resetPassword(String phoneNum, String code, String password) {
-        return mHttpHelper.resetPassword(phoneNum, code, password);
+    public Observable<HttpResponse<String>> resetPassword(String url, String newPassword, String oldPassword) {
+        return mHttpHelper.resetPassword(url, newPassword, oldPassword);
     }
 
     @Override
@@ -102,12 +125,12 @@ public class DataManager implements PreferencesHelper, DBHelper, HttpHelper {
     }
 
     @Override
-    public Observable<HttpResponse<Streets>> getStreets(String provinces) {
-        return mHttpHelper.getStreets(provinces);
+    public Observable<HttpResponse<Streets>> getStreets(String address) {
+        return mHttpHelper.getStreets(address);
     }
 
     @Override
-    public Observable<HttpResponse<Machines>> getMachines(String address, int parkingStatus, int currentPage) {
+    public Observable<HttpResponse<Machines>> getMachines(String address, String parkingStatus, int currentPage) {
         return mHttpHelper.getMachines(address, parkingStatus, currentPage);
     }
 

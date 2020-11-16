@@ -2,16 +2,24 @@ package com.p8.inspection.di.component;
 
 import com.p8.inspection.di.module.FragmentModule;
 import com.p8.inspection.mvp.ui.entry.fragment.LoginFragment;
-import com.p8.inspection.mvp.ui.main.me.fragment.DeviceBindingFragment;
-import com.p8.inspection.mvp.ui.main.me.fragment.ParkingMonitorFragment;
+import com.p8.inspection.mvp.ui.main.fragment.DeviceBindingFragment;
+import com.p8.inspection.mvp.ui.main.fragment.LandlordInfoFragment;
+import com.p8.inspection.mvp.ui.main.fragment.LandlordManageFragment;
+import com.p8.inspection.mvp.ui.main.fragment.MainFragment;
+import com.p8.inspection.mvp.ui.main.fragment.NoticeManageFragment;
+import com.p8.inspection.mvp.ui.main.fragment.OrderManageFragment;
+import com.p8.inspection.mvp.ui.main.fragment.ParkingMonitorFragment;
 import com.p8.inspection.mvp.ui.entry.fragment.ResetPwdFragment;
-import com.p8.inspection.mvp.ui.fragment.TestFragment;
-import com.p8.inspection.mvp.ui.main.attendance.fragment.AttendanceFragment;
-import com.p8.inspection.mvp.ui.main.attendance.fragment.HistoryFragment;
-import com.p8.inspection.mvp.ui.main.me.fragment.DeviceDebugFragment;
-import com.p8.inspection.mvp.ui.main.me.fragment.MeFragment;
-import com.p8.inspection.mvp.ui.main.me.fragment.ResetPasswordFragment;
-import com.p8.inspection.mvp.ui.main.me.fragment.SearchLordFragment;
+import com.p8.inspection.mvp.ui.main.fragment.SubmitWorkOrderFragment;
+import com.p8.inspection.mvp.ui.main.fragment.TestFragment;
+import com.p8.inspection.mvp.ui.main.fragment.AttendanceFragment;
+import com.p8.inspection.mvp.ui.main.fragment.HistoryFragment;
+import com.p8.inspection.mvp.ui.main.fragment.DeviceDebugFragment;
+import com.p8.inspection.mvp.ui.main.fragment.ResetPasswordFragment;
+import com.p8.inspection.mvp.ui.main.fragment.SearchLordFragment;
+import com.p8.inspection.mvp.ui.main.fragment.WorkOrderDisposeFragment;
+
+import org.jetbrains.annotations.TestOnly;
 
 import dagger.Subcomponent;
 
@@ -25,10 +33,25 @@ public interface FragmentComponent {
     @Deprecated
     void inject(ResetPwdFragment resetPwdFragment);
 
-    void inject(MeFragment meFragment);
+    /**
+     * 主页
+     *
+     * @param mainFragment
+     */
+    void inject(MainFragment mainFragment);
 
-    void inject(LoginFragment meFragment);
+    /**
+     * 登录
+     *
+     * @param loginFragment
+     */
+    void inject(LoginFragment loginFragment);
 
+    /**
+     * 签到签出
+     *
+     * @param attendanceFragment
+     */
     void inject(AttendanceFragment attendanceFragment);
 
     void inject(ResetPasswordFragment resetPasswordFragment);
@@ -43,11 +66,20 @@ public interface FragmentComponent {
 
     void inject(SearchLordFragment searchLordFragment);
 
+    void inject(SubmitWorkOrderFragment submitWorkOrderFragment);
+
+    void inject(LandlordManageFragment landlordManageFragment);
+
+    void inject(LandlordInfoFragment landlordInfoFragment);
+
+    void inject(NoticeManageFragment noticeManageFragment);
+
+    void inject(OrderManageFragment orderManageFragment);
+
+    void inject(WorkOrderDisposeFragment workOrderDisposeFragment);
+
+    @TestOnly
     void inject(TestFragment testFragment);
 
-/*    @Subcomponent.Builder
-    interface Builder {
-        FragmentComponent build();
-    }*/
 }
 

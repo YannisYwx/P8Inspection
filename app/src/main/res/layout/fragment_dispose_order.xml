@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:ignore="MissingDefaultResource">
+
+    <Button
+        android:id="@+id/btn_submit"
+        style="@style/NormalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60pt"
+        android:paddingTop="30pt"
+        android:paddingBottom="30pt"
+        android:text="提交"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_parking_number"
+        android:layout_width="600pt"
+        android:layout_height="140pt"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:text="075512346"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_middle_size"
+        app:layout_constraintBottom_toBottomOf="@id/tv_parking_number_label"
+        app:layout_constraintLeft_toRightOf="@id/tv_parking_number_label"
+        app:layout_constraintTop_toTopOf="@id/tv_parking_number_label" />
+
+    <TextView
+        android:id="@+id/tv_device_number"
+        android:layout_width="600pt"
+        android:layout_height="140pt"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:text="075512346"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_middle_size"
+        app:layout_constraintBottom_toBottomOf="@id/tv_device_number_label"
+        app:layout_constraintLeft_toRightOf="@id/tv_device_number_label"
+        app:layout_constraintTop_toTopOf="@id/tv_device_number_label" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="600pt"
+        android:layout_height="140pt"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:text="075512346"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_middle_size"
+        app:drawableEndCompat="@mipmap/down"
+        app:layout_constraintBottom_toBottomOf="@id/tv_address_label"
+        app:layout_constraintLeft_toRightOf="@id/tv_address_label"
+        app:layout_constraintTop_toTopOf="@id/tv_address_label" />
+
+    <TextView
+        android:id="@+id/tv_device_number_label"
+        android:layout_width="300pt"
+        android:layout_height="140pt"
+        android:gravity="start|center_vertical"
+        android:paddingStart="50pt"
+        android:paddingEnd="50pt"
+        android:text="设备号："
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/item_label_text_size"
+        app:layout_constraintRight_toLeftOf="@id/tv_device_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_parking_number_label" />
+
+    <TextView
+        android:id="@+id/tv_parking_number_label"
+        android:layout_width="300pt"
+        android:layout_height="140pt"
+        android:gravity="start|center_vertical"
+        android:paddingStart="50pt"
+        android:paddingEnd="50pt"
+        android:text="泊位号："
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/item_label_text_size"
+        app:layout_constraintBottom_toTopOf="@id/v_line1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_parking_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_address_label"
+        android:layout_width="300pt"
+        android:layout_height="140pt"
+        android:gravity="start|center_vertical"
+        android:paddingStart="50pt"
+        android:paddingEnd="50pt"
+        android:text="所属地："
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/item_label_text_size"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintRight_toLeftOf="@id/tv_address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_device_number_label" />
+
+    <TextView
+        android:id="@+id/tv_remark_label"
+        android:layout_width="0dp"
+        android:layout_height="400pt"
+        android:layout_marginTop="30pt"
+        android:background="@color/white"
+        android:paddingStart="50pt"
+        android:paddingTop="60pt"
+        android:paddingEnd="30pt"
+        android:text="备注："
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/item_label_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_address" />
+
+    <TextView
+        android:id="@+id/tv_remark"
+        android:layout_width="0dp"
+        android:layout_height="400pt"
+        android:background="@color/white"
+        android:gravity="top"
+        android:lines="5"
+        android:paddingStart="1pt"
+        android:paddingTop="55pt"
+        android:paddingEnd="50pt"
+        android:paddingBottom="55pt"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_middle_size"
+        app:layout_constraintBottom_toBottomOf="@id/tv_remark_label"
+        app:layout_constraintLeft_toRightOf="@id/tv_remark_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_remark_label" />
+
+    <TextView
+        android:id="@+id/tv_pics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30pt"
+        android:background="@color/white"
+        android:paddingStart="50pt"
+        android:paddingTop="30pt"
+        android:paddingBottom="30pt"
+        android:text="上传照片："
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/item_label_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remark_label" />
+
+    <View
+        android:id="@+id/v_line1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dividerHeight"
+        android:layout_marginStart="50pt"
+        android:layout_marginEnd="50pt"
+        android:background="@color/lightGray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_parking_number_label" />
+
+    <View
+        android:id="@+id/v_line2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dividerHeight"
+        android:layout_marginStart="50pt"
+        android:layout_marginEnd="50pt"
+        android:background="@color/lightGray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_device_number_label" />
+
+    <View
+        android:id="@+id/v_big_line1"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:background="@color/window_bg"
+        app:layout_constraintBottom_toTopOf="@id/tv_remark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_address" />
+
+    <View
+        android:id="@+id/v_big_line2"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:background="@color/window_bg"
+        app:layout_constraintBottom_toTopOf="@id/tv_pics"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remark" />
+
+    <View
+        android:id="@+id/v_big_line3"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:background="@color/window_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_pics" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pics"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60pt"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/btn_submit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_pics" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_big_line3"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

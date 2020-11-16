@@ -65,9 +65,13 @@ public abstract class YBaseDialog extends DialogFragment {
     public void onStart() {
         super.onStart();
         Dialog dialog = getDialog();
-        if (dialog == null) return;
+        if (dialog == null) {
+            return;
+        }
         Window window = dialog.getWindow();
-        if (window == null) return;
+        if (window == null) {
+            return;
+        }
         //设置背景色透明
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         //设置Dialog动画效果

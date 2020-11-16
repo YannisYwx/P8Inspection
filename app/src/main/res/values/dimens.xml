@@ -5,6 +5,8 @@
 
     <dimen name="bottom_bar_height">150pt</dimen>
 
+    <dimen name="item_label_text_size">42pt</dimen>
+
     <!--登记点的大小是10dp-->
     <dimen name="title_bar_height">144pt</dimen>
     <dimen name="text_large_size">54pt</dimen><!--18sp 大字-->

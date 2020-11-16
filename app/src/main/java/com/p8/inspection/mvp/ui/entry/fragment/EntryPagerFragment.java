@@ -1,14 +1,17 @@
 package com.p8.inspection.mvp.ui.entry.fragment;
 
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.p8.common.base.BaseStatusPagerFragment;
 import com.p8.inspection.R;
+import com.p8.inspection.data.Constants;
 import com.p8.inspection.mvp.ui.entry.adapter.EnterTypeAdapter;
 import com.p8.inspection.utils.GridPaddingDecoration;
 
@@ -26,7 +29,7 @@ public class EntryPagerFragment extends BaseStatusPagerFragment {
     }
 
     @Override
-    public void initView(View view) {
+    public void initView(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = $(R.id.rv_enter);
         mTitleBar.setVisibility(View.GONE);
     }
@@ -48,9 +51,10 @@ public class EntryPagerFragment extends BaseStatusPagerFragment {
         adapter.setOnItemClickListener((adapter1, view1, position) -> {
             switch (position) {
                 case 0:
+                    start(LoginFragment.newInstance(Constants.UserType.LARGE));
                     break;
                 case 1:
-                    start(LoginFragment.newInstance());
+                    start(LoginFragment.newInstance(Constants.UserType.LAND));
                     break;
                 case 2:
                     break;

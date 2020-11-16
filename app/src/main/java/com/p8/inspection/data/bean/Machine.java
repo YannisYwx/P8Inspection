@@ -1,20 +1,68 @@
 package com.p8.inspection.data.bean;
 
+/**
+ * @author : WX.Y
+ * date : 2020/9/25 14:28
+ * description : 泊位信息
+ */
 public class Machine {
-    private int currentPage;//当前页数
-    private int pageSize;//总页数
-    private String parkingNumber="";// 车位号
-    private long entryTime=0;//入场时间
-    private int parkingStatus;//泊位状态(0 无车/1 有车/2 等待激活/3 初始化中/4 异常)
-    private String productKey="";//设备密钥
-    private String deviceName="";//设备名称
-    private String deviceId="";//设备id
-    private String address="";//设备地址
-    private String id="";//id
-    private String timestamp="";//
-    private String inspectName="";//安装人员姓名
-    private String inspectId="";//安装人员id
-    private long createTime=0;//安装时间
+    /**
+     * 当前页数
+     */
+    private int currentPage;
+    /**
+     * 总页数
+     */
+    private int pageSize;
+    /**
+     * 车位号
+     */
+    private String parkingNumber = "";
+    /**
+     * 入场时间
+     */
+    private long entryTime = 0;
+    /**
+     * 泊位状态(0 无车/1 有车/2 等待激活/3 初始化中/4 异常)
+     */
+    private int parkingStatus;
+    /**
+     * 设备密钥
+     */
+    private String productKey = "";
+    /**
+     * 设备名称
+     */
+    private String deviceName = "";
+    /**
+     * 设备id
+     */
+    private String deviceId = "";
+    /**
+     * 设备地址
+     */
+    private String address = "";
+    /**
+     * 泊位id
+     */
+    private String id = "";
+    /**
+     * 时间戳
+     */
+    private String timestamp = "";
+    /**
+     * 安装人员姓名
+     */
+    private String inspectName = "";
+    /**
+     * 安装人员id
+     */
+    private String inspectId = "";
+    /**
+     * 安装时间
+     */
+    private long createTime = 0;
+
     public int getCurrentPage() {
         return currentPage;
     }

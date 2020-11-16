@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="48pt"
+    android:layout_marginTop="10pt"
+    android:layout_marginEnd="48pt"
+    android:layout_marginBottom="10pt"
+    app:cardBackgroundColor="@color/translate"
+    app:cardCornerRadius="15pt"
+    app:cardElevation="5pt">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bg"
+        android:layout_width="994pt"
+        android:layout_height="380pt"
+        android:layout_gravity="center"
+        android:background="@mipmap/bg_label_paying">
+
+        <TextView
+            android:id="@+id/tv_label_order_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30pt"
+            android:gravity="center"
+            android:text="下单时间"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/item_label_text_size"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_label_account_time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_label_account_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="结算时间"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/item_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/tv_label_order_time"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/tv_label_order_time"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_label_order_time" />
+
+
+        <TextView
+            android:id="@+id/tv_order_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2020-11-11 12:30:48"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/item_label_text_size"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_label_account_time"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_order_time" />
+
+        <TextView
+            android:id="@+id/tv_account_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2020-11-11 13:30:48"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/item_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/tv_order_time"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/tv_order_time"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_order_time" />
+
+        <TextView
+            android:id="@+id/tv_parking_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32pt"
+            android:layout_marginTop="70pt"
+            android:text="车位号：07551213456"
+            android:textColor="@color/text_black"
+            android:textSize="36pt"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_time" />
+
+        <TextView
+            android:id="@+id/tv_order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32pt"
+            android:layout_marginTop="42pt"
+            android:text="订单流水号：1681681681687"
+            android:textColor="@color/text_black"
+            android:textSize="36pt"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_parking_number" />
+
+        <TextView
+            android:id="@+id/tv_label_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32pt"
+            android:text="时长："
+            android:textColor="@color/text_black"
+            android:textSize="36pt"
+            app:layout_constraintBottom_toBottomOf="@id/tv_parking_number"
+            app:layout_constraintLeft_toLeftOf="@id/gl_60"
+            app:layout_constraintTop_toTopOf="@id/tv_parking_number" />
+
+        <TextView
+            android:id="@+id/tv_label_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32pt"
+            android:text="金额(元)："
+            android:textColor="@color/text_black"
+            android:textSize="36pt"
+            app:layout_constraintLeft_toLeftOf="@id/gl_60"
+            app:layout_constraintBottom_toBottomOf="@id/tv_order_number"
+            app:layout_constraintTop_toTopOf="@id/tv_order_number"  />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60pt"
+            android:text="37分钟"
+            android:textColor="#3177ac"
+            android:textSize="@dimen/text_middle_size"
+            app:layout_constraintBottom_toBottomOf="@id/tv_parking_number"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_parking_number" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60pt"
+            android:text="10元"
+            android:textColor="#f77539"
+            android:textSize="@dimen/text_middle_size"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_order_number"
+            app:layout_constraintTop_toTopOf="@id/tv_order_number" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

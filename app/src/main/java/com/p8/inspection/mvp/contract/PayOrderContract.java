@@ -3,7 +3,7 @@ package com.p8.inspection.mvp.contract;
 import com.p8.common.base.mvp.BaseContract;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/11 9:59
  * description : 支付
  */

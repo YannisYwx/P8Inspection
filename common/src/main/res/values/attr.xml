@@ -45,7 +45,7 @@
         <attr name="icon" />
     </declare-styleable>
 
-
+    <!--通用item-->
     <declare-styleable name="CommonItemView">
         <attr name="icon" />
         <attr name="label" format="string" />
@@ -85,17 +85,46 @@
         </attr>
     </declare-styleable>
 
+    <!--轮询view-->
     <declare-styleable name="WheelView">
         <attr name="wv_gravity">
-            <enum name="center" value="17"/>
-            <enum name="left" value="3"/>
-            <enum name="right" value="5"/>
+            <enum name="center" value="17" />
+            <enum name="left" value="3" />
+            <enum name="right" value="5" />
         </attr>
-        <attr name="wv_textSize" format="dimension"/>
-        <attr name="wv_textColorOut" format="color"/>
-        <attr name="wv_textColorCenter" format="color"/>
-        <attr name="wv_dividerColor" format="color"/>
-        <attr name="wv_dividerWidth" format="dimension"/>
-        <attr name="wv_lineSpacingMultiplier" format="float"/>
+        <attr name="wv_textSize" format="dimension" />
+        <attr name="wv_textColorOut" format="color" />
+        <attr name="wv_textColorCenter" format="color" />
+        <attr name="wv_dividerColor" format="color" />
+        <attr name="wv_select_textBackground" format="color" />
+        <attr name="wv_dividerWidth" format="dimension" />
+        <attr name="wv_lineSpacingMultiplier" format="float" />
+    </declare-styleable>
+
+    <!--侧滑布局-->
+    <declare-styleable name="SwipeRevealLayout">
+        <attr name="dragEdge">
+            <flag name="left" value="1" />
+            <flag name="right" value="2" />
+            <flag name="top" value="4" />
+            <flag name="bottom" value="8" />
+        </attr>
+
+        <attr name="srl_mode">
+            <enum name="normal" value="0" />
+            <enum name="same_level" value="1" />
+        </attr>
+
+        <attr name="flingVelocity" format="integer" />
+
+        <attr name="minDistRequestDisallowParent" format="dimension" />
+    </declare-styleable>
+
+    <!--圆形ImageView-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_circle_background_color" format="color" />
     </declare-styleable>
 </resources>

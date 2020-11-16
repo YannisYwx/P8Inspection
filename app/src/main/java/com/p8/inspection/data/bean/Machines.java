@@ -2,21 +2,37 @@ package com.p8.inspection.data.bean;
 
 import java.util.List;
 
+/**
+ * @author : WX.Y
+ * date : 2020/9/25 14:28
+ * description :
+ */
 public class Machines {
 
-    private Page page;
-    private List<Machine> machineList;
-    public void setPage(Page page) {
-        this.page = page;
-    }
-    public Page getPage() {
-        return page;
+    private int total;
+    private List<Machine> list;
+
+    public int getTotal() {
+        return total;
     }
 
-    public void setMachineList(List<Machine> machineList) {
-        this.machineList = machineList;
+    public void setTotal(int total) {
+        this.total = total;
     }
-    public List<Machine> getMachineList() {
-        return machineList;
+
+    public List<Machine> getList() {
+        return list;
+    }
+
+    public void setList(List<Machine> list) {
+        this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return "Machines{" +
+                "total=" + total +
+                ", list=" + list +
+                '}';
     }
 }

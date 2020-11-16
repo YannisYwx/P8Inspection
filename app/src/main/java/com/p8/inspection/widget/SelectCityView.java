@@ -24,7 +24,7 @@ import com.p8.inspection.data.bean.Province;
 import com.p8.inspection.data.bean.Provinces;
 import com.p8.inspection.data.bean.Street;
 import com.p8.inspection.data.bean.Streets;
-import com.p8.inspection.mvp.ui.adapter.NameAdapter;
+import com.p8.inspection.mvp.ui.main.adapter.NameAdapter;
 import com.p8.inspection.utils.ValueAnimatorUtils;
 
 import java.util.ArrayList;
@@ -307,11 +307,11 @@ public class SelectCityView extends ConstraintLayout implements View.OnClickList
     public void openOrClose(int type) {
         switch (type) {
             case LOCATION_VIEW:
-                valueAnimatorUtils.monitorCityOpenOrClose(cityLayout, view1
+                valueAnimatorUtils.monitorCityOpenOrClose(true, cityLayout, view1
                         , carTypeLayout, view2, maskLayout, 300);
                 break;
             case CAR_TYPE_VIEW:
-                valueAnimatorUtils.monitorCityOpenOrClose(carTypeLayout, view2
+                valueAnimatorUtils.monitorCityOpenOrClose(false, carTypeLayout, view2
                         , cityLayout, view1, maskLayout, 300);
                 break;
         }

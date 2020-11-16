@@ -3,14 +3,14 @@ package com.p8.inspection.data;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.util.Log;
 
-import com.blankj.utilcode.util.JsonUtils;
+import com.blankj.utilcode.util.CacheDoubleUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.p8.inspection.R;
-import com.p8.inspection.data.bean.Province;
+import com.p8.inspection.data.bean.LoginInfo;
 import com.p8.inspection.data.bean.ProvinceBean;
 import com.p8.inspection.data.bean.UserMenu;
 
@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.p8.inspection.data.Constants.FLAG_NO_ICON;
 
 /**
  * @author : WX.Y
@@ -33,6 +35,11 @@ public class LocalDataManager {
     private ArrayList<ArrayList<String>> cities = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> areas = new ArrayList<>();
 
+    /**
+     * 当前登录的信息
+     */
+    private LoginInfo mLoginInfo;
+
     private static final class Holder {
         private static LocalDataManager INSTANCE = new LocalDataManager();
     }
@@ -42,6 +49,14 @@ public class LocalDataManager {
     }
 
     private LocalDataManager() {
+    }
+
+    /**
+     * 清空本地数据
+     */
+    public static void clear() {
+        SPUtils.getInstance().clear();
+        CacheDoubleUtils.getInstance().clear();
     }
 
     public void init(Application application) {
@@ -58,6 +73,30 @@ public class LocalDataManager {
 
     public ArrayList<ArrayList<ArrayList<String>>> getAreas() {
         return areas;
+    }
+
+    public int[] getSelectAddressIndex(String province, String city, String area) {
+        int[] index = new int[3];
+        for (int i = 0; i < provinces.size(); i++) {
+            if (provinces.get(i).getName().equals(province)) {
+                index[0] = i;
+                List<ProvinceBean.CityBean> cities = provinces.get(i).getCityList();
+                for (int j = 0; j < cities.size(); j++) {
+                    if (cities.get(j).getName().equals(city)) {
+                        index[1] = j;
+                        List<String> areas = cities.get(j).getArea();
+                        for (int k = 0; k < areas.size(); k++) {
+                            if (area.equals(areas.get(k))) {
+                                index[2] = k;
+                                return index;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return index;
     }
 
     /**
@@ -135,51 +174,162 @@ public class LocalDataManager {
     /**
      * 根据登入类型获取菜单选项
      *
-     * @param userType 用户类型
      * @return 菜单集合
      */
-    public static List<UserMenu> getUserMenus(@UserMenu.UserType int userType) {
+    public List<UserMenu> getUserMenus() {
+        int userType = getUserType();
         List<UserMenu> userMenus = new ArrayList<>();
+        Logger.e("getUserMenus ====== " + userType);
         switch (userType) {
-            case UserMenu.UserType.LARGE: {
+            case Constants.UserType.LARGE: {
                 //大主菜单
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "个人中心", R.mipmap.icon_user, 0));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "J架管理", R.mipmap.icon_settings, 1));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "配件管理", R.mipmap.icon_device_settings, 2));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "订单管理", R.mipmap.icon_order_manage, 3));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "财务管理", R.mipmap.icon_money_chart, 4));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "地主管理", R.mipmap.icon_user_manager, 5));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "工单管理", R.mipmap.icon_order, 6));
-                userMenus.add(new UserMenu(UserMenu.UserType.LARGE, "公告管理", R.mipmap.icon_noitce, 7));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "个人中心", R.mipmap.icon_user, UserMenu.MenuType.USER_CENTER));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "J架管理", R.mipmap.icon_settings, UserMenu.MenuType.J_MANAGE));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "配件管理", R.mipmap.icon_device_settings, UserMenu.MenuType.MOUNTINGS_MANAGE));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "订单管理", R.mipmap.icon_order_manage, UserMenu.MenuType.ORDER_MANAGE));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "财务管理", R.mipmap.icon_money_chart, UserMenu.MenuType.FINANCE_MANAGE));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "地主管理", R.mipmap.icon_user_manager, UserMenu.MenuType.LAND_MANAGE));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "工单处理", R.mipmap.icon_order, UserMenu.MenuType.WORK_ORDER_PROCESSING));
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "公告管理", R.mipmap.icon_notice, UserMenu.MenuType.NOTICE_MANAGE));
             }
             break;
-            case UserMenu.UserType.MEDIUM:
+            case Constants.UserType.MEDIUM:
                 break;
-            case UserMenu.UserType.SMALL:
+            case Constants.UserType.SMALL:
                 break;
-            case UserMenu.UserType.LAND: {
-                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "个人中心", R.mipmap.icon_user, 0));
-                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "停车监控", R.mipmap.icon_parking_moniter, 1));
-                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "设备安装", R.mipmap.icon_device_settings, 2));
-                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "工单处理", R.mipmap.icon_order, 3));
-                userMenus.add(new UserMenu(UserMenu.UserType.LAND, "签到签出", R.mipmap.icon_clock, 4));
+            case Constants.UserType.LAND: {
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "个人中心", R.mipmap.icon_user, UserMenu.MenuType.USER_CENTER));
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "停车监控", R.mipmap.icon_parking_moniter, UserMenu.MenuType.PARKING_MONITOR));
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "设备绑定", R.mipmap.icon_system_bug, UserMenu.MenuType.DEVICE_BINDING));
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "设备调试", R.mipmap.icon_device_settings, UserMenu.MenuType.DEVICE_DEBUG));
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "工单处理", R.mipmap.icon_order, UserMenu.MenuType.WORK_ORDER_PROCESSING));
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "签到签出", R.mipmap.icon_clock, UserMenu.MenuType.CLOCK));
             }
             break;
-            case UserMenu.UserType.BUILD:
+            case Constants.UserType.BUILD:
                 break;
-            case UserMenu.UserType.ONESELF:
+            case Constants.UserType.ONESELF:
                 break;
-            case UserMenu.UserType.OTHER:
+            case Constants.UserType.OTHER:
                 break;
-            case UserMenu.UserType.PLACE:
+            case Constants.UserType.PLACE:
                 break;
-            case UserMenu.UserType.PLATFORM:
+            case Constants.UserType.PLATFORM:
                 break;
             default:
                 break;
         }
 
         return userMenus;
+    }
+
+    public List<UserMenu> getUserCenterMenu() {
+        List<UserMenu> userMenus = new ArrayList<>();
+        userMenus.add(new UserMenu(Constants.UserType.LAND, "修改密码", FLAG_NO_ICON, UserMenu.MenuType.MODIFY_PASSWORD));
+        userMenus.add(new UserMenu(Constants.UserType.LAND, "App更新", FLAG_NO_ICON, UserMenu.MenuType.APP_UPDATE));
+        int userType = getUserType();
+        switch (userType) {
+            case Constants.UserType.BUILD:
+                break;
+            case Constants.UserType.LAND:
+                userMenus.add(new UserMenu(Constants.UserType.LAND, "清理缓存", FLAG_NO_ICON, UserMenu.MenuType.MODIFY_PASSWORD));
+                break;
+            case Constants.UserType.LARGE:
+                userMenus.add(new UserMenu(Constants.UserType.LARGE, "清理缓存", FLAG_NO_ICON, UserMenu.MenuType.MODIFY_PASSWORD));
+                break;
+            case Constants.UserType.MEDIUM:
+                break;
+            case Constants.UserType.ONESELF:
+                break;
+            case Constants.UserType.OTHER:
+                break;
+            case Constants.UserType.PLACE:
+                break;
+            case Constants.UserType.PLATFORM:
+                break;
+            case Constants.UserType.SMALL:
+                break;
+            default:
+                break;
+        }
+        return userMenus;
+    }
+
+    @Constants.UserType
+    public int getUserType() {
+        if (mLoginInfo == null) {
+            mLoginInfo = CacheDoubleUtils.getInstance().getParcelable(Constants.Key.LOGIN_INFO, LoginInfo.CREATOR);
+        }
+        return mLoginInfo == null ? Constants.UserType.LAND : mLoginInfo.userType;
+    }
+
+    public LoginInfo getLoginInfo() {
+        if (mLoginInfo == null) {
+            mLoginInfo = CacheDoubleUtils.getInstance().getParcelable(Constants.Key.LOGIN_INFO, LoginInfo.CREATOR);
+        }
+        return mLoginInfo;
+    }
+
+    /**
+     * 获取主页标题
+     *
+     * @return 主页标题
+     */
+    public String getMainTitle() {
+        String title = "地主";
+        switch (getUserType()) {
+            case Constants.UserType.LAND:
+                title = "大主";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + getUserType());
+            case Constants.UserType.BUILD:
+                break;
+            case Constants.UserType.LARGE:
+                break;
+            case Constants.UserType.MEDIUM:
+                break;
+            case Constants.UserType.ONESELF:
+                break;
+            case Constants.UserType.OTHER:
+                break;
+            case Constants.UserType.PLACE:
+                break;
+            case Constants.UserType.PLATFORM:
+                break;
+            case Constants.UserType.SMALL:
+                break;
+        }
+        return title;
+    }
+
+    public String getResetPasswordUrl() {
+        String url = "/app_agency/change_pwd.html";
+        switch (getUserType()) {
+            case Constants.UserType.LAND:
+                url = "/app_inspect/change_pwd.html";
+                break;
+            case Constants.UserType.BUILD:
+                break;
+            case Constants.UserType.LARGE:
+                url = "/app_agency/change_pwd.html";
+                break;
+            case Constants.UserType.MEDIUM:
+                break;
+            case Constants.UserType.ONESELF:
+                break;
+            case Constants.UserType.OTHER:
+                break;
+            case Constants.UserType.PLACE:
+                break;
+            case Constants.UserType.PLATFORM:
+                break;
+            case Constants.UserType.SMALL:
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + getUserType());
+        }
+        return url;
     }
 }
 

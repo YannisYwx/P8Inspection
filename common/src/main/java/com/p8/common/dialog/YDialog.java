@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.orhanobut.logger.Logger;
 import com.p8.common.R;
 
 import java.lang.reflect.Field;

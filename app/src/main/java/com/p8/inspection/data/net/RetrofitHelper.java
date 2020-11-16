@@ -5,10 +5,13 @@ import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.p8.common.http.HttpResponse;
+import com.p8.inspection.data.bean.Agency;
 import com.p8.inspection.data.bean.Areas;
 import com.p8.inspection.data.bean.Cities;
+import com.p8.inspection.data.bean.Landlords;
 import com.p8.inspection.data.bean.LoginInfo;
 import com.p8.inspection.data.bean.Machines;
+import com.p8.inspection.data.bean.Orders;
 import com.p8.inspection.data.bean.Provinces;
 import com.p8.inspection.data.bean.Streets;
 import com.p8.inspection.data.bean.VCode;
@@ -23,7 +26,7 @@ import io.reactivex.Observable;
 import okhttp3.RequestBody;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/8 16:09
  * description :
  */
@@ -54,8 +57,28 @@ public class RetrofitHelper implements HttpHelper {
 
 
     @Override
-    public Observable<HttpResponse<LoginInfo>> doLogin(String username, String password) {
-        return mApi.doLogin(username, password);
+    public Observable<HttpResponse<LoginInfo>> doLoginByLandlord(String username, String password) {
+        return mApi.doLoginByLandlord(username, password);
+    }
+
+    @Override
+    public Observable<HttpResponse<LoginInfo>> doLoginByLargeMaster(String loginName, String password) {
+        return mApi.doLoginByLargeMaster(loginName, password);
+    }
+
+    @Override
+    public Observable<HttpResponse<Agency>> getAgencyInfo() {
+        return mApi.getAgencyInfo();
+    }
+
+    @Override
+    public Observable<HttpResponse<Landlords>> getLandlords(int currentPage, int pageSize) {
+        return mApi.getLandlords(currentPage, pageSize);
+    }
+
+    @Override
+    public Observable<HttpResponse<Orders>> getOrders(int currentPage, int pageSize) {
+        return mApi.getOrders(currentPage, pageSize);
     }
 
     @Override
@@ -64,8 +87,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Observable<HttpResponse<String>> resetPassword(String phoneNum, String code, String password) {
-        return mApi.resetPassword(phoneNum, code, password);
+    public Observable<HttpResponse<String>> resetPassword(String url, String newPassword, String oldPassword) {
+        return mApi.resetPassword(url, newPassword, oldPassword);
     }
 
     @Override
@@ -84,13 +107,13 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Observable<HttpResponse<Streets>> getStreets(String provinces) {
-        return mApi.getStreets(provinces);
+    public Observable<HttpResponse<Streets>> getStreets(String address) {
+        return mApi.getStreets(address);
     }
 
     @Override
-    public Observable<HttpResponse<Machines>> getMachines(String address, int currentPage, int parkingStatus) {
-        return mApi.getMachines(address, currentPage, parkingStatus);
+    public Observable<HttpResponse<Machines>> getMachines(String address, String parkingStatus, int currentPage) {
+        return mApi.getMachines(address, parkingStatus, currentPage);
     }
 
     @Override

@@ -17,16 +17,21 @@ public class ValueAnimatorUtils {
         return isMoving;
     }
 
-    public void monitorCityOpenOrClose(final View layout, final View icon, final View otherLayout, final View otherIcon
+    public void monitorCityOpenOrClose(boolean isLeft, final View layout, final View icon, final View otherLayout, final View otherIcon
             , final FrameLayout maskLayout, int duration) {
         if (isMoving) {
             return;
         }
         maskLayout.setAlpha(0.8f);
-        int height = AdaptScreenUtils.pt2Px(630);
+        int height = AdaptScreenUtils.pt2Px(isLeft ? 1240 : 620);
+
         if (layout.getVisibility() == View.GONE) {
+            int closeHeight;
+            int openHeight;
             if (otherLayout != null && otherLayout.getVisibility() == View.VISIBLE) {
-                monitorClose(height, otherLayout, otherIcon, duration, new Animator.AnimatorListener() {
+                closeHeight = AdaptScreenUtils.pt2Px(isLeft ? 620 : 1240);
+                openHeight = AdaptScreenUtils.pt2Px(isLeft ? 1240 : 620);
+                monitorClose(closeHeight, otherLayout, otherIcon, duration, new Animator.AnimatorListener() {
 
                     @Override
                     public void onAnimationStart(Animator animator) {
@@ -37,7 +42,7 @@ public class ValueAnimatorUtils {
                     public void onAnimationEnd(Animator animator) {
                         isMoving = false;
                         otherLayout.setVisibility(View.GONE);
-                        monitorOpen(height, layout, icon, duration, null);
+                        monitorOpen(openHeight, layout, icon, duration, null);
                     }
 
                     @Override

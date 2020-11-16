@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/tv_select_camera"
         android:layout_width="0dp"
-        android:layout_height="120pt"
+        android:layout_height="160pt"
         android:background="@drawable/selector_top_r15pt"
         android:gravity="center"
         android:padding="30pt"
@@ -36,7 +36,7 @@
     <TextView
         android:id="@+id/tv_select_gallery"
         android:layout_width="0dp"
-        android:layout_height="120pt"
+        android:layout_height="160pt"
         android:background="@drawable/selector_bottom_r15pt"
         android:gravity="center"
         android:padding="30pt"

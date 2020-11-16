@@ -11,6 +11,8 @@
         android:background="@drawable/selector_item"
         app:arrow="@mipmap/icon_grey_arrow"
         app:dividerColor="@color/lightGray"
+        app:dividerPaddingLeft="50pt"
+        app:dividerPaddingRight="50pt"
         app:hasBottomLine="true"
         app:label="修改密码"
         app:labelColor="@color/text_black"
@@ -25,6 +27,8 @@
         android:background="@drawable/selector_item"
         app:arrow="@mipmap/icon_grey_arrow"
         app:dividerColor="@color/lightGray"
+        app:dividerPaddingLeft="50pt"
+        app:dividerPaddingRight="50pt"
         app:hasBottomLine="true"
         app:label="App更新"
         app:labelColor="@color/text_black"
@@ -33,30 +37,20 @@
         app:layout_constraintTop_toBottomOf="@id/civ_modify_password" />
 
     <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_settings"
+        android:id="@+id/civ_clear_cache"
         android:layout_width="match_parent"
         android:layout_height="144pt"
         android:background="@drawable/selector_item"
         app:arrow="@mipmap/icon_grey_arrow"
         app:dividerColor="@color/lightGray"
-        app:hasBottomLine="true"
-        app:label="设置"
+        app:dividerPaddingLeft="50pt"
+        app:dividerPaddingRight="50pt"
+        app:hasBottomLine="false"
+        app:label="清除缓存"
         app:labelColor="@color/text_black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/civ_app_update" />
 
-    <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_message_center"
-        android:layout_width="match_parent"
-        android:layout_height="144pt"
-        android:background="@drawable/selector_item"
-        app:arrow="@mipmap/icon_grey_arrow"
-        app:dividerColor="@color/lightGray"
-        app:hasBottomLine="true"
-        app:label="消息中心"
-        app:labelColor="@color/text_black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civ_settings" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

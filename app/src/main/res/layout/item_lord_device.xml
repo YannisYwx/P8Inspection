@@ -9,7 +9,7 @@
     android:layout_marginTop="15pt"
     android:layout_marginBottom="15pt"
     app:cardCornerRadius="15pt"
-    app:cardElevation="15pt">
+    app:cardElevation="5pt">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_marginTop="60pt"

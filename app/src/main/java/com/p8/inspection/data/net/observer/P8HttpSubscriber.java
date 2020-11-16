@@ -47,7 +47,7 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
     }
 
     public boolean isShowProgressDialog() {
-        return true;
+        return false;
     }
 
     @Override
@@ -66,7 +66,7 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
         if (t instanceof HttpResponse<?>) {
             HttpResponse tr = (HttpResponse) t;
             int code = ((HttpResponse) t).getCode();
-            Logger.d(((HttpResponse) t).toString());
+            Logger.d(tr.toString());
             switch (code) {
                 case Constants.P8Code.SUCCESS:
                     onSuccess(t);
@@ -83,6 +83,11 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
         }
     }
 
+    /**
+     * 执行成功回调
+     *
+     * @param t 返回数据
+     */
     protected abstract void onSuccess(T t);
 
 }

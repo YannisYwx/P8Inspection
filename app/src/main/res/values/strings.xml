@@ -2,6 +2,8 @@
     <string name="app_name">P8巡检</string>
     <string name="company">P8车服</string>
 
+    <string name="only_allow_input">0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
     <!--登录 注册 忘记密码-->
     <string name="account">账 号：</string>
     <string name="password">密 码：</string>
@@ -32,6 +34,15 @@
     <string name="title_settings">设置</string>
     <string name="title_attendance_history">考勤记录</string>
     <string name="title_parking_monitor">停车监控</string>
+    <string name="title_work_order_dispose">工单处理</string>
+    <string name="title_malfunction_order">故障工单</string>
+    <string name="title_submit_order">工单填写</string>
+    <string name="title_landlord_manage">地主管理</string>
+    <string name="title_landlord_add">添加地主</string>
+    <string name="title_landlord_modify">修改地主</string>
+    <string name="title_notice_manage">公告管理</string>
+    <string name="title_order_manage">订单管理</string>
+    <string name="title_order_info">订单详情</string>
 
     <string-array name="userType">
         <item>大主</item>

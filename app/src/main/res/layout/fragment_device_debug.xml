@@ -6,8 +6,8 @@
 
     <Button
         android:id="@+id/btn_search"
-        android:layout_width="wrap_content"
-        android:layout_height="80pt"
+        android:layout_width="160pt"
+        android:layout_height="88pt"
         android:layout_marginStart="60pt"
         android:layout_marginEnd="60pt"
         android:background="@drawable/selector_round_btn"
@@ -16,7 +16,7 @@
         android:paddingEnd="30pt"
         android:text="获取"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_middle_size"
+        android:textSize="@dimen/item_label_text_size"
         app:layout_constraintBottom_toBottomOf="@id/et_device_number"
         app:layout_constraintLeft_toRightOf="@id/et_device_number"
         app:layout_constraintRight_toRightOf="parent"
@@ -24,8 +24,8 @@
 
     <Button
         android:id="@+id/btn_demarcate"
-        android:layout_width="wrap_content"
-        android:layout_height="80pt"
+        android:layout_width="320pt"
+        android:layout_height="88pt"
         android:layout_marginStart="60pt"
         android:layout_marginEnd="60pt"
         android:background="@drawable/selector_round_btn"
@@ -41,8 +41,8 @@
 
     <Button
         android:id="@+id/btn_up"
-        android:layout_width="wrap_content"
-        android:layout_height="80pt"
+        android:layout_width="320pt"
+        android:layout_height="88pt"
         android:layout_marginStart="60pt"
         android:layout_marginEnd="60pt"
         android:background="@drawable/selector_round_btn"
@@ -58,8 +58,8 @@
 
     <Button
         android:id="@+id/btn_down"
-        android:layout_width="wrap_content"
-        android:layout_height="80pt"
+        android:layout_width="320pt"
+        android:layout_height="88pt"
         android:layout_marginStart="60pt"
         android:layout_marginEnd="60pt"
         android:background="@drawable/selector_round_btn"
@@ -75,12 +75,13 @@
 
     <EditText
         android:id="@+id/et_device_number"
+        style="@style/CommonEditText"
         android:layout_width="0dp"
         android:layout_marginStart="30pt"
         android:gravity="center"
         android:inputType="number"
         android:text="0755123456"
-        style="@style/CommonEditText"
+        android:textSize="@dimen/item_label_text_size"
         app:layout_constraintBottom_toBottomOf="@id/tv_label_search"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/tv_label_search"
@@ -90,14 +91,10 @@
     <TextView
         android:id="@+id/tv_label_search"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60pt"
-        android:layout_marginTop="40pt"
-        android:layout_marginEnd="30pt"
-        android:layout_marginBottom="40pt"
+        android:layout_height="160pt"
+        style="@style/TextLabel"
         android:text="车位号"
         android:textColor="@color/text_black"
-        android:textSize="@dimen/text_large_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,13 +102,9 @@
     <TextView
         android:id="@+id/tv_device_info_label"
         android:layout_width="0dp"
-        android:layout_height="120pt"
-        android:layout_marginTop="40pt"
         android:background="@color/white"
-        android:gravity="center"
+        style="@style/TextLabel"
         android:text="设备信息"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_middle_size"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/tv_device_info"
@@ -120,27 +113,24 @@
     <TextView
         android:id="@+id/tv_device_info"
         android:layout_width="0dp"
-        android:layout_height="120pt"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:gravity="start|center_vertical"
         android:text="0123456789abcdefg"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_mini_size"
+        android:textSize="@dimen/item_label_text_size"
         app:layout_constraintHorizontal_weight="2.5"
         app:layout_constraintLeft_toRightOf="@id/tv_device_info_label"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_search"
+        app:layout_constraintBottom_toBottomOf="@id/tv_device_info_label"
         app:layout_constraintTop_toTopOf="@id/tv_device_info_label" />
 
     <TextView
         android:id="@+id/tv_device_info_label1"
         android:layout_width="0dp"
-        android:layout_height="120pt"
         android:background="@color/white"
-        android:gravity="center"
+        style="@style/TextLabel"
         android:text="设备信息"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_middle_size"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/tv_device_info1"
@@ -150,26 +140,24 @@
     <TextView
         android:id="@+id/tv_device_info1"
         android:layout_width="0dp"
-        android:layout_height="120pt"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:gravity="start|center_vertical"
         android:text="0123456789abcdefg"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_mini_size"
+        android:textSize="@dimen/item_label_text_size"
         app:layout_constraintHorizontal_weight="2.5"
         app:layout_constraintLeft_toRightOf="@id/tv_device_info_label1"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_device_info_label1"
         app:layout_constraintTop_toTopOf="@id/tv_device_info_label1" />
 
     <TextView
         android:id="@+id/tv_device_info_label2"
         android:layout_width="0dp"
-        android:layout_height="120pt"
         android:background="@color/white"
-        android:gravity="center"
+        style="@style/TextLabel"
         android:text="设备信息"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_middle_size"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/tv_device_info2"
@@ -178,55 +166,47 @@
     <TextView
         android:id="@+id/tv_device_info2"
         android:layout_width="0dp"
-        android:layout_height="120pt"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:gravity="start|center_vertical"
         android:text="0123456789abcdefg"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_mini_size"
+        android:textSize="@dimen/item_label_text_size"
         app:layout_constraintHorizontal_weight="2.5"
         app:layout_constraintLeft_toRightOf="@id/tv_device_info_label2"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_device_info_label2"
         app:layout_constraintTop_toTopOf="@id/tv_device_info_label2" />
 
 
     <TextView
         android:id="@+id/tv_demarcate"
         android:layout_width="match_parent"
-        android:layout_height="120pt"
-        android:layout_marginTop="120pt"
+        android:layout_marginTop="30pt"
         android:background="@color/white"
-        android:gravity="start|center_vertical"
+        style="@style/TextLabel"
         android:text="设备标定"
-        android:paddingStart="60pt"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_middle_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_device_info_label2" />
+
     <TextView
         android:id="@+id/tv_up"
         android:layout_width="match_parent"
-        android:layout_height="120pt"
         android:background="@color/white"
-        android:gravity="start|center_vertical"
         android:text="设备上升"
-        android:paddingStart="60pt"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_middle_size"
+        style="@style/TextLabel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_demarcate" />
+
     <TextView
         android:id="@+id/tv_down"
         android:layout_width="match_parent"
-        android:layout_height="120pt"
         android:background="@color/white"
-        android:gravity="start|center_vertical"
+        style="@style/TextLabel"
         android:text="设备下降"
-        android:paddingStart="60pt"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_middle_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_up" />
+
     <View
         android:id="@+id/v_line"
         android:layout_width="0dp"
@@ -280,6 +260,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_up" />
+
     <View
         android:id="@+id/v_line5"
         android:layout_width="0dp"

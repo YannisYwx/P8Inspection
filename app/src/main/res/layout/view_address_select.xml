@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/mask_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#B0000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_city"
+        android:layout_width="match_parent"
+        android:layout_height="1240pt"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="135pt"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingLeft="30pt"
+            android:paddingRight="30pt"
+            android:text="请选择"
+            android:textSize="@dimen/text_middle_size"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tv_province"
+            app:layout_constraintLeft_toRightOf="@id/tv_province"
+            app:layout_constraintTop_toTopOf="@id/tv_province" />
+
+        <TextView
+            android:id="@+id/tv_area"
+            android:layout_width="wrap_content"
+            android:layout_height="135pt"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingLeft="30pt"
+            android:paddingRight="30pt"
+            android:text="请选择"
+            android:textSize="@dimen/text_middle_size"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tv_province"
+            app:layout_constraintLeft_toRightOf="@id/tv_city"
+            app:layout_constraintTop_toTopOf="@id/tv_province" />
+
+        <TextView
+            android:id="@+id/tv_street"
+            android:layout_width="wrap_content"
+            android:layout_height="135pt"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingLeft="30pt"
+            android:paddingRight="30pt"
+            android:text="请选择"
+            android:textSize="@dimen/text_middle_size"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tv_province"
+            app:layout_constraintLeft_toRightOf="@id/tv_area"
+            app:layout_constraintTop_toTopOf="@id/tv_province" />
+
+        <TextView
+            android:id="@+id/tv_province"
+            android:layout_width="wrap_content"
+            android:layout_height="135pt"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingLeft="30pt"
+            android:paddingRight="30pt"
+            android:text="请选择"
+            android:textSize="@dimen/text_middle_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="match_parent"
+            android:layout_height="3pt"
+            android:background="#99cccccc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_province" />
+
+        <View
+            android:id="@+id/indicator"
+            android:layout_width="0dp"
+            android:layout_height="12pt"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/v_line"
+            app:layout_constraintLeft_toLeftOf="@id/tv_province"
+            app:layout_constraintRight_toRightOf="@id/tv_province"
+            app:layout_constraintTop_toTopOf="@id/v_line" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/indicator" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_car_type"
+        android:layout_width="match_parent"
+        android:layout_height="620pt"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/rg_car_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_have_car"
+                android:layout_width="600pt"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60pt"
+                android:background="@drawable/selector_check_btn"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="40pt"
+                android:text="有车"
+                android:textColor="@color/color_selector_btn"
+                android:textSize="@dimen/text_large_size" />
+
+            <RadioButton
+                android:id="@+id/rb_no_car"
+                android:layout_width="600pt"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40pt"
+                android:background="@drawable/selector_check_btn"
+                android:gravity="center"
+                android:padding="30pt"
+                android:text="无车"
+                android:button="@null"
+                android:textColor="@color/color_selector_btn"
+                android:textSize="@dimen/text_large_size" />
+
+            <RadioButton
+                android:id="@+id/rb_all"
+                android:layout_width="600pt"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40pt"
+                android:background="@drawable/selector_check_btn"
+                android:gravity="center"
+                android:padding="30pt"
+                android:text="全部"
+                android:button="@null"
+                android:textColor="@color/color_selector_btn"
+                android:textSize="@dimen/text_large_size" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

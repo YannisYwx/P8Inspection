@@ -57,7 +57,6 @@ public class CommonItemView extends ConstraintLayout {
     private void init(@NonNull Context context, @Nullable AttributeSet attrs) {
         View.inflate(context, R.layout.view_common_item, this);
         if(attrs != null) {
-
             //读取属性
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonItemView);
             label = typedArray.getString(R.styleable.CommonItemView_label);
@@ -71,8 +70,6 @@ public class CommonItemView extends ConstraintLayout {
             paddingRight = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingRight, 0);
             typedArray.recycle();
         }
-
-
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(dividerColor);
         mPaint.setStrokeWidth(dividerHeight);

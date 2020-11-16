@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <View
         android:id="@+id/v_right"
         android:layout_width="0dp"
@@ -11,8 +12,10 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.70" />
+        app:layout_constraintWidth_percent="0.65" />
+
     <EditText
+        android:id="@+id/et_affiliation"
         style="@style/CommonEditText"
         android:layout_width="0dp"
         android:layout_marginStart="80pt"
@@ -38,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@id/tv_label_street" />
 
     <EditText
-        android:id="@+id/et_car_number"
+        android:id="@+id/et_parking_number"
         style="@style/CommonEditText"
         android:layout_width="0dp"
         android:layout_marginStart="80pt"
@@ -61,10 +64,10 @@
         app:layout_constraintBottom_toBottomOf="@id/tv_label_address"
         app:layout_constraintLeft_toLeftOf="@id/v_right"
         app:layout_constraintRight_toRightOf="@id/v_right"
-        app:layout_constraintTop_toTopOf="@id/tv_label_address" />
+        app:layout_constraintTop_toTopOf="@id/tv_label_address"
+        app:drawableEndCompat="@mipmap/down" />
 
     <EditText
-        android:id="@+id/et_affiliation"
         style="@style/CommonEditText"
         android:layout_width="0dp"
         android:layout_marginStart="80pt"
@@ -93,67 +96,58 @@
     <TextView
         android:id="@+id/tv_label_car_number"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:padding="40pt"
+        style="@style/TextLabel"
         android:text="车位号"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/text_large_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_label_affiliation"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/tv_label_address"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:padding="40pt"
+        style="@style/TextLabel"
         android:text="地址"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/text_large_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_label_car_number"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.35" />
 
 
     <TextView
         android:id="@+id/tv_label_street"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:padding="40pt"
+        style="@style/TextLabel"
         android:text="街道名称"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/text_large_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_label_address"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/tv_label_ps"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:padding="40pt"
+        android:layout_height="160pt"
+        style="@style/TextLabel"
         android:text="备注"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/text_large_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_label_street"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/tv_label_affiliation"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:padding="40pt"
+        style="@style/TextLabel"
         android:text="所属大主"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/text_large_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.35" />
+
+    <ImageView
+        android:id="@+id/iv_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/et_parking_number"
+        app:layout_constraintTop_toTopOf="@id/et_parking_number"
+        app:layout_constraintBottom_toBottomOf="@id/et_parking_number"
+        android:layout_marginStart="30pt"
+        android:src="@mipmap/scan"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

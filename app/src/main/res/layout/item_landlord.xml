@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.p8.common.widget.swipe.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="190pt"
+    android:background="@color/white"
+    app:dragEdge="right"
+    app:srl_mode="same_level">
+
+    <FrameLayout
+        android:id="@+id/delete_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#ffff7539">
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="280pt"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="删除"
+            android:textSize="@dimen/text_large_size"
+            android:textColor="@android:color/white" />
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_item">
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@mipmap/icon_grey_arrow"/>
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50pt"
+            android:layout_marginTop="10pt"
+            android:text="15919835035"
+            android:textColor="@color/text_deep_gray"
+            android:textSize="@dimen/text_mini_size"
+            app:layout_constraintLeft_toRightOf="@id/civ_landlord"
+            app:layout_constraintTop_toBottomOf="@id/gl_center" />
+
+        <TextView
+            android:id="@+id/tv_landlord_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50pt"
+            android:layout_marginBottom="10pt"
+            android:text="刘德华"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/item_label_text_size"
+            app:layout_constraintBottom_toTopOf="@id/gl_center"
+            app:layout_constraintLeft_toRightOf="@id/civ_landlord" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <com.p8.common.widget.CircleImageView
+            android:id="@+id/civ_landlord"
+            android:layout_width="100pt"
+            android:layout_height="100pt"
+            android:layout_marginStart="50pt"
+            app:civ_border_color="@color/orange"
+            app:civ_border_width="3pt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/default_avatar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.p8.common.widget.swipe.SwipeRevealLayout>

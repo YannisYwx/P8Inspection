@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/v_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.70" />
+
+    <EditText
+        android:id="@+id/et_affiliation"
+        style="@style/CommonEditText"
+        android:layout_width="0dp"
+        android:layout_marginStart="80pt"
+        android:layout_marginEnd="150pt"
+        android:background="@drawable/shape_grey_radius_5"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_name"
+        app:layout_constraintLeft_toLeftOf="@id/v_right"
+        app:layout_constraintRight_toRightOf="@id/v_right"
+        app:layout_constraintTop_toTopOf="@id/tv_label_name" />
+
+    <EditText
+        android:id="@+id/et_phone_number"
+        style="@style/CommonEditText"
+        android:layout_width="0dp"
+        android:layout_marginStart="80pt"
+        android:layout_marginEnd="150pt"
+        android:background="@drawable/shape_grey_radius_5"
+        android:inputType="number"
+        android:hint="请输入手机号码"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_phone_number"
+        app:layout_constraintLeft_toLeftOf="@id/v_right"
+        app:layout_constraintRight_toRightOf="@id/v_right"
+        app:layout_constraintTop_toTopOf="@id/tv_label_phone_number" />
+
+    <EditText
+        android:id="@+id/et_identify"
+        style="@style/CommonEditText"
+        android:layout_width="0dp"
+        android:layout_marginStart="80pt"
+        android:layout_marginEnd="150pt"
+        android:background="@drawable/shape_grey_radius_5"
+        android:hint="请输入您的身份证号码"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_identify"
+        app:layout_constraintLeft_toLeftOf="@id/v_right"
+        app:layout_constraintRight_toRightOf="@id/v_right"
+        app:layout_constraintTop_toTopOf="@id/tv_label_identify" />
+
+    <EditText
+        android:id="@+id/et_email"
+        style="@style/CommonEditText"
+        android:layout_width="0dp"
+        android:layout_marginStart="80pt"
+        android:layout_marginEnd="150pt"
+        android:background="@drawable/shape_grey_radius_5"
+        android:hint="请输入邮箱地址"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_email"
+        app:layout_constraintLeft_toLeftOf="@id/v_right"
+        app:layout_constraintRight_toRightOf="@id/v_right"
+        app:layout_constraintTop_toTopOf="@id/tv_label_email"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        style="@style/CommonEditText"
+        android:layout_width="0dp"
+        android:layout_marginStart="80pt"
+        android:layout_marginEnd="150pt"
+        android:background="@drawable/shape_grey_radius_5"
+        android:hint="请输入地主姓名"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_name"
+        app:layout_constraintLeft_toLeftOf="@id/v_right"
+        app:layout_constraintRight_toRightOf="@id/v_right"
+        app:layout_constraintTop_toTopOf="@id/tv_label_name" />
+
+  <ImageView
+      android:id="@+id/iv_identify_pros"
+      android:layout_width="140pt"
+      android:layout_height="140pt"
+      android:src="@mipmap/add_photo"
+      android:layout_marginStart="80pt"
+      app:layout_constraintTop_toTopOf="@id/tv_label_identify_pros"
+      app:layout_constraintBottom_toBottomOf="@id/tv_label_identify_pros"
+      app:layout_constraintLeft_toLeftOf="@id/v_right" />
+
+    <ImageView
+        android:id="@+id/iv_identify_cons"
+        android:layout_width="140pt"
+        android:layout_height="140pt"
+        android:src="@mipmap/add_photo"
+        android:layout_marginStart="80pt"
+        app:layout_constraintTop_toTopOf="@id/tv_label_identify_cons"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_identify_cons"
+        app:layout_constraintLeft_toLeftOf="@id/v_right" />
+
+    <TextView
+        android:id="@+id/tv_label_identify"
+        android:layout_width="0dp"
+        style="@style/TextLabel"
+        android:text="身份证号码："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_name"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_label_email"
+        android:layout_width="0dp"
+        style="@style/TextLabel"
+        android:text="邮箱："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_identify"
+        app:layout_constraintWidth_percent="0.3" />
+
+
+    <TextView
+        android:id="@+id/tv_label_phone_number"
+        android:layout_width="0dp"
+        style="@style/TextLabel"
+        android:text="手机号码："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_email"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_label_identify_pros"
+        android:layout_width="0dp"
+        android:layout_height="320pt"
+        style="@style/TextLabel"
+        android:text="身份证正面："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_phone_number"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_label_identify_cons"
+        android:layout_width="0dp"
+        android:layout_height="320pt"
+        style="@style/TextLabel"
+        android:text="身份证反面："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_identify_pros"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_label_name"
+        android:layout_width="0dp"
+        style="@style/TextLabel"
+        android:text="姓名："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

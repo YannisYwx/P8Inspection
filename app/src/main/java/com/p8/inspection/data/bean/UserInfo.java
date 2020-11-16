@@ -3,7 +3,7 @@ package com.p8.inspection.data.bean;
 import java.io.Serializable;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/9 15:41
  * description :
  */

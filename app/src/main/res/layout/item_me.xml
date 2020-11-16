@@ -34,12 +34,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50pt"
         android:textColor="@color/text_black"
-        android:textSize="42pt"
+        android:textSize="@dimen/item_label_text_size"
         app:layout_constraintBottom_toBottomOf="@id/iv_icon"
         app:layout_constraintLeft_toRightOf="@id/iv_icon"
         app:layout_constraintTop_toTopOf="@id/iv_icon" />
 
     <View
+        android:id="@+id/v_bottom_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dividerHeight"
         app:layout_constraintBottom_toBottomOf="parent"

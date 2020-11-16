@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
+
 import com.blankj.utilcode.util.RegexUtils;
 import com.p8.common.widget.MultiFunEditText;
 import com.p8.inspection.R;
@@ -39,7 +41,7 @@ public class ResetPwdFragment extends DaggerMvpFragment<ResetPwdPresenter, Reset
     }
 
     @Override
-    public void initView(View view) {
+    public void initView(View view, @Nullable Bundle savedInstanceState) {
         mfePhone = $(R.id.mfe_phone);
         mfeVCode = $(R.id.mfe_v_code);
         mfePassword = $(R.id.mfe_password);
@@ -65,7 +67,6 @@ public class ResetPwdFragment extends DaggerMvpFragment<ResetPwdPresenter, Reset
                 showMsg("请输入正确的手机号");
                 return;
             }
-            presenter.getVCode(phoneNum);
         });
     }
 
@@ -79,16 +80,6 @@ public class ResetPwdFragment extends DaggerMvpFragment<ResetPwdPresenter, Reset
         return R.layout.fragment_reset_pwd;
     }
 
-    @Override
-    public void getVCodeSuccess(String msg) {
-        mfeVCode.startCountDown();
-        showMsg(msg);
-    }
-
-    @Override
-    public void getVCodeFailed(String msg) {
-        showMsg(msg);
-    }
 
     @Override
     public void resetPasswordSuccess() {

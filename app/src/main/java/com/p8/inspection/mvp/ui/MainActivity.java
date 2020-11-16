@@ -6,8 +6,8 @@ import android.view.View;
 
 import com.p8.common.base.BaseActivity;
 import com.p8.inspection.R;
-import com.p8.inspection.mvp.ui.main.MainFragment;
 import com.p8.inspection.mvp.ui.entry.fragment.LoginFragment;
+import com.p8.inspection.mvp.ui.main.fragment.MainFragment;
 
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;

@@ -9,19 +9,13 @@ import com.p8.inspection.data.bean.Provinces;
 import com.p8.inspection.data.bean.Streets;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/7 16:32
  * description :
  */
 public interface MonitorContract {
 
     interface View extends BaseContract.IBaseView {
-
-        void onGetProvincesSuccess(Provinces provinces);
-
-        void onGetCitiesSuccess(Cities cities);
-
-        void onGetAreasSuccess(Areas areas);
 
         void onGetStreetsSuccess(Streets streets);
 
@@ -33,15 +27,21 @@ public interface MonitorContract {
 
     interface Presenter extends BaseContract.IBasePresenter<View> {
 
-        void getProvinces();
+        /**
+         * 获取街道
+         *
+         * @param address 省市区
+         */
+        void getStreets(String address);
 
-        void getCities(String id);
-
-        void getAreas(String id);
-
-        void getStreets(String id);
-
-        void getMachines(String address,int parkingState,int currentPage);
+        /**
+         * 获取设备
+         *
+         * @param address      地址
+         * @param parkingState 泊位状态
+         * @param currentPage  当前页面
+         */
+        void getMachines(String address, String parkingState, int currentPage);
     }
 }
 

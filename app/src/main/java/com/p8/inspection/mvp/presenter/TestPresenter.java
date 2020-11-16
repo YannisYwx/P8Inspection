@@ -32,7 +32,7 @@ public class TestPresenter extends BasePresenter<TestContract.View> implements T
     @SuppressLint("CheckResult")
     @Override
     public void doLogin(String username, String password) {
-        mDataManager.doLogin(username, password)
+        mDataManager.doLoginByLandlord(username, password)
                 .compose(RxUtils.getDefaultOSchedulers())
                 .as(bindLifecycle()).subscribe(new P8HttpSubscriber<HttpResponse<LoginInfo>>(mView) {
             @Override

@@ -2,16 +2,93 @@ package com.p8.inspection.data;
 
 import android.os.Environment;
 
+import androidx.annotation.IntDef;
+
 import com.p8.inspection.P8ParkingApplication;
+import com.p8.inspection.data.bean.UserMenu;
 
 import java.io.File;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * @author : WX.Y
  * date : 2020/9/8 17:06
- * description :
+ * description :App常量
  */
 public interface Constants {
+    /**
+     * 用户类型
+     */
+    @IntDef({UserType.LARGE, UserType.MEDIUM, UserType.SMALL, UserType.LAND, UserType.PLATFORM,
+            UserType.PLACE, UserType.BUILD, UserType.ONESELF, UserType.OTHER})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface UserType {
+        /**
+         * 大主
+         */
+        int LARGE = 0;
+        /**
+         * 中主
+         */
+        int MEDIUM = 1;
+        /**
+         * 小主
+         */
+        int SMALL = 2;
+        /**
+         * 地主
+         */
+        int LAND = 3;
+        /**
+         * 台主
+         */
+        int PLATFORM = 4;
+        /**
+         * 场主
+         */
+        int PLACE = 5;
+        /**
+         * 自主
+         */
+        int ONESELF = 6;
+        /**
+         * 施主
+         */
+        int BUILD = 7;
+        /**
+         * 地主
+         */
+        int OTHER = 8;
+
+    }
+
+    /**
+     * 没有图标标志位
+     */
+    int FLAG_NO_ICON = -1;
+
+    /**
+     * 用户类型
+     */
+    String USER_TYPE = "_USER_TYPE";
+
+    interface Key {
+        /**
+         * 用户登录信息key
+         */
+        String LOGIN_INFO = "_KEY_USER_INFO";
+
+        /**
+         * 用户登录信息key
+         */
+        String LANDLORD = "_KEY_LANDLORD";
+
+        /**
+         * 订单详情
+         */
+        String ORDER_INFO = "_KEY_ORDER_INFO";
+    }
 
     String SP_NAME = "P8_APP";
 
@@ -24,23 +101,15 @@ public interface Constants {
 
     String DOWNLOAD_PATH = P8ParkingApplication.sInstance.getExternalFilesDir(null) + "/p8_inspection/download/pdf/";
 
-
+    /**
+     * 默认分页大小
+     */
     int PAGE_SIZE = 10;
 
     /**
      * 移动端平台
      */
     int PLATFORM_CODE = 1;
-
-    /**
-     * 需要加载的视图
-     */
-//    interface LoadPagerRes {
-//        int errorPager = R.layout.pager_error;
-//        int emptyPager = R.layout.pager_empty;
-//        int loadingPager = R.layout.pager_loading;
-//        int btnRetry = R.id.btn_retry;
-//    }
 
     String EXTRA = "_extra";
 
@@ -68,7 +137,7 @@ public interface Constants {
         String IS_FIRST_IN = "_isFirstIn";
     }
 
-    interface DeviceCMD {
+    interface DeviceCmd {
         /**
          * 上升和下降
          */
@@ -110,6 +179,42 @@ public interface Constants {
          */
         String CMD_DEVICE_INFO_1 = "mc10e";
         String CMD_DEVICE_INFO_2 = "mc11e";
+    }
+
+    /**
+     * 设备状态
+     */
+    interface DeviceStatus {
+        /**
+         * 为选择
+         */
+        String NOT_CHOICE = "-1";
+
+        /**
+         * 无车
+         */
+        String NO_CAR = "0";
+        /**
+         * 有车
+         */
+        String HAVE_CAR = "1";
+        /**
+         * 待激活
+         */
+        String TO_ACTIVATE = "2";
+        /**
+         * 初始化中
+         */
+        String INITIALIZING = "3";
+        /**
+         * 异常
+         */
+        String ERROR = "4";
+        /**
+         * 全部
+         */
+        String ALL = "";
+
     }
 
     interface P8Code {

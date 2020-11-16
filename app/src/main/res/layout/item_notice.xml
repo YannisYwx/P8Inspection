@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="410pt"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="台风预警通知"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_large_size"
+        app:drawableStartCompat="@mipmap/icon_message"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="56pt"
+        android:layout_marginTop="26pt"
+        android:drawablePadding="5pt"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="2018-08-08 13:30"
+        android:textSize="@dimen/text_mini_size"
+        android:textColor="@color/text_deep_gray"
+        android:layout_marginEnd="56pt"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="@dimen/text_mini_size"
+        android:textColor="@color/text_deep_gray"
+        android:layout_marginTop="60pt"
+        android:layout_marginBottom="60pt"
+        android:paddingStart="80pt"
+        android:paddingEnd="80pt"
+        android:lines="3"
+        android:text="市应急管理局、市气象局提醒您:受台风影响，日我市有暴雨，沿海有大风，请市民做好防御，远离山边河边海边和易涝区。"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查看更多"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_mini_size"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="48pt"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,14 +9,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.p8.common.base.BaseStatusPagerFragment;
 import com.p8.common.base.mvp.BaseContract;
 import com.p8.common.base.mvp.BasePresenter;
 import com.p8.inspection.R;
+import com.p8.inspection.data.LocalDataManager;
 import com.p8.inspection.di.component.AppComponent;
 import com.p8.inspection.di.component.FragmentComponent;
 import com.p8.inspection.di.module.FragmentModule;
+import com.p8.inspection.mvp.ui.EnterActivity;
 
 import javax.inject.Inject;
 
@@ -93,6 +96,7 @@ public abstract class DaggerMvpFragment<P extends BasePresenter<V>, V extends Ba
     @Override
     public void onTokenInvalid(String msg) {
         showMsg(msg);
+        reLogin();
     }
 
     @Nullable
@@ -102,37 +106,26 @@ public abstract class DaggerMvpFragment<P extends BasePresenter<V>, V extends Ba
     }
 
     @Override
-    public void initTitleBar() {
-        super.initTitleBar();
-        if (hasTitleBar()) {
-            if (isTitleBarBackEnable()) {
-                mTitleBar.setLeftDrawable(R.mipmap.nav_button_search_back);
-            }
-            mTitleBar.setBackgroundColor(mContext.getResources().getColor(R.color.main_default_color));
-            mTitleBar.getTitleView().setTextColor(Color.WHITE);
-            mTitleBar.setTitle(setTitle() == 0 ? "" : getString(setTitle()));
-        }
-    }
-
-    public boolean isTitleBarBackEnable() {
-        return true;
-    }
-
-    @Override
     public void onComplete() {
 
     }
 
     /**
-     * 设置标题 默认为空
-     *
-     * @return 页面title
+     * 重新登录
      */
-    public @StringRes
-    int setTitle() {
-        return 0;
+    public void reLogin(){
+        LocalDataManager.clear();
+        ThreadUtils.runOnUiThreadDelayed(() -> {
+            EnterActivity.start(mContext);
+            _mActivity.finish();
+        }, 500);
     }
 
+    /**
+     * 根节点替换fragment 适用于多层级的fragment跳转
+     *
+     * @param fragment
+     */
     public void startByParent(ISupportFragment fragment) {
         if (getParentFragment() != null) {
             ((SupportFragment) getParentFragment()).start(fragment);

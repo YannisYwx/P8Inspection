@@ -87,8 +87,14 @@ public class DialogUtils {
         }
     }
 
+    public static void showMessageDialog(){
+
+    }
+
     public static void showTakePhotoDialog(Context context, OnTakePhotoDialogChoiceListener listener) {
-        if (listener == null) return;
+        if (listener == null) {
+            return;
+        }
         YDialog.Builder builder = new YDialog.Builder(context);
         builder.setDialogView(R.layout.dialog_select_photo)
                 .setAnimStyle(R.style.AnimUp)

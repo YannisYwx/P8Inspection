@@ -1,11 +1,15 @@
 package com.p8.inspection.data.net.api;
 
 import com.p8.common.http.HttpResponse;
+import com.p8.inspection.data.bean.Agency;
 import com.p8.inspection.data.bean.Areas;
 import com.p8.inspection.data.bean.Cities;
+import com.p8.inspection.data.bean.Landlord;
+import com.p8.inspection.data.bean.Landlords;
 import com.p8.inspection.data.bean.LoginInfo;
 import com.p8.inspection.data.bean.LoginResponse;
 import com.p8.inspection.data.bean.Machines;
+import com.p8.inspection.data.bean.Orders;
 import com.p8.inspection.data.bean.Provinces;
 import com.p8.inspection.data.bean.Streets;
 import com.p8.inspection.data.bean.VCode;
@@ -20,7 +24,7 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/8 16:09
  * description :
  * * ---------------------------------------------------------------------------------------------------
@@ -55,6 +59,62 @@ public interface P8Api {
 
     String HOST = "http://service.p8.world";
 
+    /*=========================== 大主 =========================== Start*/
+
+    /**
+     * 大主登录
+     *
+     * @param loginName
+     * @param password
+     * @return
+     */
+    @POST("/app_agency/login.html")
+    Observable<HttpResponse<LoginInfo>> doLoginByLargeMaster(@Query("loginName") String loginName, @Query("password") String password);
+
+
+    /**
+     * 重置密码
+     *
+     * @param url         地址  大主：/app_agency/change_pwd.html
+     * @param newPassword 新密码
+     * @param oldPassword 旧密码
+     * @return
+     */
+    @POST
+    Observable<HttpResponse<String>> resetPassword(@Url String url, @Query("newPassword") String newPassword, @Query("oldPassword") String oldPassword);
+
+
+    /**
+     * 获取大主信息
+     *
+     * @return
+     */
+    @GET("/app_agency/info.html")
+    Observable<HttpResponse<Agency>> getAgencyInfo();
+
+    /**
+     * 获取地主信息列表
+     *
+     * @param currentPage 当前页
+     * @param pageSize    一页几条
+     * @return
+     */
+    @GET("/app_agency/inspect/list.html")
+    Observable<HttpResponse<Landlords>> getLandlords(@Query("currentPage") int currentPage, @Query("pageSize") int pageSize);
+
+    /**
+     * 获取订单列表
+     *
+     * @param currentPage 当前页
+     * @param pageSize    一页几条
+     * @return
+     */
+    @GET("/merchant/order/query_list.html")
+    Observable<HttpResponse<Orders>> getOrders(@Query("currentPage") int currentPage, @Query("pageSize") int pageSize);
+
+
+    /*=========================== 大主 =========================== End*/
+
     /**
      * 登录
      *
@@ -63,7 +123,8 @@ public interface P8Api {
      * @return
      */
     @POST("/app_inspect/login.html")
-    Observable<HttpResponse<LoginInfo>> doLogin(@Query("loginName") String loginName, @Query("password") String password);
+    Observable<HttpResponse<LoginInfo>> doLoginByLandlord(@Query("loginName") String loginName, @Query("password") String password);
+
 
     /**
      * 获取验证码
@@ -73,17 +134,6 @@ public interface P8Api {
      */
     @GET("/app/inspect/getCode.html")
     Observable<HttpResponse<VCode>> getCode(@Query("mobile") String phone);
-
-    /**
-     * 重置密码
-     *
-     * @param phone
-     * @param code
-     * @param password
-     * @return
-     */
-    @POST("/app/inspect/forgetPwd.html")
-    Observable<HttpResponse<String>> resetPassword(@Query("mobile") String phone, @Query("code") String code, @Query("password") String password);
 
     /**
      * 获取省列表
@@ -112,10 +162,11 @@ public interface P8Api {
     /**
      * 获取街道列表
      *
+     * @param address
      * @return
      */
     @GET("/app_inspect/region/street.html")
-    Observable<HttpResponse<Streets>> getStreets(@Query("provinces") String provinces);
+    Observable<HttpResponse<Streets>> getStreets(@Query("address") String address);
 
     /**
      * 获取设备列表
@@ -123,23 +174,21 @@ public interface P8Api {
      * @return
      */
     @GET("/app_inspect/machine/list.html")
-    Observable<HttpResponse<Machines>> getMachines(@Query("address") String address, @Query("parkingstatus") int parkingStatus, @Query("currentPage") int currentPage);
+    Observable<HttpResponse<Machines>> getMachines(@Query("address") String address, @Query("parkingstatus") String parkingStatus, @Query("currentPage") int currentPage);
 
     /**
      * 绑定设备设备列表
      *
+     * @param address       地址
+     * @param parkingNumber 泊位号
+     * @param lat           纬度
+     * @param lng           经度
      * @return
      */
     @POST("/app_inspect/machine/bind.html")
     Observable<HttpResponse<Object>> bindDevice(@Query("address") String address, @Query("parkingNumber") String parkingNumber,
                                                 @Query("lat") String lat, @Query("lng") String lng);
 
-
-    public static final String GET_PROVINCES = "/app/provinces/getProvinces.html";//获取省
-    public static final String GET_CITIES = "/app/provinces/getCities.html";//获取市
-    public static final String GET_AREAS = "/app/provinces/getAreas.html";//获取区
-    public static final String GET_STREET = "/app/provinces/getStreet.html";//获取街道
-    public static final String GET_MACHINE = "/app/provinces/getMachine.html";//获取设备列表
 
     @Streaming
     @GET

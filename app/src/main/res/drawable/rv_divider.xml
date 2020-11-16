@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <item>-->
+<!--        <shape android:shape="line">-->
+<!--            <size android:height="3pt" />-->
+<!--            <solid android:color="@color/translate" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    <item-->
+<!--        android:left="10dp"-->
+<!--        android:right="10dp">-->
+<!--        <shape android:shape="line">-->
+<!--            <padding-->
+<!--                android:left="30pt"-->
+<!--                android:right="30pt" />-->
+<!--            <size android:height="3pt" />-->
+<!--            <solid android:color="@color/text_gray" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+    <item android:drawable="@color/white"  android:height="3pt"/>
+    <item android:start="60pt" android:end="60pt"  android:drawable="@color/window_bg"  android:height="3pt"/>
+</layer-list>
