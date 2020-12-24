@@ -9,7 +9,6 @@ import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.p8.common.base.BaseActivity;
 import com.p8.inspection.R;
 import com.p8.inspection.mvp.ui.entry.fragment.EntryPagerFragment;
-import com.p8.inspection.mvp.ui.entry.fragment.LoginFragment;
 
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
@@ -39,7 +38,7 @@ public class EnterActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        if (findFragment(LoginFragment.class) == null) {
+        if (findFragment(EntryPagerFragment.class) == null) {
             loadRootFragment(R.id.fl_container, EntryPagerFragment.newInstance());
         }
     }

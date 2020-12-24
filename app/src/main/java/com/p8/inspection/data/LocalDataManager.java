@@ -257,10 +257,7 @@ public class LocalDataManager {
 
     @Constants.UserType
     public int getUserType() {
-        if (mLoginInfo == null) {
-            mLoginInfo = CacheDoubleUtils.getInstance().getParcelable(Constants.Key.LOGIN_INFO, LoginInfo.CREATOR);
-        }
-        return mLoginInfo == null ? Constants.UserType.LAND : mLoginInfo.userType;
+        return CacheDoubleUtils.getInstance().getParcelable(Constants.Key.LOGIN_INFO, LoginInfo.CREATOR).userType;
     }
 
     public LoginInfo getLoginInfo() {

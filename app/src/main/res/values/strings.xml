@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">P8巡检</string>
+    <string name="app_name">P8车服</string>
     <string name="company">P8车服</string>
 
     <string name="only_allow_input">0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
@@ -19,6 +19,8 @@
     <string name="tipRegister">没有此项可以不填</string>
     <string name="resetPwd">重置密码</string>
     <string name="press_again_exit">再次点击退出应用</string>
+
+    <string name="tips_scan_code">将二维码/条形码放入框内，即可自动扫描</string>
 
     <string name="main_table_home">首页</string>
     <string name="main_table_attendance">考勤</string>
@@ -43,6 +45,8 @@
     <string name="title_notice_manage">公告管理</string>
     <string name="title_order_manage">订单管理</string>
     <string name="title_order_info">订单详情</string>
+    <string name="title_scan_qr_code">扫码</string>
+    <string name="title_parking_detail">车位详情</string>
 
     <string-array name="userType">
         <item>大主</item>

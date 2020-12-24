@@ -45,15 +45,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18pt"
+        android:drawablePadding="8pt"
         android:lines="1"
         android:text="深圳市南山区西丽茶光"
-        android:drawablePadding="8pt"
         android:textColor="@color/text_deep_gray"
         android:textSize="@dimen/text_small_size"
+        app:drawableStartCompat="@mipmap/icon_location"
         app:layout_constraintLeft_toLeftOf="@id/civ_user_header"
         app:layout_constraintRight_toRightOf="@id/civ_user_header"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name"
-        app:drawableStartCompat="@mipmap/icon_location" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
         android:id="@+id/tv_landlord_value"
@@ -136,6 +136,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/dividerColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <com.p8.common.widget.CircleImageView
         android:id="@+id/civ_user_header"
         android:layout_width="320pt"
@@ -149,5 +157,4 @@
         app:civ_circle_background_color="@color/grey"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_top_bg" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

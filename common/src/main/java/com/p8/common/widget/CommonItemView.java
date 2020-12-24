@@ -27,17 +27,17 @@ import com.p8.common.R;
  */
 public class CommonItemView extends ConstraintLayout {
 
-    private TextView tvLabel;
+    private TextView tvLabel, tvRight;
     private ImageView ivIcon, ivArrow;
 
-    private String label;
+    private String label, textRight;
     private Drawable icon, arrow;
-    private boolean hasBottomLine = true;
+    private boolean hasBottomLine = true, hasArrow = true;
 
     private int paddingLeft = 0;
     private int paddingRight = 0;
     private int dividerColor = Color.parseColor("#F303E3");
-    private int labelColor;
+    private int labelColor, textRightColor;
     private float dividerHeight = getResources().getDimension(R.dimen.dividerHeight);
     private Paint mPaint;
 
@@ -56,14 +56,17 @@ public class CommonItemView extends ConstraintLayout {
 
     private void init(@NonNull Context context, @Nullable AttributeSet attrs) {
         View.inflate(context, R.layout.view_common_item, this);
-        if(attrs != null) {
+        float dividerHeight = getResources().getDimension(R.dimen.dividerHeight);
+        if (attrs != null) {
             //读取属性
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonItemView);
             label = typedArray.getString(R.styleable.CommonItemView_label);
             hasBottomLine = typedArray.getBoolean(R.styleable.CommonItemView_hasBottomLine, true);
+            hasArrow = typedArray.getBoolean(R.styleable.CommonItemView_hasArrow, true);
             dividerColor = typedArray.getColor(R.styleable.CommonItemView_dividerColor, Color.parseColor("#E3E3E3"));
             dividerHeight = typedArray.getDimension(R.styleable.CommonItemView_dividerHeight, getResources().getDimension(R.dimen.dividerHeight));
-            labelColor =  typedArray.getColor(R.styleable.CommonItemView_labelColor, Color.parseColor("#ffffff"));
+            labelColor = typedArray.getColor(R.styleable.CommonItemView_labelColor, Color.parseColor("#333333"));
+            textRightColor = typedArray.getColor(R.styleable.CommonItemView_textRightColor, Color.parseColor("#333333"));
             icon = typedArray.getDrawable(R.styleable.CommonItemView_icon);
             arrow = typedArray.getDrawable(R.styleable.CommonItemView_arrow);
             paddingLeft = (int) typedArray.getDimension(R.styleable.CommonItemView_dividerPaddingLeft, 0);
@@ -78,25 +81,28 @@ public class CommonItemView extends ConstraintLayout {
     @Override
     protected void onFinishInflate() {
         tvLabel = findViewById(R.id.tv_label);
+        tvRight = findViewById(R.id.tv_right);
         ivIcon = findViewById(R.id.iv_icon);
         ivArrow = findViewById(R.id.iv_arrow);
-        setDataToUI();
+        setDataToUi();
         super.onFinishInflate();
     }
 
-    private void setDataToUI() {
+    private void setDataToUi() {
         tvLabel.setText(TextUtils.isEmpty(label) ? "" : label);
         tvLabel.setTextColor(labelColor);
+        tvRight.setText(TextUtils.isEmpty(textRight) ? "" : textRight);
+        tvRight.setTextColor(textRightColor);
         if (icon != null) {
             ivIcon.setImageDrawable(icon);
             ivIcon.setVisibility(View.VISIBLE);
         } else {
             ivIcon.setVisibility(View.GONE);
         }
-
         if (arrow != null) {
             ivArrow.setImageDrawable(arrow);
         }
+        ivArrow.setVisibility(hasArrow ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -107,7 +113,7 @@ public class CommonItemView extends ConstraintLayout {
         }
     }
 
-    public void setData(int iconRes, int arrowRes, String label, boolean hasShowBottomLine) {
+    public void setData(int iconRes, int arrowRes, String label, String textRight, boolean hasShowBottomLine, boolean hasArrow) {
         if (iconRes > 0) {
             this.icon = ResourcesCompat.getDrawable(getResources(), iconRes, null);
         }
@@ -115,27 +121,35 @@ public class CommonItemView extends ConstraintLayout {
             this.arrow = ResourcesCompat.getDrawable(getResources(), arrowRes, null);
         }
         this.hasBottomLine = hasShowBottomLine;
-        if (label != null) {
-            this.label = label;
-        }
-        setDataToUI();
+        this.hasArrow = hasArrow;
+        this.label = label;
+        this.textRight = textRight;
+        setDataToUi();
         invalidate();
     }
 
     public void setLabel(String label) {
-        setData(-1, -1, label, true);
+        setData(-1, -1, label, textRight, hasBottomLine, hasArrow);
+    }
+
+    public void setTextRight(String text, int... color) {
+        setData(-1, -1, label, text, hasBottomLine, hasArrow);
+        if (color.length > 0) {
+            tvRight.setTextColor(color[0]);
+        }
     }
 
     public void setIcon(@DrawableRes int iconRes) {
-        setData(iconRes, -1, null, true);
+        setData(iconRes, -1, label, textRight, hasBottomLine, hasArrow);
     }
 
     public void setArrow(@DrawableRes int arrowRes) {
-        setData(arrowRes, arrowRes, null, true);
+        setData(-1, arrowRes, label, textRight, hasBottomLine, hasArrow);
+
     }
 
-    public void showBottomLine(boolean isShow) {
-        setData(-1, -1, null, isShow);
+    public void showBottomLine(boolean isShowBottomLine) {
+        setData(-1, -1, label, textRight, isShowBottomLine, hasArrow);
     }
 }
 

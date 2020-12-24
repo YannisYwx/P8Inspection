@@ -70,7 +70,6 @@ dependencies {
     implementation files('libs/umeng-share-core-6.9.6.jar')
     implementation files('libs/umeng-share-wechat-simplify-6.9.6.jar')
     implementation files('libs/umeng-sharetool-6.9.6.jar')
-    implementation files('libs/zxing_core_3.3.2.jar')
     implementation 'com.clj.fastble:FastBleLib:2.3.4'
 
     implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
@@ -87,4 +86,7 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
 
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    //扫码
+    implementation 'com.king.zxing:zxing-lite:1.1.9-androidx'
 }

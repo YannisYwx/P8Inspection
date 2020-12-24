@@ -18,8 +18,8 @@
 
     <ImageView
         android:id="@+id/iv_arrow"
-        android:layout_width="108pt"
-        android:layout_height="108pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="60pt"
         android:scaleType="center"
         android:layout_marginTop="15pt"
@@ -36,5 +36,14 @@
         android:textSize="42pt"
         app:layout_constraintBottom_toBottomOf="@id/iv_icon"
         app:layout_constraintLeft_toRightOf="@id/iv_icon"
+        app:layout_constraintTop_toTopOf="@id/iv_icon" />
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40pt"
+        app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+        app:layout_constraintRight_toLeftOf="@id/iv_arrow"
         app:layout_constraintTop_toTopOf="@id/iv_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

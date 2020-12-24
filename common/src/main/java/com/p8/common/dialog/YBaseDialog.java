@@ -23,7 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/18 14:46
  * description :
  */
@@ -36,14 +36,14 @@ public abstract class YBaseDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getDialogLayoutRes() < 0) {
             view = getDialogView();
-        } else  {
+        } else {
             view = inflater.inflate(getDialogLayoutRes(), container, false);
         }
         return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
         if (dialog != null) {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -184,20 +184,23 @@ public abstract class YBaseDialog extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        SYDialogsManager.getInstance().over();
     }
 
     public void setGrayBottom() {
         Dialog dialog = getDialog();
-        if (dialog == null) return;
+        if (dialog == null) {
+            return;
+        }
         Window window = dialog.getWindow();
-        if(window == null) return;
+        if (window == null) {
+            return;
+        }
         window.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams attr = window.getAttributes();
         if (attr != null) {
             attr.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             attr.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.BOTTOM;//设置dialog 在布局中的位置
+            attr.gravity = Gravity.BOTTOM;
 
             window.setAttributes(attr);
         }
@@ -205,31 +208,39 @@ public abstract class YBaseDialog extends DialogFragment {
 
     public void setGrayCenter() {
         Dialog dialog = getDialog();
-        if (dialog == null) return;
+        if (dialog == null) {
+            return;
+        }
         Window window = dialog.getWindow();
-        if(window == null) return;
+        if (window == null) {
+            return;
+        }
         View decorView = window.getDecorView();
         decorView.setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams attr = window.getAttributes();
         if (attr != null) {
             attr.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             attr.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.CENTER;//设置dialog 在布局中的位置
+            attr.gravity = Gravity.CENTER;
             window.setAttributes(attr);
         }
     }
 
     public void setGrayTop() {
         Dialog dialog = getDialog();
-        if (dialog == null) return;
+        if (dialog == null) {
+            return;
+        }
         Window window = dialog.getWindow();
-        if(window == null) return;
+        if (window == null) {
+            return;
+        }
         window.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams attr = window.getAttributes();
         if (attr != null) {
             attr.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             attr.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            attr.gravity = Gravity.TOP;//设置dialog 在布局中的位置
+            attr.gravity = Gravity.TOP;
             window.setAttributes(attr);
         }
     }

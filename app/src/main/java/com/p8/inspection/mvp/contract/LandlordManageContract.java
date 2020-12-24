@@ -22,6 +22,12 @@ public interface LandlordManageContract {
          */
         void onRequestLandlordSuccess(Landlords landlords);
 
+        /**
+         * 添加地主成功
+         * @param message 服务返回消息
+         */
+        void onAddLandlordSuccess(String message);
+
     }
 
     interface Presenter extends BaseContract.IBasePresenter<LandlordManageContract.View> {

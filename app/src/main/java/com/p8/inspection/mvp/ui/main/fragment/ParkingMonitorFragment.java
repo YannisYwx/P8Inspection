@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.orhanobut.logger.Logger;
 import com.p8.inspection.R;
 import com.p8.inspection.base.DaggerMvpFragment;
@@ -61,7 +62,7 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
 
     BerthAdapter mAdapter;
 
-    SmartRefreshLayout refreshLayout;
+    SmartRefreshLayout mSmartRefreshLayout;
 
     RecyclerView rvBerth;
 
@@ -86,7 +87,7 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
             vCarType = $(R.id.iv_arrow_car);
             tvLocation = $(R.id.tv_location);
             tvCarType = $(R.id.tv_car_type);
-            refreshLayout = $(R.id.srl_berth);
+            mSmartRefreshLayout = $(R.id.srl_berth);
             rvBerth = $(R.id.rv_berth);
             setStatusBarLightMode(false);
         } catch (Exception e) {
@@ -121,12 +122,12 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
         rvBerth.addItemDecoration(new CarItemDecoration(2));
         rvBerth.setAdapter(mAdapter);
 
-        refreshLayout.setOnRefreshListener(this);
-        refreshLayout.setOnLoadMoreListener(this);
-        refreshLayout.setEnableClipFooterWhenFixedBehind(false);
-        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);
-        refreshLayout.setEnableLoadMore(false);
-        refreshLayout.setEnableRefresh(true);
+        mSmartRefreshLayout.setOnRefreshListener(this);
+        mSmartRefreshLayout.setOnLoadMoreListener(this);
+        mSmartRefreshLayout.setEnableClipFooterWhenFixedBehind(false);
+        mSmartRefreshLayout.setEnableLoadMoreWhenContentNotFull(false);
+        mSmartRefreshLayout.setEnableLoadMore(false);
+        mSmartRefreshLayout.setEnableRefresh(true);
     }
 
     @Override
@@ -136,6 +137,7 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
         mSelectCityView.setOnSelectListener(this);
         tvLocation.setOnClickListener(this);
         tvCarType.setOnClickListener(this);
+        mAdapter.setOnItemClickListener((adapter, view, position) -> start(DeviceDetailFragment.newInstance()));
     }
 
     @Override
@@ -186,24 +188,23 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
             mAdapter.notifyItemRangeChanged(startPosition, mMachines.size());
             if (machines.getList().size() < PAGE_SIZE) {
                 mAdapter.loadMoreEnd();
-                refreshLayout.setNoMoreData(true);
+                mSmartRefreshLayout.setNoMoreData(true);
             }
         } else {
             mMachines.clear();
             mMachines.addAll(machines.getList());
             mAdapter.notifyDataSetChanged();
-            refreshLayout.setEnableLoadMore(machines.getTotal() >= PAGE_SIZE);
+            mSmartRefreshLayout.setEnableLoadMore(machines.getTotal() >= PAGE_SIZE);
             mAdapter.setEmptyView(R.layout.pager_empty, rvBerth);
         }
 
-        refreshLayout.setNoMoreData(machines.getTotal() == mMachines.size());
+        mSmartRefreshLayout.setNoMoreData(machines.getTotal() == mMachines.size());
 
-
-        if (refreshLayout.isRefreshing()) {
-            refreshLayout.finishRefresh();
+        if (mSmartRefreshLayout.isRefreshing()) {
+            mSmartRefreshLayout.finishRefresh();
         }
-        if (refreshLayout.isLoading()) {
-            refreshLayout.finishLoadMore();
+        if (mSmartRefreshLayout.isLoading()) {
+            mSmartRefreshLayout.finishLoadMore();
         }
     }
 
@@ -226,9 +227,6 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-//        if(mMachines.size() == 11) {
-//            mAdapter.loadMoreEnd();
-//        }
         currentPage++;
         requestMachines(address, selectCarType, currentPage);
 
@@ -264,7 +262,6 @@ public class ParkingMonitorFragment extends DaggerMvpFragment<MonitorPresenter, 
 
     @Override
     public void requestStreet(String province, String city, String area) {
-        Logger.e("requestStreet---------------------------------------requestStreet");
         String address = province + city + area;
         Logger.e("查询街道 ：address = " + address);
         presenter.getStreets(address);

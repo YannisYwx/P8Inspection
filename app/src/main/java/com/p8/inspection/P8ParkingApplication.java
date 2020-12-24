@@ -52,7 +52,7 @@ public class P8ParkingApplication extends Application {
         AliOssManager.getInstance().init(this);
         //Fragmentation初始化
         Fragmentation.builder() // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
-                .stackViewMode(Fragmentation.SHAKE)
+                .stackViewMode(Fragmentation.NONE)
                 // 实际场景建议.debug(BuildConfig.DEBUG)
                 .debug(true)
                 .install();

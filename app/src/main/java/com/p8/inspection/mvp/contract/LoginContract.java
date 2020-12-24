@@ -30,11 +30,10 @@ public interface LoginContract {
         /**
          * 通用登录
          *
-         * @param userType
          * @param userName
          * @param password
          */
-        void doLoginByLandlord(@Constants.UserType int userType, String userName, String password);
+        void doLoginByLandlord(String userName, String password);
 
         /**
          * 大主登录

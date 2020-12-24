@@ -31,15 +31,15 @@ public interface Constants {
         /**
          * 中主
          */
-        int MEDIUM = 1;
+        int MEDIUM = 5;
         /**
          * 小主
          */
-        int SMALL = 2;
+        int SMALL = 3;
         /**
          * 地主
          */
-        int LAND = 3;
+        int LAND = 1;
         /**
          * 台主
          */
@@ -47,7 +47,7 @@ public interface Constants {
         /**
          * 场主
          */
-        int PLACE = 5;
+        int PLACE = 2;
         /**
          * 自主
          */
@@ -88,6 +88,11 @@ public interface Constants {
          * 订单详情
          */
         String ORDER_INFO = "_KEY_ORDER_INFO";
+
+        /**
+         * 二维码扫描结果
+         */
+        String SCAN_QE_CODE_RESULT = "_SCAN_QE_CODE_RESULT";
     }
 
     String SP_NAME = "P8_APP";

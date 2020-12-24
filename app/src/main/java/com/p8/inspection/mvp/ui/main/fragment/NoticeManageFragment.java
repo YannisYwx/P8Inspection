@@ -36,8 +36,7 @@ import java.util.List;
  * date : 2020/11/11 10:02
  * description :公告管理
  */
-public class NoticeManageFragment extends DaggerMvpFragment<NoticeManagerPresenter, NoticeManageContract.View> implements NoticeManageContract.View,
-        BaseQuickAdapter.OnItemChildClickListener {
+public class NoticeManageFragment extends DaggerMvpFragment<NoticeManagerPresenter, NoticeManageContract.View> implements NoticeManageContract.View{
 
     public static NoticeManageFragment newInstance() {
         return new NoticeManageFragment();
@@ -119,7 +118,11 @@ public class NoticeManageFragment extends DaggerMvpFragment<NoticeManagerPresent
 
     @Override
     public void setListener() {
-        mAdapter.setOnItemChildClickListener(this);
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId() == R.id.tv_more) {
+                ToastUtils.showShort("没有更多 - -！");
+            }
+        });
     }
 
     @Override
@@ -132,12 +135,6 @@ public class NoticeManageFragment extends DaggerMvpFragment<NoticeManagerPresent
         return R.string.title_notice_manage;
     }
 
-    @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        if (view.getId() == R.id.tv_more) {
-            ToastUtils.showShort("没有更多 - -！");
-        }
-    }
 
 }
 

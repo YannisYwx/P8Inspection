@@ -1,6 +1,7 @@
 package com.p8.inspection.mvp.ui.entry.fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,8 +72,10 @@ public class LoginFragment extends DaggerMvpFragment<LoginPresenter, LoginContra
         if (bundle != null) {
             userType = bundle.getInt(USER_TYPE);
         }
-        etAccount.setText("15919835035");
-        etPassword.setText("456789");
+        etAccount.setText(userType == Constants.UserType.LARGE ? "15919835035" : "wzh");
+        etPassword.setText(userType == Constants.UserType.LARGE ? "456789" : "123456");
+        etAccount.setText("");
+        etPassword.setText("");
     }
 
     @Override
@@ -88,6 +91,14 @@ public class LoginFragment extends DaggerMvpFragment<LoginPresenter, LoginContra
             case R.id.btn_login:
                 String loginName = etAccount.getText().toString();
                 String password = etPassword.getText().toString();
+                if(TextUtils.isEmpty(loginName)) {
+                    showMsg("账号不能为空！");
+                    return;
+                }
+                if(TextUtils.isEmpty(password)) {
+                    showMsg("密码不能为空！");
+                    return;
+                }
                 login(loginName, password);
                 break;
             default:
@@ -100,9 +111,11 @@ public class LoginFragment extends DaggerMvpFragment<LoginPresenter, LoginContra
             case Constants.UserType.BUILD:
                 break;
             case Constants.UserType.LAND:
-                presenter.doLoginByLandlord(userType, loginName, password);
+                //地主登录
+                presenter.doLoginByLandlord(loginName, password);
                 break;
             case Constants.UserType.LARGE:
+                //大主登录
                 presenter.loginByLargeMaster(loginName, password);
                 break;
             case Constants.UserType.MEDIUM:
@@ -138,6 +151,7 @@ public class LoginFragment extends DaggerMvpFragment<LoginPresenter, LoginContra
     public void onLoginSuccess() {
         showMsg("登录成功");
         MainActivity.start(mContext);
+        _mActivity.finish();
     }
 
     @Override

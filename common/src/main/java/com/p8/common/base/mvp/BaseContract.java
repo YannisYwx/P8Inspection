@@ -6,7 +6,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/7 14:55
  * description :
  */
@@ -27,6 +27,8 @@ public interface BaseContract {
 
         /**
          * token失效
+         *
+         * @param msg
          */
         void onTokenInvalid(String msg);
 

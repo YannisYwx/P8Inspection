@@ -5,51 +5,66 @@
     android:layout_height="match_parent">
 
     <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_modify_password"
+        android:id="@+id/civ_car_owner_bug"
         android:layout_width="match_parent"
         android:layout_height="144pt"
         android:background="@drawable/selector_item"
         app:arrow="@mipmap/icon_grey_arrow"
         app:dividerColor="@color/lightGray"
-        app:dividerPaddingLeft="50pt"
-        app:dividerPaddingRight="50pt"
-        app:hasBottomLine="true"
-        app:label="修改密码"
+        app:hasBottomLine="false"
+        app:icon="@mipmap/icon_car_owner"
+        app:label="车主发起故障工单"
         app:labelColor="@color/text_black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_app_update"
+        android:id="@+id/civ_land_owner_bug"
         android:layout_width="match_parent"
         android:layout_height="144pt"
+        android:layout_marginTop="30pt"
         android:background="@drawable/selector_item"
         app:arrow="@mipmap/icon_grey_arrow"
         app:dividerColor="@color/lightGray"
-        app:dividerPaddingLeft="50pt"
-        app:dividerPaddingRight="50pt"
-        app:hasBottomLine="true"
-        app:label="App更新"
+        app:hasBottomLine="false"
+        app:icon="@mipmap/icon_user"
+        app:label="地主发起故障工单"
         app:labelColor="@color/text_black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civ_modify_password" />
+        app:layout_constraintTop_toBottomOf="@id/civ_car_owner_bug" />
 
     <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_clear_cache"
+        android:id="@+id/civ_system_owner_bug"
         android:layout_width="match_parent"
         android:layout_height="144pt"
+        android:layout_marginTop="30pt"
         android:background="@drawable/selector_item"
         app:arrow="@mipmap/icon_grey_arrow"
         app:dividerColor="@color/lightGray"
-        app:dividerHeight="5pt"
-        app:label="清除缓存"
+        app:hasBottomLine="false"
+        app:icon="@mipmap/icon_system_bug"
+        app:label="系统发起故障工单"
         app:labelColor="@color/text_black"
-        app:textRightColor="@color/orangeRed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civ_app_update" />
+        app:layout_constraintTop_toBottomOf="@id/civ_land_owner_bug" />
 
+    <com.p8.common.widget.CommonItemView
+        android:id="@+id/civ_other_bug"
+        android:layout_width="match_parent"
+        android:layout_height="144pt"
+        android:layout_marginTop="30pt"
+        android:background="@drawable/selector_item"
+        app:arrow="@mipmap/icon_grey_arrow"
+        app:dividerColor="@color/lightGray"
+        app:hasBottomLine="false"
+        app:icon="@mipmap/icon_other"
+        app:label="其他"
+        app:labelColor="@color/text_black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/civ_system_owner_bug" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

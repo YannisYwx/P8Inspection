@@ -5,6 +5,7 @@ import com.p8.common.http.HttpResponse;
 import com.p8.common.rx.RxUtils;
 import com.p8.inspection.data.DataManager;
 import com.p8.inspection.data.bean.Agency;
+import com.p8.inspection.data.bean.Inspection;
 import com.p8.inspection.data.net.observer.P8HttpSubscriber;
 import com.p8.inspection.mvp.contract.MainContract;
 
@@ -31,6 +32,19 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
             protected void onSuccess(HttpResponse<Agency> agencyHttpResponse) {
                 if (agencyHttpResponse.getData() != null) {
                     mView.onRequestAgencyInfoSuccess(agencyHttpResponse.getData());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void requestInspectionInfo() {
+        mDataManager.getInspectInfo().compose(RxUtils.getDefaultOSchedulers())
+                .as(bindLifecycle()).subscribe(new P8HttpSubscriber<HttpResponse<Inspection>>(mView) {
+            @Override
+            protected void onSuccess(HttpResponse<Inspection> inspectionHttpResponse) {
+                if (inspectionHttpResponse.getData() != null) {
+                    mView.onRequestInspectionSuccess(inspectionHttpResponse.getData());
                 }
             }
         });

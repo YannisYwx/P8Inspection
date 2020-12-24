@@ -29,14 +29,14 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
     }
 
     @Override
-    public void doLoginByLandlord(int userType, String userName, String password) {
+    public void doLoginByLandlord(String userName, String password) {
         mDataManager.doLoginByLandlord(userName, password)
                 .compose(RxUtils.getDefaultOSchedulers())
                 .as(bindLifecycle()).subscribe(new P8HttpSubscriber<HttpResponse<LoginInfo>>(mView) {
             @Override
             protected void onSuccess(HttpResponse<LoginInfo> loginInfoHttpResponse) {
                 LoginInfo loginInfo = loginInfoHttpResponse.getData();
-                loginInfo.userType = userType;
+                loginInfo.userType = Constants.UserType.LAND;
                 loginInfo.password = password;
                 Logger.e(loginInfo.toString());
                 CacheDoubleUtils.getInstance().put(Constants.Key.LOGIN_INFO, loginInfo);

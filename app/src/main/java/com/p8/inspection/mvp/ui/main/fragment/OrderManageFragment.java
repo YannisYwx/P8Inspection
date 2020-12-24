@@ -30,8 +30,7 @@ import java.util.List;
  * date : 2020/11/11 10:02
  * description :订单管理
  */
-public class OrderManageFragment extends DaggerMvpFragment<OrderManagePresenter, OrderManageContract.View> implements OrderManageContract.View,
-        BaseQuickAdapter.OnItemClickListener {
+public class OrderManageFragment extends DaggerMvpFragment<OrderManagePresenter, OrderManageContract.View> implements OrderManageContract.View{
 
     public static OrderManageFragment newInstance() {
         return new OrderManageFragment();
@@ -82,7 +81,7 @@ public class OrderManageFragment extends DaggerMvpFragment<OrderManagePresenter,
 
     @Override
     public void setListener() {
-        mAdapter.setOnItemClickListener(this);
+        mAdapter.setOnItemClickListener((adapter, view, position) -> start(OrderInfoFragment.newInstance(mAdapter.getData().get(position))));
         mSmartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             currentPage++;
             presenter.requestOrderList(currentPage, Constants.PAGE_SIZE);
@@ -101,11 +100,6 @@ public class OrderManageFragment extends DaggerMvpFragment<OrderManagePresenter,
     @Override
     public int setTitle() {
         return R.string.title_order_manage;
-    }
-
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        start(OrderInfoFragment.newInstance(mAdapter.getData().get(position)));
     }
 
     @Override

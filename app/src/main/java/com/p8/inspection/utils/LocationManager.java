@@ -1,6 +1,7 @@
 package com.p8.inspection.utils;
 
 import android.content.Context;
+import android.location.LocationListener;
 import android.text.TextUtils;
 
 import com.amap.api.location.AMapLocation;
@@ -11,6 +12,8 @@ import com.amap.api.location.AMapLocationQualityReport;
 import com.orhanobut.logger.Logger;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -94,10 +97,16 @@ public class LocationManager {
         void onLocationError(int errorCode, String errorInfo);
     }
 
-    private OnLocationListener mListener;
+    private List<OnLocationListener> mListeners = new ArrayList<>();
 
-    public void setLocationListener(OnLocationListener locationListener) {
-        mListener = locationListener;
+    public void registerLocationListener(OnLocationListener locationListener) {
+        if (!mListeners.contains(locationListener)) {
+            mListeners.add(locationListener);
+        }
+    }
+
+    public void unregisterLocationListener(OnLocationListener locationListener) {
+        mListeners.remove(locationListener);
     }
 
     /**
@@ -134,18 +143,19 @@ public class LocationManager {
                     location.getStreet();
                     //定位完成的时间
                     sb.append("定位时间: ").append(formatUTC(location.getTime(), "yyyy-MM-dd HH:mm:ss")).append("\n");
-                    if (mListener != null) {
-                        mListener.onLocationSuccess(location, sb.toString());
+                    for (OnLocationListener locationListener : mListeners) {
+                        locationListener.onLocationSuccess(location, sb.toString());
                     }
+
                 } else {
                     //定位失败
                     sb.append("定位失败" + "\n");
                     sb.append("错误码:").append(location.getErrorCode()).append("\n");
                     sb.append("错误信息:").append(location.getErrorInfo()).append("\n");
                     sb.append("错误描述:").append(location.getLocationDetail()).append("\n");
-                    if (mListener != null) {
-                        mListener.onLocationError(location.getErrorCode(), location.getErrorInfo());
-                    }
+                for (OnLocationListener locationListener : mListeners) {
+                    locationListener.onLocationError(location.getErrorCode(), location.getErrorInfo());
+                }
                 }
                 sb.append("***定位质量报告***").append("\n");
                 sb.append("* WIFI开关：").append(location.getLocationQualityReport().isWifiAble() ? "开启" : "关闭").append("\n");

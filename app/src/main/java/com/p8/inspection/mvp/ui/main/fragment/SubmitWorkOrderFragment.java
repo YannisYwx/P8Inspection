@@ -50,7 +50,7 @@ import java.util.List;
 /**
  * @author : WX.Y
  * date : 2020/11/5 11:27
- * description :
+ * description : 提交工单
  */
 public class SubmitWorkOrderFragment extends DaggerMvpFragment<SubmitOrderPresenter, SubmitOrderContract.View>
         implements SubmitOrderContract.View, GridImageAdapter.OnAddPicClickListener {

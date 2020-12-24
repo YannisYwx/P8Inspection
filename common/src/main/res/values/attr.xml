@@ -51,9 +51,11 @@
         <attr name="label" format="string" />
         <attr name="arrow" format="reference" />
         <attr name="hasBottomLine" format="boolean" />
+        <attr name="hasArrow" format="boolean" />
         <attr name="dividerPaddingLeft" format="dimension" />
         <attr name="dividerPaddingRight" format="dimension" />
         <attr name="labelColor" format="color" />
+        <attr name="textRightColor" format="color" />
         <attr name="dividerColor" format="color" />
         <attr name="dividerHeight" format="dimension" />
     </declare-styleable>

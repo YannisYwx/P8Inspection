@@ -17,7 +17,7 @@ import com.p8.inspection.mvp.ui.main.fragment.HistoryFragment;
 import com.p8.inspection.mvp.ui.main.fragment.DeviceDebugFragment;
 import com.p8.inspection.mvp.ui.main.fragment.ResetPasswordFragment;
 import com.p8.inspection.mvp.ui.main.fragment.SearchLordFragment;
-import com.p8.inspection.mvp.ui.main.fragment.WorkOrderDisposeFragment;
+import com.p8.inspection.mvp.ui.main.fragment.WorkOrderFragment;
 
 import org.jetbrains.annotations.TestOnly;
 
@@ -76,7 +76,7 @@ public interface FragmentComponent {
 
     void inject(OrderManageFragment orderManageFragment);
 
-    void inject(WorkOrderDisposeFragment workOrderDisposeFragment);
+    void inject(WorkOrderFragment workOrderFragment);
 
     @TestOnly
     void inject(TestFragment testFragment);

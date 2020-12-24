@@ -3,68 +3,101 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_car_owner_bug"
+    <View
+        android:id="@+id/v_top_bg"
         android:layout_width="match_parent"
-        android:layout_height="144pt"
-        android:background="@drawable/selector_item"
-        app:arrow="@mipmap/icon_grey_arrow"
-        app:dividerColor="@color/lightGray"
-        app:hasBottomLine="false"
-        app:icon="@mipmap/icon_car_owner"
-        app:label="车主发起故障工单"
-        app:labelColor="@color/text_black"
+        android:layout_height="190pt"
+        android:background="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_land_owner_bug"
-        android:layout_width="match_parent"
-        android:layout_height="144pt"
-        android:layout_marginTop="30pt"
-        android:background="@drawable/selector_item"
-        app:arrow="@mipmap/icon_grey_arrow"
-        app:dividerColor="@color/lightGray"
-        app:hasBottomLine="false"
-        app:icon="@mipmap/icon_user"
-        app:label="地主发起故障工单"
-        app:labelColor="@color/text_black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civ_car_owner_bug" />
+    <ImageView
+        android:id="@+id/ivWaitingProcess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20pt"
+        android:src="@mipmap/icon_order_process"
+        app:layout_constraintBottom_toTopOf="@id/tvWaitingProcess"
+        app:layout_constraintLeft_toLeftOf="@id/tvWaitingProcess"
+        app:layout_constraintRight_toRightOf="@id/tvWaitingProcess" />
 
-    <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_system_owner_bug"
-        android:layout_width="match_parent"
-        android:layout_height="144pt"
-        android:layout_marginTop="30pt"
-        android:background="@drawable/selector_item"
-        app:arrow="@mipmap/icon_grey_arrow"
-        app:dividerColor="@color/lightGray"
-        app:hasBottomLine="false"
-        app:icon="@mipmap/icon_system_bug"
-        app:label="系统发起故障工单"
-        app:labelColor="@color/text_black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civ_land_owner_bug" />
+    <ImageView
+        android:id="@+id/ivToTrack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20pt"
+        android:src="@mipmap/icon_order_track"
+        app:layout_constraintBottom_toTopOf="@id/tvToTrack"
+        app:layout_constraintLeft_toLeftOf="@id/tvToTrack"
+        app:layout_constraintRight_toRightOf="@id/tvToTrack" />
 
-    <com.p8.common.widget.CommonItemView
-        android:id="@+id/civ_other_bug"
-        android:layout_width="match_parent"
-        android:layout_height="144pt"
-        android:layout_marginTop="30pt"
-        android:background="@drawable/selector_item"
-        app:arrow="@mipmap/icon_grey_arrow"
-        app:dividerColor="@color/lightGray"
-        app:hasBottomLine="false"
-        app:icon="@mipmap/icon_other"
-        app:label="其他"
-        app:labelColor="@color/text_black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civ_system_owner_bug" />
+    <ImageView
+        android:id="@+id/ivProcessed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20pt"
+        android:src="@mipmap/icon_processed"
+        app:layout_constraintBottom_toTopOf="@id/tvProcessed"
+        app:layout_constraintLeft_toLeftOf="@id/tvProcessed"
+        app:layout_constraintRight_toRightOf="@id/tvProcessed" />
+
+    <TextView
+        android:id="@+id/tvToTrack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="待跟踪工单"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_mini_size"
+        app:layout_constraintBottom_toBottomOf="@id/tvWaitingProcess"
+        app:layout_constraintLeft_toLeftOf="@id/v_top_bg"
+        app:layout_constraintRight_toRightOf="@id/v_top_bg"
+        app:layout_constraintTop_toTopOf="@id/tvWaitingProcess" />
+
+    <TextView
+        android:id="@+id/tvWaitingProcess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50pt"
+        android:layout_marginBottom="24pt"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="待处理工单"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_mini_size"
+        app:layout_constraintBottom_toBottomOf="@id/v_top_bg"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvProcessed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50pt"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="已处理工单"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_mini_size"
+        app:layout_constraintBottom_toBottomOf="@id/tvWaitingProcess"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintRight_toRightOf="@id/v_top_bg"
+        app:layout_constraintTop_toTopOf="@id/tvWaitingProcess" />
+
+    <TextView
+        android:id="@+id/tv_p_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/shape_red_dot"
+        android:gravity="center"
+        android:text="3"
+        android:textColor="@color/white"
+        android:textSize="28pt"
+        android:layout_marginTop="28pt"
+        app:layout_constraintTop_toTopOf="@id/v_top_bg"
+        app:layout_constraintLeft_toRightOf="@id/ivWaitingProcess" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

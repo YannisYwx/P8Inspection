@@ -1,9 +1,11 @@
 package com.p8.common.dialog;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,16 +21,17 @@ import androidx.fragment.app.FragmentManager;
 
 import com.p8.common.R;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 
 /**
- * author : WX.Y
+ * @author : WX.Y
  * date : 2020/9/18 15:45
  * description :
  */
-public class YDialog extends YBaseDialog implements IDialog{
+public class YDialog extends YBaseDialog implements IDialog , Application.ActivityLifecycleCallbacks {
 
-    private Context context;
+    private WeakReference<Context> context;
     private YDialogController controller;
     private IDialog.OnBuildListener buildListener;
     private IDialog.OnDismissListener dismissListener;
@@ -45,15 +48,15 @@ public class YDialog extends YBaseDialog implements IDialog{
      * @param activity Activity
      */
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
-        this.context = activity;
+        this.context = new WeakReference<>(activity);
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        this.context = context;
+        this.context = new WeakReference<>(context);
     }
 
     @Override
@@ -103,7 +106,7 @@ public class YDialog extends YBaseDialog implements IDialog{
 
     @Override
     public Context getContext() {
-        return context;
+        return context.get();
     }
 
     @Override
@@ -155,7 +158,9 @@ public class YDialog extends YBaseDialog implements IDialog{
         //防止横竖屏切换时 getFragmentManager置空引起的问题：
         //Attempt to invoke virtual method 'android.app.FragmentTransaction
         //android.app.FragmentManager.beginTransaction()' on a null object reference
-        if (getFragmentManager() == null) return;
+        if (getFragmentManager() == null) {
+            return;
+        }
         super.dismissAllowingStateLoss();
     }
 
@@ -169,6 +174,41 @@ public class YDialog extends YBaseDialog implements IDialog{
             controller = null;
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void onActivityStarted(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityResumed(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityPaused(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityStopped(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+
+    }
+
+    @Override
+    public void onActivityDestroyed(@NonNull Activity activity) {
+
     }
 
     public static class Builder {
@@ -185,7 +225,7 @@ public class YDialog extends YBaseDialog implements IDialog{
             }
             params = new YDialogController.SYParams();
             params.fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-            params.context = context;
+            params.context = new WeakReference<>(context);
         }
 
         /**
@@ -217,7 +257,7 @@ public class YDialog extends YBaseDialog implements IDialog{
          * @return Builder
          */
         public Builder setScreenWidthP(float percentage) {
-            params.dialogWidth = (int) (getScreenWidth((Activity) params.context) * percentage);
+            params.dialogWidth = (int) (getScreenWidth((Activity) params.context.get()) * percentage);
             return this;
         }
 
@@ -228,7 +268,7 @@ public class YDialog extends YBaseDialog implements IDialog{
          * @return Builder
          */
         public Builder setScreenHeightP(float percentage) {
-            params.dialogHeight = (int) (getScreenHeight((Activity) params.context) * percentage);
+            params.dialogHeight = (int) (getScreenHeight((Activity) params.context.get()) * percentage);
             return this;
         }
 
@@ -420,15 +460,19 @@ public class YDialog extends YBaseDialog implements IDialog{
             }
             YDialog dialog = create();
             //判空
-            if (params.context == null) return dialog;
-            if (params.context instanceof Activity) {
-                Activity activity = (Activity) params.context;
+            if (params.context == null) {
+                return dialog;
+            }
+            if (params.context.get() instanceof Activity) {
+                Activity activity = (Activity) params.context.get();
                 //如果Activity正在关闭或者已经销毁 直接返回
                 boolean isRefuse = Build.VERSION.SDK_INT >= 17
                         ? activity.isFinishing() || activity.isDestroyed()
                         : activity.isFinishing();
 
-                if (isRefuse) return dialog;
+                if (isRefuse) {
+                    return dialog;
+                }
             }
             removePreDialog();
             dialog.showAllowingLoss(params.fragmentManager, FTag);
@@ -444,7 +488,7 @@ public class YDialog extends YBaseDialog implements IDialog{
             params.gravity = Gravity.CENTER;
             params.layoutRes = R.layout.view_y_dialog_default;
             params.dimAmount = 0.5f;
-            params.dialogWidth = (int) (getScreenWidth((Activity) params.context) * 0.85f);
+            params.dialogWidth = (int) (getScreenWidth((Activity) params.context.get()) * 0.85f);
             params.dialogHeight = WindowManager.LayoutParams.WRAP_CONTENT;
         }
 

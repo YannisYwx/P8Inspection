@@ -4,6 +4,7 @@ import com.p8.common.http.HttpResponse;
 import com.p8.inspection.data.bean.Agency;
 import com.p8.inspection.data.bean.Areas;
 import com.p8.inspection.data.bean.Cities;
+import com.p8.inspection.data.bean.Inspection;
 import com.p8.inspection.data.bean.Landlord;
 import com.p8.inspection.data.bean.Landlords;
 import com.p8.inspection.data.bean.LoginInfo;
@@ -71,7 +72,6 @@ public interface P8Api {
     @POST("/app_agency/login.html")
     Observable<HttpResponse<LoginInfo>> doLoginByLargeMaster(@Query("loginName") String loginName, @Query("password") String password);
 
-
     /**
      * 重置密码
      *
@@ -82,7 +82,6 @@ public interface P8Api {
      */
     @POST
     Observable<HttpResponse<String>> resetPassword(@Url String url, @Query("newPassword") String newPassword, @Query("oldPassword") String oldPassword);
-
 
     /**
      * 获取大主信息
@@ -112,8 +111,20 @@ public interface P8Api {
     @GET("/merchant/order/query_list.html")
     Observable<HttpResponse<Orders>> getOrders(@Query("currentPage") int currentPage, @Query("pageSize") int pageSize);
 
+    /**
+     * 添加地主
+     *
+     * @param phone    手机号码
+     * @param realName 真实姓名
+     * @return
+     */
+    @POST("/app_agency/inspect/add.html")
+    Observable<HttpResponse<String>> addLandlord(@Query("phone") String phone, @Query("realName") String realName);
 
     /*=========================== 大主 =========================== End*/
+
+
+    /*=========================== 地主 =========================== Start*/
 
     /**
      * 登录
@@ -125,6 +136,14 @@ public interface P8Api {
     @POST("/app_inspect/login.html")
     Observable<HttpResponse<LoginInfo>> doLoginByLandlord(@Query("loginName") String loginName, @Query("password") String password);
 
+
+    /**
+     * 获取地主信息
+     *
+     * @return 地主(巡检员)信息
+     */
+    @GET("/app_inspect/info.html")
+    Observable<HttpResponse<Inspection>> getInspectInfo();
 
     /**
      * 获取验证码

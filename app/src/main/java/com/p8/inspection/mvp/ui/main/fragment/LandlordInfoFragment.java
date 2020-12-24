@@ -78,6 +78,15 @@ public class LandlordInfoFragment extends DaggerMvpFragment<LandlordManagePresen
     }
 
     @Override
+    public void onTitleBarRightClick() {
+        super.onTitleBarRightClick();
+        Landlord landlord = new Landlord();
+        landlord.setPhone(etPhoneNumber.getText().toString());
+        landlord.setRealName(etName.getText().toString());
+        presenter.addLandlord(landlord);
+    }
+
+    @Override
     public int setLayoutId() {
         return R.layout.fragment_landlord_info;
     }
@@ -89,6 +98,11 @@ public class LandlordInfoFragment extends DaggerMvpFragment<LandlordManagePresen
 
     @Override
     public void onRequestLandlordSuccess(Landlords landlords) {
+
+    }
+
+    @Override
+    public void onAddLandlordSuccess(String message) {
 
     }
 }

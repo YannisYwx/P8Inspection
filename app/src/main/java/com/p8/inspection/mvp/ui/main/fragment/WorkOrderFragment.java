@@ -5,21 +5,29 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.p8.common.base.BaseStatusPagerFragment;
 import com.p8.inspection.R;
+import com.p8.inspection.base.DaggerMvpFragment;
+import com.p8.inspection.di.component.FragmentComponent;
+import com.p8.inspection.mvp.contract.SubmitOrderContract;
+import com.p8.inspection.mvp.presenter.SubmitOrderPresenter;
 
 /**
  * @author : WX.Y
  * date : 2020/11/6 11:20
  * description :工单处理
  */
-public class WorkOrderDisposeFragment extends BaseStatusPagerFragment {
+public class WorkOrderFragment extends DaggerMvpFragment<SubmitOrderPresenter, SubmitOrderContract.View> implements SubmitOrderContract.View {
 
-    public static WorkOrderDisposeFragment newInstance() {
+    public static WorkOrderFragment newInstance() {
         Bundle args = new Bundle();
-        WorkOrderDisposeFragment fragment = new WorkOrderDisposeFragment();
+        WorkOrderFragment fragment = new WorkOrderFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void injectThis(FragmentComponent fragmentComponent) {
+        fragmentComponent.inject(this);
     }
 
     @Override
@@ -47,13 +55,12 @@ public class WorkOrderDisposeFragment extends BaseStatusPagerFragment {
 
     @Override
     public void setListener() {
-//        bindClickListener(R.id.civ_car_owner_bug, R.id.civ_land_owner_bug, R.id.civ_system_owner_bug, R.id.civ_other_bug);
+        bindClickListener(R.id.civ_car_owner_bug, R.id.civ_land_owner_bug, R.id.civ_system_owner_bug, R.id.civ_other_bug);
     }
-
 
     @Override
     public int setLayoutId() {
-        return R.layout.fragment_work_order_dispose;
+        return R.layout.fragment_work_order;
     }
 
     @Override

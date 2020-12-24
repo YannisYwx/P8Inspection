@@ -99,7 +99,7 @@ public class TestFragment extends DaggerMvpFragment<LoginPresenter, LoginContrac
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.btn_login) {
-            presenter.doLoginByLandlord(Constants.UserType.LAND,"wzh", "123456");
+            presenter.doLoginByLandlord("wzh", "123456");
         }
 
         if (v.getId() == R.id.btn_province) {

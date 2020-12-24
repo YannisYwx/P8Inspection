@@ -104,7 +104,7 @@ public abstract class BaseStatusPagerFragment extends SupportFragment implements
      */
     private int getContentViewHeight() {
         return ScreenUtils.getScreenHeight()
-                - BarUtils.getStatusBarHeight()
+                - (hasTitleBar() ? 1 : 0) * BarUtils.getStatusBarHeight()
                 - (hasTitleBar() ? 1 : 0) * AdaptScreenUtils.pt2Px(144)
                 - (!BarUtils.isNavBarVisible(_mActivity) ? 0 : BarUtils.getNavBarHeight());
     }

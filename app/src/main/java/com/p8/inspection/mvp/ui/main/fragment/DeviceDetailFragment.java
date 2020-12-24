@@ -11,13 +11,13 @@ import com.p8.inspection.R;
 /**
  * @author : WX.Y
  * date : 2020/11/6 11:20
- * description :工单处理
+ * description :设备详情
  */
-public class WorkOrderDisposeFragment extends BaseStatusPagerFragment {
+public class DeviceDetailFragment extends BaseStatusPagerFragment {
 
-    public static WorkOrderDisposeFragment newInstance() {
+    public static DeviceDetailFragment newInstance() {
         Bundle args = new Bundle();
-        WorkOrderDisposeFragment fragment = new WorkOrderDisposeFragment();
+        DeviceDetailFragment fragment = new DeviceDetailFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,18 +47,17 @@ public class WorkOrderDisposeFragment extends BaseStatusPagerFragment {
 
     @Override
     public void setListener() {
-//        bindClickListener(R.id.civ_car_owner_bug, R.id.civ_land_owner_bug, R.id.civ_system_owner_bug, R.id.civ_other_bug);
+        bindClickListener(R.id.civ_car_owner_bug, R.id.civ_land_owner_bug, R.id.civ_system_owner_bug, R.id.civ_other_bug);
     }
-
 
     @Override
     public int setLayoutId() {
-        return R.layout.fragment_work_order_dispose;
+        return R.layout.fragment_device_detail;
     }
 
     @Override
     public int setTitle() {
-        return R.string.title_work_order_dispose;
+        return R.string.title_parking_detail;
     }
 }
 

@@ -4,7 +4,7 @@ import com.p8.common.http.HttpResponse;
 import com.p8.inspection.data.bean.Agency;
 import com.p8.inspection.data.bean.Areas;
 import com.p8.inspection.data.bean.Cities;
-import com.p8.inspection.data.bean.Landlord;
+import com.p8.inspection.data.bean.Inspection;
 import com.p8.inspection.data.bean.Landlords;
 import com.p8.inspection.data.bean.LoginInfo;
 import com.p8.inspection.data.bean.Machines;
@@ -14,6 +14,8 @@ import com.p8.inspection.data.bean.Streets;
 import com.p8.inspection.data.bean.VCode;
 
 import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -49,6 +51,13 @@ public interface HttpHelper {
     Observable<HttpResponse<Agency>> getAgencyInfo();
 
     /**
+     * 获取地主信息
+     *
+     * @return 地主(巡检员)信息
+     */
+    Observable<HttpResponse<Inspection>> getInspectInfo();
+
+    /**
      * 获取地主信息列表
      *
      * @param currentPage 当前页
@@ -58,13 +67,23 @@ public interface HttpHelper {
     Observable<HttpResponse<Landlords>> getLandlords(int currentPage, int pageSize);
 
     /**
+     * 添加地主
+     *
+     * @param phone    手机号码
+     * @param realName 真实姓名
+     * @return
+     */
+    Observable<HttpResponse<String>> addLandlord(String phone, String realName);
+
+
+    /**
      * 获取订单列表
      *
      * @param currentPage 当前页
      * @param pageSize    一页几条
      * @return
      */
-    Observable<HttpResponse<Orders>> getOrders(int currentPage,int pageSize);
+    Observable<HttpResponse<Orders>> getOrders(int currentPage, int pageSize);
 
     /**
      * 获取验证码

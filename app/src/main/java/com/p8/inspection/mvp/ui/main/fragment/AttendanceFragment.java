@@ -30,20 +30,17 @@ public class AttendanceFragment extends DaggerMvpFragment<AttendancePresenter, A
     public void initView(View view, @Nullable Bundle savedInstanceState) {
         mClockView = $(R.id.cv_clock);
         mTitleBar.setRightImageViewRes(R.mipmap.icon_calendar);
-    }
-
-    @Override
-    public void onSupportVisible() {
-        super.onSupportVisible();
         if (mClockView != null) {
             mClockView.startTimer();
         }
     }
 
     @Override
-    public void onSupportInvisible() {
-        super.onSupportInvisible();
-
+    public void onDestroy() {
+        super.onDestroy();
+        if (mClockView != null) {
+            mClockView.stopTimer();
+        }
     }
 
     @Override

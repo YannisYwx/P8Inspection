@@ -5,10 +5,14 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.p8.common.base.BaseStatusPagerFragment;
+import com.p8.common.utils.DataCleanManager;
+import com.p8.common.widget.CommonItemView;
 import com.p8.inspection.R;
-import com.p8.inspection.data.Constants;
-import com.p8.inspection.data.LocalDataManager;
+import com.p8.inspection.widget.DialogUtils;
+
+import static com.p8.common.utils.DataCleanManager.CACHE_CLEAR;
 
 /**
  * @author : WX.Y
@@ -17,40 +21,27 @@ import com.p8.inspection.data.LocalDataManager;
  */
 public class UserCenterFragment extends BaseStatusPagerFragment {
 
+    CommonItemView civClearCache;
+    String cacheSize = null;
+
     public static UserCenterFragment newInstance() {
         return new UserCenterFragment();
     }
 
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
+        civClearCache = $(R.id.civ_clear_cache);
+    }
 
+    private void initAppCacheView() {
+        cacheSize = DataCleanManager.getTotalCacheSize(this.mContext);
+        civClearCache.setTextRight(DataCleanManager.getTotalCacheSize(this.mContext),
+                cacheSize.equals(CACHE_CLEAR) ? getResources().getColor(R.color.line_gray) : getResources().getColor(R.color.orangeRed));
     }
 
     @Override
     public void initData() {
-        int type = LocalDataManager.getInstance().getUserType();
-        switch (type) {
-            case Constants.UserType.BUILD:
-                break;
-            case Constants.UserType.LAND:
-                break;
-            case Constants.UserType.LARGE:
-                break;
-            case Constants.UserType.MEDIUM:
-                break;
-            case Constants.UserType.ONESELF:
-                break;
-            case Constants.UserType.OTHER:
-                break;
-            case Constants.UserType.PLACE:
-                break;
-            case Constants.UserType.PLATFORM:
-                break;
-            case Constants.UserType.SMALL:
-                break;
-            default:
-                break;
-        }
+        initAppCacheView();
     }
 
     @Override
@@ -65,6 +56,16 @@ public class UserCenterFragment extends BaseStatusPagerFragment {
             case R.id.civ_app_update:
                 break;
             case R.id.civ_clear_cache:
+                if (cacheSize.equals(CACHE_CLEAR)) {
+                    ToastUtils.showShort("缓存已清除");
+                } else {
+                    DialogUtils.showClearCacheDialog(mContext, dialog -> {
+                        DataCleanManager.clearAllCache(mContext);
+                        dialog.dismiss();
+                        ToastUtils.showShort("App缓存已清理");
+                        initAppCacheView();
+                    });
+                }
                 break;
             case R.id.civ_modify_password:
                 start(ResetPasswordFragment.newInstance());

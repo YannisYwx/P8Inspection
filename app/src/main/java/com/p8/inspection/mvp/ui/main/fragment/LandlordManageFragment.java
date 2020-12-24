@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.AdaptScreenUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.p8.common.dialog.IDialog;
 import com.p8.common.widget.swipe.SwipeRevealLayout;
@@ -150,6 +151,11 @@ public class LandlordManageFragment extends DaggerMvpFragment<LandlordManagePres
         if (mSmartRefreshLayout.isLoading()) {
             mSmartRefreshLayout.finishLoadMore();
         }
+    }
+
+    @Override
+    public void onAddLandlordSuccess(String message) {
+        ToastUtils.showShort(message);
     }
 }
 

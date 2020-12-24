@@ -214,7 +214,7 @@ public class YDialogController {
         boolean isCancelableOutside = true;
         boolean cancelable = false;
         View dialogView;
-        Context context;
+        WeakReference<Context> context;
         IDialog.OnClickListener positiveBtnListener;
         IDialog.OnClickListener negativeBtnListener;
         String titleStr;//默认标题

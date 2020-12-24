@@ -2,6 +2,7 @@ package com.p8.inspection.mvp.contract;
 
 import com.p8.common.base.mvp.BaseContract;
 import com.p8.inspection.data.bean.Agency;
+import com.p8.inspection.data.bean.Inspection;
 
 /**
  * @author : WX.Y
@@ -18,6 +19,13 @@ public interface MainContract {
          * @param agency 大主
          */
         void onRequestAgencyInfoSuccess(Agency agency);
+
+        /**
+         * 请求地主信息成功
+         *
+         * @param inspection 地主
+         */
+        void onRequestInspectionSuccess(Inspection inspection);
     }
 
     interface Presenter extends BaseContract.IBasePresenter<MainContract.View> {
@@ -26,6 +34,11 @@ public interface MainContract {
          * 请求获取大主信息
          */
         void requestAgencyInfo();
+
+        /**
+         * 获取地主信息
+         */
+        void requestInspectionInfo();
 
     }
 }

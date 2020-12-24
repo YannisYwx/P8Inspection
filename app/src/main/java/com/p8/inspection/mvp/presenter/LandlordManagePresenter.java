@@ -51,7 +51,15 @@ public class LandlordManagePresenter extends BasePresenter<LandlordManageContrac
 
     @Override
     public void addLandlord(Landlord landlord) {
-
+        mDataManager.addLandlord(landlord.getPhone(), landlord.getRealName())
+                .compose(RxUtils.getDefaultOSchedulers())
+                .as(bindLifecycle())
+                .subscribe(new P8HttpSubscriber<HttpResponse<String>>(mView) {
+                    @Override
+                    protected void onSuccess(HttpResponse<String> stringHttpResponse) {
+                        mView.onAddLandlordSuccess(stringHttpResponse.getData());
+                    }
+                });
     }
 }
 

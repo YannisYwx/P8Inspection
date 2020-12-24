@@ -4,6 +4,7 @@ import com.p8.common.http.HttpResponse;
 import com.p8.inspection.data.bean.Agency;
 import com.p8.inspection.data.bean.Areas;
 import com.p8.inspection.data.bean.Cities;
+import com.p8.inspection.data.bean.Inspection;
 import com.p8.inspection.data.bean.Landlord;
 import com.p8.inspection.data.bean.Landlords;
 import com.p8.inspection.data.bean.LoginInfo;
@@ -90,8 +91,18 @@ public class DataManager implements PreferencesHelper, DBHelper, HttpHelper {
     }
 
     @Override
+    public Observable<HttpResponse<Inspection>> getInspectInfo() {
+        return mHttpHelper.getInspectInfo();
+    }
+
+    @Override
     public Observable<HttpResponse<Landlords>> getLandlords(int currentPage, int pageSize) {
         return mHttpHelper.getLandlords(currentPage, pageSize);
+    }
+
+    @Override
+    public Observable<HttpResponse<String>> addLandlord(String phone, String realName) {
+        return mHttpHelper.addLandlord(phone, realName);
     }
 
     @Override

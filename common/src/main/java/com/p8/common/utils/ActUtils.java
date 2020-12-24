@@ -23,38 +23,38 @@ public class ActUtils {
 
     private static Application.ActivityLifecycleCallbacks mCallbacks = new Application.ActivityLifecycleCallbacks() {
         @Override
-        public void onActivityCreated( Activity activity, Bundle bundle) {
+        public void onActivityCreated(@NonNull Activity activity, Bundle bundle) {
             sActivityList.add(activity);
             setTopActivityWeakRef(activity);
         }
 
         @Override
-        public void onActivityStarted( Activity activity) {
+        public void onActivityStarted(@NonNull Activity activity) {
             setTopActivityWeakRef(activity);
         }
 
         @Override
-        public void onActivityResumed( Activity activity) {
+        public void onActivityResumed(@NonNull Activity activity) {
             setTopActivityWeakRef(activity);
         }
 
         @Override
-        public void onActivityPaused(Activity activity) {
+        public void onActivityPaused(@NonNull Activity activity) {
 
         }
 
         @Override
-        public void onActivityStopped( Activity activity) {
+        public void onActivityStopped(@NonNull Activity activity) {
 
         }
 
         @Override
-        public void onActivitySaveInstanceState( Activity activity,Bundle bundle) {
+        public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle bundle) {
 
         }
 
         @Override
-        public void onActivityDestroyed( Activity activity) {
+        public void onActivityDestroyed(@NonNull Activity activity) {
             sActivityList.remove(activity);
         }
     };
@@ -79,7 +79,9 @@ public class ActUtils {
      * @return Application
      */
     public static Application getApp() {
-        if (sApplication != null) return sApplication;
+        if (sApplication != null) {
+            return sApplication;
+        }
         throw new NullPointerException("u should init first");
     }
 

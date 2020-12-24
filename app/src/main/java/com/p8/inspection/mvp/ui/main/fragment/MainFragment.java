@@ -3,7 +3,6 @@ package com.p8.inspection.mvp.ui.main.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import com.blankj.utilcode.util.CacheDoubleUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.orhanobut.logger.Logger;
 import com.p8.common.utils.AntiShakeUtils;
@@ -25,14 +23,15 @@ import com.p8.inspection.R;
 import com.p8.inspection.base.DaggerMvpFragment;
 import com.p8.inspection.data.AliOssManager;
 import com.p8.inspection.data.Constants;
+import com.p8.inspection.data.LocalDataManager;
 import com.p8.inspection.data.bean.Agency;
+import com.p8.inspection.data.bean.Inspection;
 import com.p8.inspection.data.bean.LoginInfo;
 import com.p8.inspection.data.bean.UserMenu;
 import com.p8.inspection.di.component.FragmentComponent;
 import com.p8.inspection.mvp.contract.MainContract;
 import com.p8.inspection.mvp.presenter.MainPresenter;
 import com.p8.inspection.mvp.ui.main.adapter.MenuAdapter;
-import com.p8.inspection.utils.GlideEngine;
 import com.p8.inspection.utils.GlideUtils;
 import com.p8.inspection.utils.ImageLoader;
 import com.p8.inspection.utils.PictureSelectorUtils;
@@ -52,7 +51,7 @@ public class MainFragment extends DaggerMvpFragment<MainPresenter, MainContract.
     private RecyclerView mRecyclerView;
     private View headerView;
     private TextView tvGrade, tvUserName, tvLocation, tvOrder, tvCheck, tvLandlord;
-    MenuAdapter mAdapter;
+    private MenuAdapter mAdapter;
     public String url = "http://p8bucket.oss-cn-shenzhen.aliyuncs.com/img_1d38770488b74b32bf0af9a6919b36f6_1603789894569.jpg";
 
     LoginInfo mLoginInfo;
@@ -79,7 +78,6 @@ public class MainFragment extends DaggerMvpFragment<MainPresenter, MainContract.
         tvLandlord = headerView.findViewById(R.id.tv_landlord_value);
     }
 
-
     @Override
     public void initData() {
         LinearLayoutManager manager = new LinearLayoutManager(mContext);
@@ -93,7 +91,35 @@ public class MainFragment extends DaggerMvpFragment<MainPresenter, MainContract.
         mLoginInfo = CacheDoubleUtils.getInstance().getParcelable(Constants.Key.LOGIN_INFO, LoginInfo.CREATOR);
         Logger.e(mLoginInfo.toString());
         mTitleBar.setTitle(mContext.getResources().getStringArray(R.array.userType)[mLoginInfo.getUserType()]);
-        presenter.requestAgencyInfo();
+        requestUserInfo();
+    }
+
+    private void requestUserInfo() {
+        @Constants.UserType int uType = mLoginInfo.getUserType();
+        switch (uType) {
+            case Constants.UserType.LAND:
+                presenter.requestInspectionInfo();
+                break;
+            case Constants.UserType.BUILD:
+                break;
+            case Constants.UserType.LARGE:
+                presenter.requestAgencyInfo();
+                break;
+            case Constants.UserType.MEDIUM:
+                break;
+            case Constants.UserType.ONESELF:
+                break;
+            case Constants.UserType.OTHER:
+                break;
+            case Constants.UserType.PLACE:
+                break;
+            case Constants.UserType.PLATFORM:
+                break;
+            case Constants.UserType.SMALL:
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -129,7 +155,7 @@ public class MainFragment extends DaggerMvpFragment<MainPresenter, MainContract.
                 break;
             case UserMenu.MenuType.DEVICE_BINDING:
                 //设备绑定
-                start(SearchLordFragment.newInstance());
+                start(DeviceBindingFragment.newInstance());
                 break;
             case UserMenu.MenuType.DEVICE_DEBUG:
                 //设备调试
@@ -137,7 +163,8 @@ public class MainFragment extends DaggerMvpFragment<MainPresenter, MainContract.
                 break;
             case UserMenu.MenuType.WORK_ORDER_PROCESSING:
                 //工单处理
-                start(WorkOrderDisposeFragment.newInstance());
+                start(LocalDataManager.getInstance().getUserType() == Constants.UserType.LAND ?
+                        WorkOrderFragment.newInstance() : WorkOrderDisposeFragment.newInstance());
                 break;
             case UserMenu.MenuType.CLOCK:
                 //签到签出
@@ -233,6 +260,11 @@ public class MainFragment extends DaggerMvpFragment<MainPresenter, MainContract.
         tvLocation.setText(agency.getAddress());
         tvUserName.setText(agency.getName());
         ImageLoader.loadHeadPortrait(this.mContext, agency.getFacadeImg(), civUserHeader);
+    }
+
+    @Override
+    public void onRequestInspectionSuccess(Inspection inspection) {
+        tvUserName.setText(inspection.getRealName());
     }
 }
 
