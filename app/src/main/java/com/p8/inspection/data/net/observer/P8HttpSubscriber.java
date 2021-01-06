@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 import com.p8.common.base.mvp.BaseContract;
+import com.p8.common.dialog.YDialog;
 import com.p8.common.http.HttpError;
 import com.p8.common.http.HttpResponse;
 import com.p8.common.rx.ObservableSubscriber;
@@ -22,6 +23,8 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
 
     BaseContract.IBaseView mView;
 
+    private YDialog mMsgDialog;
+
     public P8HttpSubscriber(@NonNull BaseContract.IBaseView view) {
         this.msg = "网络请求中...";
         this.mView = view;
@@ -29,12 +32,13 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
 
     public P8HttpSubscriber(BaseContract.IBaseView view, String msg) {
         this.msg = msg;
+        this.mView = view;
     }
 
     @Override
     protected void onStart() {
         if (isShowProgressDialog()) {
-            DialogUtils.createProgressDialog(mView.getContext(), msg);
+            mMsgDialog = DialogUtils.createProgressDialog(mView.getContext(), msg);
         }
         super.onStart();
     }
@@ -43,6 +47,10 @@ public abstract class P8HttpSubscriber<T> extends ObservableSubscriber<T> {
     protected void onEnd() {
         if (isShowProgressDialog()) {
             DialogUtils.closeLoadingDialog(mView.getContext());
+            if(mMsgDialog != null) {
+                mMsgDialog.dismiss();
+                mMsgDialog = null;
+            }
         }
         super.onEnd();
     }

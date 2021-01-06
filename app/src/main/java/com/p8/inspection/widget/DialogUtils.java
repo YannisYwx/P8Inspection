@@ -100,7 +100,7 @@ public class DialogUtils {
     }
 
     public static YDialog createProgressDialog(Context context, String msg) {
-        closeLoadingDialog(context);
+//        closeLoadingDialog(context);
         YDialog.Builder builder = new YDialog.Builder(context);
         YDialog dialog = builder.setDialogView(R.layout.dialog_loading)
                 //设置动画 默认没有动画
@@ -119,8 +119,8 @@ public class DialogUtils {
                     TextView tvMsg = view.findViewById(R.id.tv_msg);
                     tvMsg.setText(msg);
                 }).show();
-        hashMap.put(context.getClass().getSimpleName(), dialog);
-        Logger.e("put dialog == " + context.getClass().getSimpleName());
+        /*hashMap.put(context.getClass().getSimpleName(), dialog);
+        Logger.e("put dialog == " + context.getClass().getSimpleName());*/
         return dialog;
     }
 
@@ -160,9 +160,7 @@ public class DialogUtils {
                         dialog.dismiss();
                     });
 
-                    view.findViewById(R.id.btn_cancel).setOnClickListener(v -> {
-                        dialog.dismiss();
-                    });
+                    view.findViewById(R.id.btn_cancel).setOnClickListener(v -> dialog.dismiss());
                 }).show();
     }
 

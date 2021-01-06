@@ -74,8 +74,8 @@ public class LoginFragment extends DaggerMvpFragment<LoginPresenter, LoginContra
         }
         etAccount.setText(userType == Constants.UserType.LARGE ? "15919835035" : "wzh");
         etPassword.setText(userType == Constants.UserType.LARGE ? "456789" : "123456");
-        etAccount.setText("");
-        etPassword.setText("");
+//        etAccount.setText("");
+//        etPassword.setText("");
     }
 
     @Override
